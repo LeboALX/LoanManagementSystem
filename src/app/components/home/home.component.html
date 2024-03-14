@@ -1,0 +1,43 @@
+<mat-sidenav-container class="sidenav-container">
+
+    <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+
+
+        <div class="flex center-center bg"><img class="height-64" src="../../../assets/logo.png" alt="logo">
+        </div>
+
+
+        <mat-nav-list class="flex center-center column gap-16">
+            <div class="full-width color text-center">
+                <a mat-list-item routerLink="/home/loan-officer"><p class="color">DashBoard</p></a>
+                <a mat-list-item routerLink="/home/burrower"><p class="color">Borrower</p></a>
+                <a mat-list-item routerLink="/home/policy"><p class="color">Policy</p></a>
+                <a mat-list-item routerLink="/home/contact"><p class="color">Contact </p></a>
+                <a mat-list-item routerLink="/home/profile"><p class="color">Profile</p> </a>
+            </div>
+
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar class="flex spacebetween-center" color="primary">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+                *ngIf="isHandset$ | async">
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+            <div>
+                <h3>burrower</h3>
+            </div>
+            <div class="flex center-center gap-1em">
+                <mat-icon class="icon-size flex center-center">person</mat-icon>
+                <h3>Kearabetswe Maja</h3>
+                <mat-icon matTooltip="logout">logout</mat-icon>
+            </div>
+
+        </mat-toolbar>
+        <div class="routed-content">
+            <router-outlet></router-outlet>
+        </div>
+        <!-- Add Content Here -->
+    </mat-sidenav-content>
+</mat-sidenav-container>
