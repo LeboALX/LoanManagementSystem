@@ -1,0 +1,31 @@
+.mat-toolbar.mat-primary {
+    background: #121a2e !important;
+    color: #fff;
+}
+
+.main-container {
+    height: calc(100% - 64px);
+}
+
+.cards-container {
+    width: 100%;
+    padding-right: 40px;
+    cursor: pointer;
+    padding-top: 35px;
+    box-sizing: border-box;
+}
+
+.card {
+    width: 25%;
+    height: 122px;
+    margin-right: 40px;
+    padding: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+    background-color: transparent;
+    border: 2px solid #121a2e;
+}
+
+.payment-container {
+    width: 100%;    
+}

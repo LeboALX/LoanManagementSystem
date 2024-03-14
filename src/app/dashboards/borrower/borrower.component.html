@@ -1,1 +1,10 @@
-<p>borrower works!</p>
+<div class="main-container flex column gap-1em">
+    <div class="cards-container full-width flex center-center">
+        <mat-card matBadgeSize="large" matBadge="4" class="card flex center-center">Current Loan</mat-card>
+        <mat-card matBadgeSize="large" class="card flex center-center" (click)="makePayment()">Make A Payment</mat-card>
+        <mat-card matBadgeSize="large" class="card flex center-center">Pending Loan</mat-card>
+    </div>
+    <div class="payment-container full-width">
+        <app-borrower-table></app-borrower-table>
+    </div>
+</div>

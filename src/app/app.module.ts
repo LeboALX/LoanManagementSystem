@@ -11,6 +11,8 @@ import { DonutComponent } from './charts/donut/donut.component';
 import { NgChartsModule } from 'ng2-charts';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
+import { BorrowerTableComponent } from './tables/borrower-table/borrower-table.component';
+import { PaymentComponent } from './popUps/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { MaterialModule } from './material/material.module';
     BorrowerComponent,
     LoanOfficerComponent,
     LoanOfficerTableComponent,
-    DonutComponent
+    DonutComponent,
+    BorrowerTableComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,

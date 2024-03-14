@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ChartConfiguration } from 'chart.js';
+import { ChartOptions } from 'chart.js';
 
 @Component({
   selector: 'app-donut',
@@ -7,14 +7,15 @@ import { ChartConfiguration } from 'chart.js';
   styleUrls: ['./donut.component.scss']
 })
 export class DonutComponent {
-  public doughnutChartLabels: string[] = [ 'Approved loans', 'Pending requests', 'Declined requests' ];
-  public doughnutChartDatasets: ChartConfiguration<'doughnut'>['data']['datasets'] = [
-      { data: [ 350, 450, 100 ], label: 'Series A' },
-      { data: [ 50, 150, 120 ], label: 'Series B' },
-      { data: [ 250, 130, 70 ], label: 'Series C' }
-    ];
-
-  public doughnutChartOptions: ChartConfiguration<'doughnut'>['options'] = {
-    responsive: false
+  // Pie
+  public pieChartOptions: ChartOptions<'pie'> = {
+    responsive: false,
   };
+  public pieChartLabels = [ [ 'Approved Loans' ], [ 'Pending Requests' ], ['Declined Requests'] ];
+  public pieChartDatasets = [ {
+    data: [ 300, 400, 880 ],
+    backgroundColor: ['#cd2e37', '#FFA500', '#cd2e37;']
+  } ];
+  public pieChartLegend = true;
+  public pieChartPlugins = [];
 }
