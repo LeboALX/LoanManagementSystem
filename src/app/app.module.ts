@@ -14,7 +14,8 @@ import { MaterialModule } from './material/material.module';
 import { RegistarComponent } from './popup/registar/registar.component';
 import { ContactComponent } from './popup/contact/contact.component';
 import { LogInComponent } from './popup/log-in/log-in.component';
-
+import { BorrowerTableComponent } from './tables/borrower-table/borrower-table.component';
+import { PaymentComponent } from './popUps/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,9 @@ import { LogInComponent } from './popup/log-in/log-in.component';
     DonutComponent,
     RegistarComponent,
     ContactComponent,
-    LogInComponent
+    LogInComponent,
+    BorrowerTableComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
