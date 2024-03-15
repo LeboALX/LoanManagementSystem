@@ -1,1 +1,34 @@
+<div class="flex center-center column">
+            <h1 class="text-center color-blue no-margin">Make A Payment</h1>
+            <form [formGroup]="paymentForm" class="flex full-width column padding-12">
+                <!-- Initial Amount -->
+                <h4 class="no-margin">Initial Amount</h4>
+                <mat-form-field>
+                    <input readonly type="number" matInput formControlName="amount">R80 000
+                </mat-form-field>
+                
+                <!-- Monthly Repayment -->
+                <h4 class="no-margin">Monthly Repayments</h4>
+                <mat-form-field>
+                    <input type="number" matInput formControlName="monthlyRepayment" placeholder="R">
+                </mat-form-field>
 
+                <!-- Interest -->
+                <h4 class="no-margin">Interest Rate</h4>
+                <mat-form-field>
+                    <input readonly type="number" matInput formControlName="interest">10.5%
+                </mat-form-field>
+
+                <!-- Balance -->
+                <h4 class="no-margin">Balance</h4>
+                <mat-form-field>
+                    <input type="number" matInput formControlName="balance" placeholder="R">
+                </mat-form-field>
+
+                <div class="flex gap-1em end-center m-b-1em">
+                    <button mat-raised-button color="warn" type="button" class="btn flex-1"
+                        (click)="paymentForm.reset()">Cancel</button>
+                    <button mat-raised-button type="button" class="btn flex-1" (click)="calculateRemainingBalance()">Pay</button>
+                </div>
+            </form>
+        </div>

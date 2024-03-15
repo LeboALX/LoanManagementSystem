@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoanOfficerTableComponent } from './tables/loan-officer-table/loan-officer-table.component';
 import { DonutComponent } from './charts/donut/donut.component';
 import { NgChartsModule } from 'ng2-charts';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
 import { BorrowerTableComponent } from './tables/borrower-table/borrower-table.component';
 import { PaymentComponent } from './popUps/payment/payment.component';
@@ -22,7 +22,7 @@ import { PaymentComponent } from './popUps/payment/payment.component';
     LoanOfficerTableComponent,
     DonutComponent,
     BorrowerTableComponent,
-    PaymentComponent
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +30,8 @@ import { PaymentComponent } from './popUps/payment/payment.component';
     BrowserAnimationsModule,
     NgChartsModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

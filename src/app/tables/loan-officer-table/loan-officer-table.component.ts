@@ -7,8 +7,8 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./loan-officer-table.component.scss']
 })
 export class LoanOfficerTableComponent {
-  displayedColumns: string[] = ['id', 'name', 'lastName', 'email', 'action', 'options'];
-  applicationOptions: string[] = ['Approve', 'Declined'];
+  displayedColumns: string[] = ['id', 'name', 'lastName', 'email', 'action', 'options', 'documents'];
+  applicationAction: string[] = ['Approve', 'Decline'];
   pendingCount: number = 0;
   declinedCount: number = 0;
   approvedCount: number = 0;
