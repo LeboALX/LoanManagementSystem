@@ -16,6 +16,7 @@ import { ContactComponent } from './popup/contact/contact.component';
 import { LogInComponent } from './popup/log-in/log-in.component';
 import { BorrowerTableComponent } from './tables/borrower-table/borrower-table.component';
 import { PaymentComponent } from './popUps/payment/payment.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { PaymentComponent } from './popUps/payment/payment.component';
     LogInComponent,
     BorrowerTableComponent,
     PaymentComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
