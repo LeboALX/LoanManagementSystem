@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
 import { BorrowerTableComponent } from './tables/borrower-table/borrower-table.component';
 import { PaymentComponent } from './popUps/payment/payment.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PaymentComponent } from './popUps/payment/payment.component';
     LoanOfficerTableComponent,
     DonutComponent,
     BorrowerTableComponent,
-    PaymentComponent
+    PaymentComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
