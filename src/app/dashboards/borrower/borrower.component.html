@@ -1,1 +1,17 @@
-<p>borrower works!</p>
+<div class="main-container flex column gap-1em">
+    <div class="cards-container full-width flex center-center">
+        <mat-card matBadgeSize="large" class="card flex center-center">
+            <p class="color-blu"><b>Personal Loan</b></p>
+            <p class="color-blu"><b>R80 000</b></p>
+        </mat-card>
+        <mat-card matBadgeSize="large" class="card flex center-center" (click)="makePayment()"><b>Make A
+                Payment</b></mat-card>
+        <mat-card matBadgeSize="large" class="card flex center-center">
+            <p class="color-blu"><b>Remaining Balance</b></p>
+            <p class="color-blu"><b>R70 000</b></p>
+        </mat-card>
+    </div>
+    <div class="payment-container full-width">
+        <app-borrower-table></app-borrower-table>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="flex center-center full-width full-height">
+    <mat-card class="bg flex center-center">
+        <div mat-dialog-content class="padding-1em">
+            <form [formGroup] ="contactForm" class=" flex column">
+                <h1 class="text-center color-blue">Get in touch</h1>
+                <h4 class="color-blue"> <i>Get in touch with me and I will get back to you as soon as possible</i></h4>
+                
+                    <!-- First Name -->
+                    <mat-form-field class="">
+                        <mat-label>Name</mat-label>
+                        <input type="text" matInput formControlName="name" placeholder="Enter your name">
+                        <mat-error *ngIf="contactForm.get('name')?.hasError('required')">
+                            Name is <strong>required</strong>
+                        </mat-error>
+                        <mat-error *ngIf="contactForm.get('name')?.hasError('minlength')">
+                            Name should at least have 3 charectors
+                        </mat-error>
+                    </mat-form-field>
+                    <!-- Email -->
+                    <mat-form-field >
+                        <mat-label>Email</mat-label>
+                        <input type="email" matInput formControlName="email" placeholder="fix@gmail.com">
+                        <mat-error *ngIf="contactForm.get('email')?.hasError('required')">
+                            Email address is <strong>required</strong>
+                        </mat-error>
+                        <mat-error *ngIf="contactForm.get('email')?.hasError('pattern')">
+                            enter a valid Email Adreess
+                        </mat-error>
+                    </mat-form-field>
+                    <!-- Cellphone -->
+                    <mat-form-field>
+                        <mat-label>Cellphone</mat-label>
+                        <input type="number" matInput formControlName="cellNumber" placeholder="0642513985">
+                        <mat-error *ngIf="contactForm.get('cellNumber')?.hasError('required')">
+                            cellNumber is <strong>required</strong>
+                        </mat-error>
+                        <mat-error *ngIf="contactForm.get('cellNumber')?.hasError('minlength')">
+                            Cellphone should at least have 10 charectors
+                        </mat-error>
+                    </mat-form-field>
+                
+        
+                
+                    <!-- Text area -->
+                    <mat-form-field class="example-full-width max-height">
+                        <mat-label>Leave a comment</mat-label>
+                        <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+                      </mat-form-field>
+               
+                
+                <div class="flex gap-1em end-center m-b-1em">
+                    <button mat-raised-button color="warn" type="button" class="btn flex-1"
+                        (click)="contactForm.reset()">Cancel</button>
+                    <button mat-raised-button  type="button" class="btn flex-1" (click)="openDialog()">Submit</button>
+                </div>
+            </form>
+          </div>
+      </mat-card>
+</div>
+
