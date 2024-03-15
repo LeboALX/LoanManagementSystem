@@ -1,0 +1,48 @@
+//colors
+$blue: #121a2e;
+$red: #cd2e37;
+$white: #efefef;
+
+
+
+.bg{
+  background-color: #efefef;
+}
+
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
+  color: #121a2e;
+}
+
+
+.example-full-width {
+  width: 100%;
+}
+
+.mat-mdc-raised-button.mat-warn {
+  --mdc-protected-button-container-color: #cd2e37;
+  --mdc-protected-button-label-text-color: #efefef;
+}
+
+.mat-mdc-raised-button.mat-unthemed {
+  --mdc-protected-button-container-color:#121a2e ;
+  --mdc-protected-button-label-text-color: #efefef;
+}
+.color-blue{
+  color: #121a2e;
+}
+.max-height{
+  max-height: 100px;
+}
+.color-b{
+    color: #121a2e;
+  }
+
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
+    color: #121a2e;
+  }
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: #efefef;
+  }
+.padding-1em{
+    padding: 1em;
+}

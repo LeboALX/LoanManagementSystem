@@ -105,6 +105,9 @@ body {
     margin-top: 1em;
 }
 
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
+    color: $blue;
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 

@@ -9,8 +9,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoanOfficerTableComponent } from './tables/loan-officer-table/loan-officer-table.component';
 import { DonutComponent } from './charts/donut/donut.component';
 import { NgChartsModule } from 'ng2-charts';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
+import { RegistarComponent } from './popup/registar/registar.component';
+import { ContactComponent } from './popup/contact/contact.component';
+import { LogInComponent } from './popup/log-in/log-in.component';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +22,10 @@ import { MaterialModule } from './material/material.module';
     BorrowerComponent,
     LoanOfficerComponent,
     LoanOfficerTableComponent,
-    DonutComponent
+    DonutComponent,
+    RegistarComponent,
+    ContactComponent,
+    LogInComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +33,8 @@ import { MaterialModule } from './material/material.module';
     BrowserAnimationsModule,
     NgChartsModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
