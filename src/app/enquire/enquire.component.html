@@ -1,0 +1,41 @@
+<div class="main-form-div flex center-center">
+    <form [formGroup]="messageFormData" class="flex full-width  column gap-1em center-center">
+        <p class="contact">Send Us a message</p>
+        <!-- Name -->
+        <mat-form-field class="width-80">
+            <mat-label>First Name</mat-label>
+            <input type="text" matInput formControlName="firstName" placeholder="Enter your First Name">
+            <mat-error *ngIf="messageFormData.get('firstName')?.hasError('required')">
+                First Name is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="messageFormData.get('firstName')?.hasError('minlength')">
+                First Name should at least have 3 charectors
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Email -->
+
+        <mat-form-field class="width-80">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+            <mat-error *ngIf="messageFormData.get('email')?.hasError('required')">
+                Email is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="messageFormData.get('email')?.hasError('pattern')">
+                Please enter a valid email address
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Message Area -->
+        <mat-form-field class="example-full-width no-margin full-width half-height">
+            <mat-label>Leave a Message</mat-label>
+            <textarea matInput placeholder="Ex. It makes me feel..." formControlName="messageArea"></textarea>
+        </mat-form-field>
+
+        <div class="width-80 flex gap-1em">
+            <button class="btn" mat-raised-button color="warn">Cancel</button>
+            <button class="btn" mat-raised-button color="accent"
+          (click)="submit()" >Send Message</button>
+        </div>
+    </form>
+</div>

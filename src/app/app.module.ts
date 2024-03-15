@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +17,10 @@ import { LogInComponent } from './popup/log-in/log-in.component';
 import { BorrowerTableComponent } from './tables/borrower-table/borrower-table.component';
 import { PaymentComponent } from './popUps/payment/payment.component';
 import { HomeComponent } from './components/home/home.component';
+import { LandingComponent } from './landing/landing.component';
+import { PieComponent } from './charts/pie/pie.component';
+import { LoanPolicyComponent } from './loan-policy/loan-policy.component';
+import { EnquireComponent } from './enquire/enquire.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,10 @@ import { HomeComponent } from './components/home/home.component';
     LoanOfficerComponent,
     LoanOfficerTableComponent,
     DonutComponent,
+    LandingComponent,
+    PieComponent,
+    LoanPolicyComponent,
+    EnquireComponent,
     RegistarComponent,
     ContactComponent,
     LogInComponent,
@@ -42,6 +50,7 @@ import { HomeComponent } from './components/home/home.component';
     ReactiveFormsModule
   ],
   providers: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
