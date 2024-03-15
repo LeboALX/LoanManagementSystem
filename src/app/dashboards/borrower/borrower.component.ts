@@ -9,10 +9,11 @@ import { PaymentComponent } from 'src/app/popUps/payment/payment.component';
 })
 export class BorrowerComponent {
 
-
   constructor(private dialog: MatDialog) { }
 
   makePayment(): void {
-    this.dialog.open(PaymentComponent)
+    this.dialog.open(PaymentComponent, {
+      width: '50%'
+    })
   }
 }

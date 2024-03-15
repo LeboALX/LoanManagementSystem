@@ -7,8 +7,8 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./borrower-table.component.scss']
 })
 export class BorrowerTableComponent {
-  displayedColumns: string[] = ['id', 'value'];
-  pendingLoan: string[] = ['in-progress', 'approval', 'declined']
+  displayedColumns: string[] = ['loanType', 'amount', 'status'];
+  status: string[] = ['in-progress', 'approved', 'declined']
   dataSource = new MatTableDataSource<any>();
 
   applyFilter(event: Event) {
