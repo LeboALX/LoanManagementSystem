@@ -1,0 +1,198 @@
+<div class="main-form-container flex column center-center">
+    <form [formGroup]="registarForm" class="form-container flex gap-1em center-center" >
+        <p class="register full-width">Register</p>
+        
+         <!-- First Name -->
+         <mat-form-field class="width-48">
+            <mat-label>Name</mat-label>
+            <input type="text" matInput formControlName="name" placeholder="Enter your name">
+            <mat-error *ngIf="registarForm.get('name')?.hasError('required')">
+                Name is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="registarForm.get('name')?.hasError('minlength')">
+                Name should at least have 3 charectors
+            </mat-error>
+        </mat-form-field>
+         <!-- Last Name -->
+         <mat-form-field class="width-48">
+            <mat-label>Last Name</mat-label>
+            <input type="text" matInput formControlName="lastname" placeholder="Enter your Last Name">
+            <mat-error *ngIf="registarForm.get('lastname')?.hasError('required')">
+                Last Name is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="registarForm.get('lastname')?.hasError('minlength')">
+                Last Name should at least have 3 charectors
+            </mat-error>
+        </mat-form-field>
+        
+         <!-- Email -->
+         <mat-form-field  class="width-48" >
+            <mat-label>Email</mat-label>
+            <input type="email" matInput formControlName="email" placeholder="fix@gmail.com">
+            <mat-error *ngIf="registarForm.get('email')?.hasError('required')">
+                Email address is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="registarForm.get('email')?.hasError('pattern')">
+                enter a valid Email Adreess
+            </mat-error>
+        </mat-form-field>
+        <!-- Password -->
+        <mat-form-field class="width-48">
+            <mat-label>Password</mat-label>
+            <input type="text" matInput formControlName="password" placeholder="****">
+            <mat-error *ngIf="registarForm.get('password')?.hasError('required')">
+                Password Number is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="registarForm.get('password')?.hasError('minlength')">
+                Password Numbershould at least have 4 charectors
+            </mat-error>
+        </mat-form-field>
+        <!-- Confirm Password -->
+        <mat-form-field class="width-48">
+            <mat-label>Confirm Password</mat-label>
+            <input type="text" matInput formControlName="confirmPassword" placeholder="Enter your Id number">
+            <mat-error *ngIf="registarForm.get('confirmPassword')?.hasError('required')">
+                Confirm Password is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="registarForm.get('confirmPassword')?.hasError('minlength')">
+                Id Numbershould at least have 4 charectors
+            </mat-error>
+        </mat-form-field>
+
+         <!-- Id Number -->
+         <mat-form-field class="width-48">
+            <mat-label>Id Number</mat-label>
+            <input type="number" matInput formControlName="id" placeholder="Enter your Id number">
+            <mat-error *ngIf="registarForm.get('id')?.hasError('required')">
+                Id Number is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="registarForm.get('id')?.hasError('minlength')">
+                Id Numbershould at least have 13 charectors
+            </mat-error>
+        </mat-form-field>
+       
+            <!-- streetname -->
+                <mat-form-field  class="width-48">
+                    <mat-label>Street Name</mat-label>
+                    <input  type="text" matInput placeholder="xyz Company" formControlName="streetName">
+                    <mat-error *ngIf="registarForm.get('streetName')?.hasError('required')">
+                        Street Name is required
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- street number -->
+                <mat-form-field  class="width-48">
+                    <mat-label>Street Number</mat-label>
+                    <input type="number" matInput placeholder="0000" formControlName="streetNumber">
+                    <mat-error *ngIf="registarForm.get('streetNumber')?.hasError('required')">
+                        Street Number is required
+                    </mat-error>
+                </mat-form-field>
+            
+            <!-- city -->
+                <mat-form-field  class="width-48">
+                    <mat-label>City</mat-label>
+                    <input  type="text" matInput placeholder="xyz Company" formControlName="city">
+                    <mat-error *ngIf="registarForm.get('city')?.hasError('required')">
+                        City is required
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- code -->
+                <mat-form-field  class="width-48">
+                    <mat-label>Code</mat-label>
+                    <input  type="number" matInput placeholder="xyz Company" formControlName="code">
+                    <mat-error *ngIf="registarForm.get('code')?.hasError('required')">
+                        Code is required
+                    </mat-error>
+                </mat-form-field>
+    
+         <!-- Phone Number -->
+         <mat-form-field class="width-48">
+            <mat-label>Phone Number</mat-label>
+            <input type="number" matInput formControlName="phoneNumber" placeholder="Enter your Phone Number">
+            <mat-error *ngIf="registarForm.get('phoneNumber')?.hasError('required')">
+                Phone Number is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="registarForm.get('phoneNumber')?.hasError('minlength')">
+                Phone Number should at least have 3 charectors
+            </mat-error>
+        </mat-form-field>
+        <!-- Select-->
+        <mat-form-field appearance="fill" class="width-48">
+            <mat-label>Choose a Loan Option</mat-label>
+            <mat-select >
+              <mat-option value="short">Short Term Loan</mat-option>
+              <mat-option value="personal">Personal Loan</mat-option>
+              <mat-option value="vehicle">Vehicle Loan</mat-option>
+            </mat-select>
+          </mat-form-field>
+        <!-- Loan amount -->
+        <mat-form-field class="width-48">
+            <mat-label>Loan Amount</mat-label>
+            <input type="text" matInput formControlname="loanAmount" placeholder="Enter your Loan Amount">
+            <mat-error *ngIf="registarForm.get('loanAmount')?.hasError('required')">
+                Loan Amount is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="registarForm.get('loanAmount')?.hasError('minlength')">
+                Loan Amount should at least have 3 charectors
+            </mat-error>
+        </mat-form-field>
+        <!-- Duration -->
+        <mat-form-field class="width-48">
+            <mat-label>Duration</mat-label>
+            <input type="text" matInput formControlName="duration" placeholder="Enter durattion">
+            <mat-error *ngIf="registarForm.get('duration')?.hasError('required')">
+                Duration is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="registarForm.get('duration')?.hasError('minlength')">
+                Duration should at least have 3 charectors
+            </mat-error>
+        </mat-form-field>
+        <!-- Gross monthly income -->
+        <mat-form-field class="width-48">
+            <mat-label> Gross Monthly Income</mat-label>
+            <input type="text" matInput formControlName="grossMonthlyIncome" placeholder="Enter your grossMonthlyIncome">
+            <mat-error *ngIf="registarForm.get('grossMonthlyIncome')?.hasError('required')">
+                Gross Monthly Income is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="registarForm.get('grossMonthlyIncome')?.hasError('minlength')">
+                Gross Monthly Income should at least have 3 charectors
+            </mat-error>
+        </mat-form-field>
+        <!-- Monthly expenses -->
+        <mat-form-field class="width-48">
+            <mat-label>Monthly Expenses</mat-label>
+            <input type="number" matInput formControlName="monthlyExpense" placeholder="Enter your amount">
+            <mat-error *ngIf="registarForm.get('monthlyExpense')?.hasError('required')">
+                Monthly Expenses are <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="registarForm.get('name')?.hasError('minlength')">
+                Name should at least have 3 charectors
+            </mat-error>
+        </mat-form-field>
+
+         <!-- Upload -->
+            <!-- Radio Button -->
+            <mat-radio-group aria-label="Select an option">
+                <mat-radio-button value="1">ID Document</mat-radio-button>
+                <mat-radio-button value="2">Payslip</mat-radio-button>
+                <mat-radio-button value="2">Proof Of Residence</mat-radio-button>
+            </mat-radio-group>
+            <!-- upload -->
+            <div >
+                <input type="file" id="file" (change)="fileUpload($event)" 
+                    placeholder="file">
+                <small class="red" *ngIf="fileUploadResult == 0 && registarForm.valid">
+                    Document is required
+                </small>
+            </div>
+
+        <div class="full-width flex gap-1em padding-1em">
+            <button mat-raised-button color="warn" type="button" class="half-width"
+                (click)=" close()">Cancel</button>
+            <button mat-raised-button  type="button" class="half-width" (click)="Submit()">Submit</button>
+        </div>
+
+    </form>
+</div>

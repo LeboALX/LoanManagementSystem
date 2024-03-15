@@ -11,6 +11,9 @@ import { DonutComponent } from './charts/donut/donut.component';
 import { NgChartsModule } from 'ng2-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
+import { RegistarComponent } from './popup/registar/registar.component';
+import { ContactComponent } from './popup/contact/contact.component';
+import { LogInComponent } from './popup/log-in/log-in.component';
 import { BorrowerTableComponent } from './tables/borrower-table/borrower-table.component';
 import { PaymentComponent } from './popUps/payment/payment.component';
 
@@ -21,6 +24,9 @@ import { PaymentComponent } from './popUps/payment/payment.component';
     LoanOfficerComponent,
     LoanOfficerTableComponent,
     DonutComponent,
+    RegistarComponent,
+    ContactComponent,
+    LogInComponent,
     BorrowerTableComponent,
     PaymentComponent,
   ],
