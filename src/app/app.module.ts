@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,8 +9,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoanOfficerTableComponent } from './tables/loan-officer-table/loan-officer-table.component';
 import { DonutComponent } from './charts/donut/donut.component';
 import { NgChartsModule } from 'ng2-charts';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
+import { LandingComponent } from './landing/landing.component';
+import { PieComponent } from './charts/pie/pie.component';
+import { LoanPolicyComponent } from './loan-policy/loan-policy.component';
+import { EnquireComponent } from './enquire/enquire.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { MaterialModule } from './material/material.module';
     BorrowerComponent,
     LoanOfficerComponent,
     LoanOfficerTableComponent,
-    DonutComponent
+    DonutComponent,
+    LandingComponent,
+    PieComponent,
+    LoanPolicyComponent,
+    EnquireComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,9 +34,11 @@ import { MaterialModule } from './material/material.module';
     BrowserAnimationsModule,
     NgChartsModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

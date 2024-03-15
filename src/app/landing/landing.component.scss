@@ -1,0 +1,257 @@
+$red:#cd2e37;
+$blue:#121a2e;
+$white: #fefefe;
+
+.main-landing{
+}
+
+.short-term-loan{
+    height: 50%;
+    background-color: blueviolet;
+}
+
+.navbar{
+    background-color: #121a2e;
+    color: #fefefe;
+}
+
+.left img{
+    border-radius: 10px;
+}
+
+.image-card{
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+.image-card img{
+    border-radius: 50%;
+}
+
+.gap-5{
+    gap: .5em;
+}
+
+.apply{
+    color: #fefefe !important;
+    background-color: #cd2e37 !important;
+}
+
+// Section
+    .section{
+        height: calc(100% - 64px);
+        overflow-y: auto;
+    }
+
+    .loan-card-div{
+        height: 25%;
+    }
+
+    .the-mat-card{
+        height: 60%;
+        box-sizing: border-box;
+        border-left: 8px solid #121a2e !important;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        gap: 1em;
+        padding-left: 10px;
+        width: 92%;
+        padding-right: 10px !important;
+    }
+
+    .loantype-div{
+        height: 40%;
+        padding: 4px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+
+    .card {
+        width: 15%;
+        height: 50%;
+        border: 2px solid #121a2e;
+        font-size: 1.4em;
+        
+    }
+
+    .policy{
+        height: 60%;
+    }
+
+    .card:hover{
+        cursor: pointer;
+        background-color: #cd2e37;
+        color: #fefefe;
+    }
+    
+    .enquire-card{
+        height: 70%;
+        width: 40%;
+        justify-content: end;
+        align-items: center;
+    }
+
+    .enquire-card button{
+        height: 80%;
+        width: 30%;
+        font-size: 1.5em;
+        background-color: #121a2e;
+        color: #fefefe;
+        border-radius: 7px;
+    }
+
+    .loan-calculator{
+        height: 70%;
+        justify-content: space-around;
+    }
+
+
+    .calculator{
+        height: 100%;
+        width: 95%;
+    }
+
+    .form-div{
+        height: 35%;
+        padding: 10px;
+        box-sizing: border-box;
+        background-color: #121a2e;
+    }
+
+    .results-div{
+        height: 65%;
+    }
+
+    .loan-heading{
+        font-size: 1.3em;
+        color: #fefefe;
+        margin-bottom: 14px;
+    }
+
+    form p{
+        margin-bottom: 10px;
+        color: #fefefe;
+    }
+
+    form input{
+        height: 25px;
+        width: 92%;
+    }
+
+    .results-left{
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    
+    
+
+    .margin-5px{
+        margin: 5px;
+    }
+    
+    .results-left button{
+        background-color: #cd2e37 !important;
+        color: #fefefe;
+    }
+
+    hr{
+        border-color: #121a2e;
+    }
+
+    input:focus{
+        outline: none;
+    }
+
+    .right{
+        width: 35% !important;
+    }
+// End Section
+
+.bottom{
+    height: 80%;
+}
+
+.short-loan-image{
+    background-color: aqua;
+}
+
+
+.short-content{
+    width: 80%;
+    height: 80%;
+    padding: 10px;
+}
+
+.short-content p{
+    font-size: 2em;
+    color: #cd2e37;
+    margin: 0;
+}
+
+.terms-btn{
+    width: 30%;
+    color: #fefefe !important;
+    background-color: #121a2e !important;
+}
+
+.about-us{
+    height: 60%;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    background-color: burlywood;
+    background: url('../../assets/images/about-us.jpg');
+    background-size: cover;
+}
+
+.main-about{
+    position: absolute;
+    background-color: #121a2ec7;
+}
+
+.main-about h1{
+    margin-top: 10px;
+    color: #cd2e37;
+    font-weight: 400;
+}
+
+.main-about p{
+    width: 80%;
+    color: #fefefe;
+}
+
+.footer{
+    height: 20%;
+    position: relative;
+    background-color:blueviolet;
+    background: url('../../assets/images/loan_agreement.jfif');
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+
+.gap{
+    height: 20%;
+}
+
+.main-footer{
+    position: absolute;
+    background-color: #121a2eb8;
+}
+
+.foot{
+    width: 30%;
+    height: 100%;
+    color: #fefefe;
+}
+
+.foot p{
+    font-size: 2em;
+    margin: 0;
+    margin-top: 10px;
+    color: #cd2e37;
+}
+
+.foot img{
+    color: #fefefe;
+}
