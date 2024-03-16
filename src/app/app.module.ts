@@ -21,6 +21,9 @@ import { LandingComponent } from './landing/landing.component';
 import { PieComponent } from './charts/pie/pie.component';
 import { LoanPolicyComponent } from './loan-policy/loan-policy.component';
 import { EnquireComponent } from './enquire/enquire.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ApiService } from './services/api.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,8 @@ import { EnquireComponent } from './enquire/enquire.component';
     LogInComponent,
     BorrowerTableComponent,
     PaymentComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,9 +51,10 @@ import { EnquireComponent } from './enquire/enquire.component';
     NgChartsModule,
     FormsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ApiService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]
 })
