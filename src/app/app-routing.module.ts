@@ -5,10 +5,10 @@ import { LoanOfficerComponent } from './dashboards/loan-officer/loan-officer.com
 import { BorrowerComponent } from './dashboards/borrower/borrower.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent, children : [
+  { path: '', redirectTo: '/landing', pathMatch: 'full' },
+    { path: 'home', component: HomeComponent, children : [
     { path : 'loan-officer', component: LoanOfficerComponent},
-    { path : 'burrower', component: BorrowerComponent}
+    { path : 'burrower', component: BorrowerComponent},
 ]}];
 
 @NgModule({
