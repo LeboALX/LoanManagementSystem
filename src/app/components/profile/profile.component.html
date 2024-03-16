@@ -1,0 +1,100 @@
+<div class="full-width full-height flex column main-container">
+   <div class="flex">
+    <div class="left-container flex column gap-1em margin-10 width-30">
+        <div class="profile">
+            <div class="card">
+                <img src="../../../assets/images/picture.png" alt="John" style="width:100%">
+                <h1>Edward Juska</h1>
+                <p class="title">Business Analyst</p>
+                <p>edward.juska@gmail.com</p>
+                <p>Johannesburg, RSA</p>
+                <div class="flex gap-1em">
+                    <button mat-raised-button color="accent">Message</button>
+                    <button mat-raised-button color="warn">Notifications</button>
+                </div>
+            </div>
+        </div>
+        <div class="credit-score">
+            <div class="card">
+                <h2>Your Credit Score</h2>
+                <app-progress-bar></app-progress-bar>
+            </div>
+        </div>
+    </div>
+    <div class="information-container width-70 margin-20">
+        <div class="cards full-width full-height">
+            <h2 class="text-center no-margin">General Information</h2>
+            <form [formGroup]="profileForm" class="flex full-width column">
+                <!-- First Name -->
+                <h4 class="no-margin">First Name</h4>
+                <mat-form-field appearance="outline">
+                    <input type="text" matInput formControlName="firstName" placeholder="Enter your first name">
+                </mat-form-field>
+
+                <!-- Last Name -->
+                <h4 class="no-margin">Last Name</h4>
+                <mat-form-field appearance="outline">
+                    <input type="text" matInput formControlName="lastName" placeholder="Enter your last name">
+                </mat-form-field>
+
+                <!-- Date of Birth -->
+                <h4 class="no-margin">Date of Birth</h4>
+                <mat-form-field appearance="outline">
+                    <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="dob">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+                <!-- Gender -->
+                <h4 class="no-margin">Gender</h4>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="gender" placeholder="Select you gender">
+                        <mat-option *ngFor="let gender of genders" [value]="gender">{{gender | titlecase}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <!-- Email -->
+                <h4 class="no-margin">Email</h4>
+                <mat-form-field appearance="outline">
+                    <input type="email" matInput formControlName="email" placeholder="tt@tt.tt">
+                </mat-form-field>
+
+                <!-- Phone Number -->
+                <h4 class="no-margin">Phone Number</h4>
+                <mat-form-field appearance="outline">
+                    <input type="number" matInput formControlName="phoneNumber" placeholder="+27765233256">
+                </mat-form-field>
+
+                <h2 class="text-center color-blue no-margin">Address</h2>
+                <!-- Street Name -->
+                <h4 class="no-margin">Street Name</h4>
+                <mat-form-field appearance="outline">
+                    <input type="text" matInput placeholder="Bond street" formControlName="streetName">
+                </mat-form-field>
+
+                <!-- Street Number -->
+                <h4 class="no-margin">Number</h4>
+                <mat-form-field appearance="outline">
+                    <input type="number" matInput placeholder="no. 557" formControlName="number">
+                </mat-form-field>
+
+                <!-- City -->
+                <h4 class="no-margin">City</h4>
+                <mat-form-field appearance="outline">
+                    <input type="text" matInput placeholder="Johannesburg" formControlName="city">
+                </mat-form-field>
+
+                <!-- Code -->
+                <h4 class="no-margin">Code</h4>
+                <mat-form-field appearance="outline">
+                    <input type="number" matInput placeholder="1861" formControlName="code">
+                </mat-form-field>
+
+                <div class="flex gap-1em end-center m-b-1em">
+                    <button mat-raised-button color="accent" class="btn flex-1">Save All</button>
+                </div>
+            </form>
+        </div>
+    </div>
+   </div>
+</div>

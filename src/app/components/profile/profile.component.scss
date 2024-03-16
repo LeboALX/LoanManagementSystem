@@ -1,0 +1,57 @@
+.main-container {
+    height: calc(100% - 64px);
+    margin-top: 10px;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+form {
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.cards {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.title {
+    color: #cd2e37;
+    font-size: 18px;
+}
+
+button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+}
+
+.margin-10 {
+    margin-left: 10px;
+}
+
+.margin-20 {
+    margin-right: 20px;
+}
+
+.width-30 {
+    width: 30%;
+}
+
+.width-70 {
+    width: 70%;
+}
+
