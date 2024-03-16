@@ -1,6 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BorrowerComponent } from './dashboards/borrower/borrower.component';
@@ -11,7 +10,6 @@ import { DonutComponent } from './charts/donut/donut.component';
 import { NgChartsModule } from 'ng2-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
-import { RegistarComponent } from './popup/registar/registar.component';
 import { LogInComponent } from './popup/log-in/log-in.component';
 import { BorrowerTableComponent } from './tables/borrower-table/borrower-table.component';
 import { PaymentComponent } from './popUps/payment/payment.component';
@@ -27,6 +25,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { ApiService } from './services/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -39,14 +39,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     PieComponent,
     LoanPolicyComponent,
     EnquireComponent,
-    RegistarComponent,
     LogInComponent,
     BorrowerTableComponent,
     PaymentComponent,
     HomeComponent,
     ProfileComponent,
     ProgressBarComponent,
-    RegisterComponent
+    RegisterComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
