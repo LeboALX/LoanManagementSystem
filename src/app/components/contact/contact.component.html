@@ -1,0 +1,61 @@
+<div class="main-c flex colunm">
+    
+    <div class="flex center-center  gap half-width padding-1em">
+        <form [formGroup]="contactForm" class="bg padding-1em">
+            <p class="text-center text">Get in touch</p>
+    
+            <mat-form-field class="full-width m-b-1em">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+                <mat-error *ngIf="contactForm.get('email')?.hasError('required')">
+                    Email is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="contactForm.get('email')?.hasError('pattern')">
+                    Please enter a valid email address
+                </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field class="full-width m-b-1em">
+                <mat-label>Name</mat-label>
+                <input type="text" matInput formControlName="name" placeholder="Enter your Name">
+                <mat-error *ngIf="contactForm.get('name')?.hasError('required')">
+                   Name is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="contactForm.get('name')?.hasError('minlength')">
+                   Name should at least have 3 charectors
+                </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field class="full-width m-b-1em">
+                <mat-label>Cellphone</mat-label>
+                <input type="number" matInput formControlName="cellphone" placeholder="0000000000">
+                <mat-error *ngIf="contactForm.get('cellphone')?.hasError('required')">
+                   Cellphone is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="contactForm.get('cellphone')?.hasError('minlength')">
+                  Cellphone should at least have 10 charectors
+                </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field class="example-full-width m-b-1em">
+                <mat-label>Leave a comment</mat-label>
+                <textarea matInput  formControlName="textplace" placeholder="Ex. It makes me feel..."></textarea>
+                <mat-error *ngIf="contactForm.get('textplace')?.hasError('required')">
+                    Email is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+        
+                <div class="flex gap-1em m-b-1em">
+                    <button mat-raised-button color="warn" class="flex-1" (click)="contactForm.reset()">Cancel</button>
+                    <button mat-raised-button color="primary" class="flex-1" (click)="submit()">Submit</button>
+                </div>
+            
+        </form>
+    </div>
+
+    <div class="img padding-1em">
+        <img class="full-width width-90" src="../../../assets/images/2367-loan.gif" alt="">
+    </div>
+</div>
+
+
