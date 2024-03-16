@@ -26,6 +26,7 @@ import { EnquireComponent } from './enquire/enquire.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ApiService } from './services/api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -43,12 +44,9 @@ import { HttpClientModule } from '@angular/common/http';
     BorrowerTableComponent,
     PaymentComponent,
     HomeComponent,
-<<<<<<< HEAD
-    RegisterComponent,
-=======
     ProfileComponent,
-    ProgressBarComponent
->>>>>>> 551d5ae600e84f389e651d6accbf47960716257e
+    ProgressBarComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -56,11 +54,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     NgChartsModule,
     FormsModule,
-    MaterialModule,
     ReactiveFormsModule,
-<<<<<<< HEAD
-    HttpClientModule
-=======
     NgCircleProgressModule.forRoot({
       radius: 730,
       outerStrokeWidth: 16,
@@ -68,11 +62,12 @@ import { HttpClientModule } from '@angular/common/http';
       outerStrokeColor: "pink",
       innerStrokeColor: "#C7E596",
       animationDuration: 300,
-    })
->>>>>>> 551d5ae600e84f389e651d6accbf47960716257e
+    }),
+    MatFormFieldModule,
+    MaterialModule
   ],
   providers: [ApiService],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
