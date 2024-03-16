@@ -45,7 +45,8 @@ import { ContactComponent } from './components/contact/contact.component';
     HomeComponent,
     ProfileComponent,
     ProgressBarComponent,
-    RegisterComponent
+    RegisterComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
