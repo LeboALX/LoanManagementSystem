@@ -108,9 +108,13 @@ body {
 .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
     color: $blue;
 }
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color:$white-bg;
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.mat-mdc-form-field-subscript-wrapper{
-    display: none;
-}
+// .mat-mdc-form-field-subscript-wrapper{
+//     display: none;
+// }

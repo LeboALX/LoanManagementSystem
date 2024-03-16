@@ -11,8 +11,6 @@ import { DonutComponent } from './charts/donut/donut.component';
 import { NgChartsModule } from 'ng2-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
-import { RegistarComponent } from './popup/registar/registar.component';
-import { ContactComponent } from './popup/contact/contact.component';
 import { LogInComponent } from './popup/log-in/log-in.component';
 import { BorrowerTableComponent } from './tables/borrower-table/borrower-table.component';
 import { PaymentComponent } from './popUps/payment/payment.component';
@@ -21,6 +19,8 @@ import { LandingComponent } from './landing/landing.component';
 import { PieComponent } from './charts/pie/pie.component';
 import { LoanPolicyComponent } from './loan-policy/loan-policy.component';
 import { EnquireComponent } from './enquire/enquire.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -33,12 +33,12 @@ import { EnquireComponent } from './enquire/enquire.component';
     PieComponent,
     LoanPolicyComponent,
     EnquireComponent,
-    RegistarComponent,
-    ContactComponent,
     LogInComponent,
     BorrowerTableComponent,
     PaymentComponent,
-    HomeComponent
+    HomeComponent,
+    PageNotFoundComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
