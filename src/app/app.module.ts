@@ -23,6 +23,10 @@ import { LandingComponent } from './landing/landing.component';
 import { PieComponent } from './charts/pie/pie.component';
 import { LoanPolicyComponent } from './loan-policy/loan-policy.component';
 import { EnquireComponent } from './enquire/enquire.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ApiService } from './services/api.service';
+import { HttpClientModule } from '@angular/common/http';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,8 @@ import { EnquireComponent } from './enquire/enquire.component';
     PaymentComponent,
     HomeComponent,
     ProfileComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +54,6 @@ import { EnquireComponent } from './enquire/enquire.component';
     BrowserAnimationsModule,
     NgChartsModule,
     FormsModule,
-    MaterialModule,
     ReactiveFormsModule,
     NgCircleProgressModule.forRoot({
       radius: 730,
@@ -58,10 +62,12 @@ import { EnquireComponent } from './enquire/enquire.component';
       outerStrokeColor: "pink",
       innerStrokeColor: "#C7E596",
       animationDuration: 300,
-    })
+    }),
+    MatFormFieldModule,
+    MaterialModule
   ],
-  providers: [],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA ],
+  providers: [ApiService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
