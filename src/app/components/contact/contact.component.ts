@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { RegistarComponent } from '../registar/registar.component';
 
 @Component({
   selector: 'app-contact',
@@ -10,13 +9,13 @@ import { RegistarComponent } from '../registar/registar.component';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent {
- 
+  
   contactForm: FormGroup;
   fileElement: any;
-file: any;
-fileUploadResult: any = 0;
+  file: any;
+  fileUploadResult: any = 0;
 
-  constructor(private snackBar: MatSnackBar,private dialog: MatDialog){
+  constructor(private snackBar: MatSnackBar, private dialog: MatDialog) {
     this.contactForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(3)]),
       email: new FormControl('', [Validators.required, Validators.pattern(/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/)]),
@@ -25,18 +24,11 @@ fileUploadResult: any = 0;
     })
   }
 
-  Submit(): void{
+  Submit(): void {
     if (this.contactForm.invalid || this.fileUploadResult === 0) {
       this.snackBar.open('All fields are required', 'Ok', { duration: 3000 });
       return;
     }
-  }
-
-  openDialog():void{
-    this.dialog.open(RegistarComponent,{
-      width:'80%',
-      height:'80%'
-    })
   }
 
 }

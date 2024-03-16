@@ -12,30 +12,30 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./registar.component.scss']
 })
 export class RegistarComponent implements OnInit {
-  
+  isSubmit:boolean = true;
   registarForm: FormGroup;
   fileElement: any;
   file: any;
   fileUploadResult: any = 0;
 
-  constructor(private snackBar: MatSnackBar, private dialogRef: MatDialogRef<RegistarComponent>){
+  constructor(private snackBar: MatSnackBar, private dialogRef: MatDialogRef<RegistarComponent>) {
     this.registarForm = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      lastname: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      email: new FormControl('', [Validators.required, Validators.pattern(/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/)]),
-      phoneNumber: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
-      id: new FormControl('', [Validators.required, Validators.maxLength(13)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]),
-      confirmPassword: new FormControl('', [Validators.required]),
-        streetName: new FormControl('', Validators.required),
-        streetNumber: new FormControl('', Validators.required),
-        city: new FormControl('', Validators.required),
-        code: new FormControl('', Validators.required),
-        selected:new FormControl('', [Validators.required, Validators.pattern('valid')]),
-      loanAmount: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      duration: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      grossMonthlyIncome: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      monthlyExpense: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      name: new FormControl('',Validators.required),
+      lastname: new FormControl('',Validators.required),
+      email: new FormControl('', [Validators.pattern(/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/),Validators.required]),
+      phoneNumber: new FormControl(''),
+      id: new FormControl('',Validators.required),
+      password: new FormControl('',Validators.required),
+      confirmPassword: new FormControl('',Validators.required),
+      streetName: new FormControl('',Validators.required),
+      streetNumber: new FormControl('',Validators.required),
+      city: new FormControl('',Validators.required),
+      code: new FormControl('',Validators.required),
+      //  selected: new FormControl('', Validators.pattern('valid')]),
+      loanAmount: new FormControl('',Validators.required),
+      duration: new FormControl(''),
+      grossMonthlyIncome: new FormControl(''),
+      monthlyExpense: new FormControl('')
 
     })
   }
@@ -52,24 +52,31 @@ export class RegistarComponent implements OnInit {
     this.fileUploadResult = this.fileElement.files.length
   }
 
-  Submit() :void{
-    if (this.registarForm.invalid || this.fileUploadResult === 0) {
-      this.snackBar.open('All fields are required', 'Ok', { duration: 3000 });
-      return;
+  Submit(): void {
+    // if (this.registarForm.invalid || this.fileUploadResult === 0) {
+    //   this.snackBar.open('All fields are required', 'Ok', { duration: 3000 });
+    //   return;
+    // }
+
+    //removing confirm Password
+    // let formValue = this.registarForm.value;
+    // delete formValue.confirmPassword;
+    // if (this.registarForm.invalid && this.fileUploadResult === 0) return
+    // if (this.registarForm.get('password')?.value !== this.registarForm.get('confirmPassword')?.value) {
+    //   this.registarForm.get('confirmPassword')?.setErrors({ 'pattern': true });
+    //   return;
+    // }
+
+    if(this.registarForm.value.password != this.registarForm.value.confirmPassword){
+      console.log("password do not match")
     }
 
-     //removing confirm Password
-    let formValue = this.registarForm.value;
-    delete formValue.confirmPassword;
-    if (this.registarForm.invalid && this.fileUploadResult === 0) return
-    if (this. registarForm.get('password')?.value !== this. registarForm.get('confirmPassword')?.value) {
-      this. registarForm.get('confirmPassword')?.setErrors({ 'pattern': true });
-      return;
-    }
+    console.log(this.registarForm.value)
+
   }
 
   close(): void {
     this.dialogRef.close()
   }
-  
+
 }

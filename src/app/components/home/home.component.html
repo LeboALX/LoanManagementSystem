@@ -10,11 +10,12 @@
 
         <mat-nav-list class="flex center-center column gap-16">
             <div class="full-width color text-center flex column gap-05em">
-                <a mat-list-item routerLink="/home/loan-officer" routerLinkActive="active"><p>DashBoard</p></a>
-                <a mat-list-item routerLink="/home/burrower" ><p class="black">Borrower</p></a>
-                <a mat-list-item routerLink="/home/contact"><p class="black">Contact</p></a>
-                <a mat-list-item routerLink="/home/profile"><p class="black">Profile</p></a>
-                <a mat-list-item routerLink="/home/policy"><p class="black">Policy</p></a>
+                <a mat-list-item routerLink="/home/loan-officer" routerLinkActive="active" *ngIf="isOfficer"><p class="black">DashBoard</p></a>
+                <a mat-list-item routerLink="/home/borrower" routerLinkActive="active" *ngIf="!isOfficer"><p class="black">DashBoard</p></a>
+                <a mat-list-item routerLink="/home/burrower" routerLinkActive="active" *ngIf="isOfficer"    ><p class="black">Borrower</p></a>
+                <a mat-list-item routerLink="/home/contact" routerLinkActive="active"><p class="black">Contact</p></a>
+                <a mat-list-item routerLink="/home/profile" routerLinkActive="active"><p class="black">Profile</p></a>
+                <a mat-list-item routerLink="/home/policy" routerLinkActive="active"><p class="black">Policy</p></a>
 
 
             </div>
@@ -29,10 +30,10 @@
             </button>
             <div class="flex center-center gap-1em">
                 <mat-icon class="icon-size flex center-center">person</mat-icon>
-                <h3>burrower</h3>
+                <h3>{{currentUser.role}}</h3>
                 <h1 class="color">|</h1>  
-                <h3>Kearabetswe Maja</h3>
-                <mat-icon matTooltip="Click to Log Out">logout</mat-icon>
+                <h3>{{currentUser.fullName}}</h3>
+                <mat-icon matTooltip="Click to Log Out" routerLink="/landing">logout</mat-icon>
             </div>
 
         </mat-toolbar>

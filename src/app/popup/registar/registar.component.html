@@ -1,9 +1,9 @@
 <div class="main-form-container flex column center-center">
-    <form [formGroup]="registarForm" class="form-container flex gap-1em center-center" >
+    <form [formGroup]="registarForm" class="form-container flex gap-1em center-center">
         <p class="register full-width">Register</p>
-        
-         <!-- First Name -->
-         <mat-form-field class="width-48">
+
+        <!-- First Name -->
+        <mat-form-field class="width-48">
             <mat-label>Name</mat-label>
             <input type="text" matInput formControlName="name" placeholder="Enter your name">
             <mat-error *ngIf="registarForm.get('name')?.hasError('required')">
@@ -13,8 +13,8 @@
                 Name should at least have 3 charectors
             </mat-error>
         </mat-form-field>
-         <!-- Last Name -->
-         <mat-form-field class="width-48">
+        <!-- Last Name -->
+        <mat-form-field class="width-48">
             <mat-label>Last Name</mat-label>
             <input type="text" matInput formControlName="lastname" placeholder="Enter your Last Name">
             <mat-error *ngIf="registarForm.get('lastname')?.hasError('required')">
@@ -24,9 +24,9 @@
                 Last Name should at least have 3 charectors
             </mat-error>
         </mat-form-field>
-        
-         <!-- Email -->
-         <mat-form-field  class="width-48" >
+
+        <!-- Email -->
+        <mat-form-field class="width-48">
             <mat-label>Email</mat-label>
             <input type="email" matInput formControlName="email" placeholder="fix@gmail.com">
             <mat-error *ngIf="registarForm.get('email')?.hasError('required')">
@@ -59,8 +59,8 @@
             </mat-error>
         </mat-form-field>
 
-         <!-- Id Number -->
-         <mat-form-field class="width-48">
+        <!-- Id Number -->
+        <mat-form-field class="width-48">
             <mat-label>Id Number</mat-label>
             <input type="number" matInput formControlName="id" placeholder="Enter your Id number">
             <mat-error *ngIf="registarForm.get('id')?.hasError('required')">
@@ -70,47 +70,47 @@
                 Id Numbershould at least have 13 charectors
             </mat-error>
         </mat-form-field>
-       
-            <!-- streetname -->
-                <mat-form-field  class="width-48">
-                    <mat-label>Street Name</mat-label>
-                    <input  type="text" matInput placeholder="xyz Company" formControlName="streetName">
-                    <mat-error *ngIf="registarForm.get('streetName')?.hasError('required')">
-                        Street Name is required
-                    </mat-error>
-                </mat-form-field>
 
-                <!-- street number -->
-                <mat-form-field  class="width-48">
-                    <mat-label>Street Number</mat-label>
-                    <input type="number" matInput placeholder="0000" formControlName="streetNumber">
-                    <mat-error *ngIf="registarForm.get('streetNumber')?.hasError('required')">
-                        Street Number is required
-                    </mat-error>
-                </mat-form-field>
-            
-            <!-- city -->
-                <mat-form-field  class="width-48">
-                    <mat-label>City</mat-label>
-                    <input  type="text" matInput placeholder="xyz Company" formControlName="city">
-                    <mat-error *ngIf="registarForm.get('city')?.hasError('required')">
-                        City is required
-                    </mat-error>
-                </mat-form-field>
+        <!-- streetname -->
+        <mat-form-field class="width-48">
+            <mat-label>Street Name</mat-label>
+            <input type="text" matInput placeholder="xyz Company" formControlName="streetName">
+            <mat-error *ngIf="registarForm.get('streetName')?.hasError('required')">
+                Street Name is required
+            </mat-error>
+        </mat-form-field>
 
-                <!-- code -->
-                <mat-form-field  class="width-48">
-                    <mat-label>Code</mat-label>
-                    <input  type="number" matInput placeholder="xyz Company" formControlName="code">
-                    <mat-error *ngIf="registarForm.get('code')?.hasError('required')">
-                        Code is required
-                    </mat-error>
-                </mat-form-field>
-    
-         <!-- Phone Number -->
-         <mat-form-field class="width-48">
+        <!-- street number -->
+        <mat-form-field class="width-48">
+            <mat-label>Street Number</mat-label>
+            <input type="number" matInput placeholder="0000" formControlName="streetNumber">
+            <mat-error *ngIf="registarForm.get('streetNumber')?.hasError('required')">
+                Street Number is required
+            </mat-error>
+        </mat-form-field>
+
+        <!-- city -->
+        <mat-form-field class="width-48">
+            <mat-label>City</mat-label>
+            <input type="text" matInput placeholder="xyz Company" formControlName="city">
+            <mat-error *ngIf="registarForm.get('city')?.hasError('required')">
+                City is required
+            </mat-error>
+        </mat-form-field>
+
+        <!-- code -->
+        <mat-form-field class="width-48">
+            <mat-label>Code</mat-label>
+            <input type="number" matInput placeholder="xyz Company" formControlName="code">
+            <mat-error *ngIf="registarForm.get('code')?.hasError('required')">
+                Code is required
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Phone Number -->
+        <mat-form-field class="width-48">
             <mat-label>Phone Number</mat-label>
-            <input type="number" matInput formControlName="phoneNumber" placeholder="Enter your Phone Number">
+            <input type="text" maxlength=10 matInput formControlName="phoneNumber" placeholder="Enter your Phone Number">
             <mat-error *ngIf="registarForm.get('phoneNumber')?.hasError('required')">
                 Phone Number is <strong>required</strong>
             </mat-error>
@@ -121,12 +121,12 @@
         <!-- Select-->
         <mat-form-field appearance="fill" class="width-48">
             <mat-label>Choose a Loan Option</mat-label>
-            <mat-select >
-              <mat-option value="short">Short Term Loan</mat-option>
-              <mat-option value="personal">Personal Loan</mat-option>
-              <mat-option value="vehicle">Vehicle Loan</mat-option>
+            <mat-select>
+                <mat-option value="short">Short Term Loan</mat-option>
+                <mat-option value="personal">Personal Loan</mat-option>
+                <mat-option value="vehicle">Vehicle Loan</mat-option>
             </mat-select>
-          </mat-form-field>
+        </mat-form-field>
         <!-- Loan amount -->
         <mat-form-field class="width-48">
             <mat-label>Loan Amount</mat-label>
@@ -152,7 +152,8 @@
         <!-- Gross monthly income -->
         <mat-form-field class="width-48">
             <mat-label> Gross Monthly Income</mat-label>
-            <input type="text" matInput formControlName="grossMonthlyIncome" placeholder="Enter your grossMonthlyIncome">
+            <input type="text" matInput formControlName="grossMonthlyIncome"
+                placeholder="Enter your grossMonthlyIncome">
             <mat-error *ngIf="registarForm.get('grossMonthlyIncome')?.hasError('required')">
                 Gross Monthly Income is <strong>required</strong>
             </mat-error>
@@ -172,26 +173,26 @@
             </mat-error>
         </mat-form-field>
 
-         <!-- Upload -->
-            <!-- Radio Button -->
-            <mat-radio-group aria-label="Select an option">
+        <!-- Upload -->
+        <!-- Radio Button -->
+        <!-- <mat-radio-group aria-label="Select an option">
                 <mat-radio-button value="1">ID Document</mat-radio-button>
                 <mat-radio-button value="2">Payslip</mat-radio-button>
                 <mat-radio-button value="2">Proof Of Residence</mat-radio-button>
-            </mat-radio-group>
-            <!-- upload -->
-            <div >
+            </mat-radio-group> -->
+        <!-- upload -->
+        <!-- <div >
                 <input type="file" id="file" (change)="fileUpload($event)" 
                     placeholder="file">
                 <small class="red" *ngIf="fileUploadResult == 0 && registarForm.valid">
                     Document is required
                 </small>
-            </div>
+            </div> -->
 
         <div class="full-width flex gap-1em padding-1em">
-            <button mat-raised-button color="warn" type="button" class="half-width"
-                (click)=" close()">Cancel</button>
-            <button mat-raised-button  type="button" class="half-width" (click)="Submit()">Submit</button>
+            <button mat-raised-button color="warn" type="button" class="half-width" (click)=" close()">Cancel</button>
+            <button mat-raised-button class="half-width" [disabled]="registarForm.invalid"
+                (click)="Submit()">Submit</button>
         </div>
 
     </form>
