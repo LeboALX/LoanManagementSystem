@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,10 @@ import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { ProgressBarComponent } from './charts/progress-bar/progress-bar.component';
+import { LandingComponent } from './landing/landing.component';
+import { PieComponent } from './charts/pie/pie.component';
+import { LoanPolicyComponent } from './loan-policy/loan-policy.component';
+import { EnquireComponent } from './enquire/enquire.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,10 @@ import { ProgressBarComponent } from './charts/progress-bar/progress-bar.compone
     LoanOfficerComponent,
     LoanOfficerTableComponent,
     DonutComponent,
+    LandingComponent,
+    PieComponent,
+    LoanPolicyComponent,
+    EnquireComponent,
     RegistarComponent,
     LogInComponent,
     BorrowerTableComponent,
@@ -53,6 +61,7 @@ import { ProgressBarComponent } from './charts/progress-bar/progress-bar.compone
     })
   ],
   providers: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

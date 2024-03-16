@@ -1,0 +1,62 @@
+$red:#cd2e37;
+$blue:#121a2e;
+$white: #fefefe;
+
+.mid-div{
+    width: 80%;
+    height: 80%;
+}
+
+form{
+    background-color: white;
+    
+    width: 80% !important;
+    overflow-x: hidden;
+    border-radius: 7px;
+}
+
+.email{
+    text-decoration: underline;
+    color: #028ec7;
+}
+
+.email:hover{
+    cursor: pointer;
+}
+
+
+.width-100{
+    width: 150px;
+}
+
+.contact{
+    font-size: 2em;
+}
+
+.half-height{
+    max-height: 120px;
+    width: 80%;
+}
+
+.width-80{
+    width: 80%;
+    border:none;
+}
+
+.left{
+    margin: 10px;
+}
+
+.main-form-div{
+    height: 85vh;
+    width: 100%;
+}
+
+.main-form-div form{
+    height: 90%;
+}
+
+.btn{
+    flex: 1;
+    width: 49% !important;
+}

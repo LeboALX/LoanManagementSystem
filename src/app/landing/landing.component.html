@@ -1,0 +1,177 @@
+<div class="full-height main-landing">
+    <!-- Navbar -->
+    <mat-toolbar class="navbar flex spacebetween-center">
+        <div class="full-height flex center-center gap-5">
+            <div class="full-height image-card"><img class="full-height" src="../../../assets/images/loan.jfif"
+                    alt="Loan logo"></div>
+            <p>Zaka lendings</p>
+        </div>
+        <!-- Buttons -->
+        <div class="flex gap-1em">
+            <button class="apply" mat-raised-button>Apply</button>
+            <button class="login" mat-raised-button>Login</button>
+        </div>
+    </mat-toolbar>
+    <!-- End Navbar -->
+    <!-- Section -->
+    <div class="section">
+        <div class="loan-card-div flex center-center">
+            <!-- card -->
+            <mat-card class="the-mat-card full-width flex">
+                <div class="card flex center-center" *ngFor="let loan of loans, let i = index">
+                    <p (click)="scrollToSection(i)">{{loan}}</p>
+                </div>
+                <div class="enquire-card flex ">
+                    <button (click)="openDialog()">Enquire</button>
+                </div>
+            </mat-card>
+            <!-- End card -->
+        </div>
+        <!-- Loan calculator -->
+        <div class="loan-calculator flex">
+            <div class="left full-height half-width">
+                <img class="full-height full-width" src="../../../assets/images/loan_agreement.jfif" alt="">
+            </div>
+            <div class="right full-height half-width flex center-center">
+                <div class="calculator">
+                    <!-- form -->
+                    <div class="form-div">
+                        <p class="loan-heading no-margin">Loan Calculator</p>
+                        <form #calculatorForm="ngForm" class="flex spacebetween-center">
+                            <div>
+                                <p class="no-margin">Loan Amount</p>
+                                <input type="number" [(ngModel)]="calculatorFormData.loanAmount" name="loanAmount"
+                                    #loanAmount="ngModel" required>
+                            </div>
+                            <div>
+                                <p class="no-margin">Interest Rate</p>
+                                <input type="number" [(ngModel)]="calculatorFormData.interest" name="interest"
+                                    #interest="ngModel" required>
+                            </div>
+                            <div>
+                                <p class="no-margin">Loan Tenure</p>
+                                <input type="number" [(ngModel)]="calculatorFormData.loanTenure" name="loanTenure"
+                                    #loanTenure="ngModel" required>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- End form -->
+                    <div class="results-div flex">
+                        <div class="results-left full-height half-width">
+                            <div class="result">
+                                <small>EMI</small>
+                                <h3 class="no-margin margin-5px">R {{emi}}</h3>
+                                <hr>
+                                <small>Total Interest Payable</small>
+                                <h3 class="no-margin margin-5px">R {{interestPayable}}</h3>
+                                <hr>
+                                <small>Total Amount</small>
+                                <h3 class="no-margin margin-5px">R {{totalAmount}}</h3>
+                                <hr>
+                            </div>
+                            <button (click)="submit()" mat-raised-button>Calculate</button>
+                        </div>
+                        <div class="results-right full-height half-width">
+                            <app-pie [totalAmount]="totalAmount" [interrestPayable]="interestPayable"></app-pie>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Loan calculator -->
+    </div>
+    <!-- End Section -->
+</div>
+
+<!-- Loan Types -->
+<div class="policy flex" id="targetSection">
+    <div class="short-term full-height half-width flex center-center">
+        <div class="short-content flex column gap-1em center-center">
+            <p class="text-center">Short Term Loan</p>
+            <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, eius ea eligendi repellendus,
+                excepturi perferendis tempore aliquam minima voluptate tempora quae cupiditate reiciendis eum accusamus
+                pariatur cum. Amet hic, iure nostrum dignissimos totam eum dolorum quis sit eaque fuga itaque dolores
+                quaerat, cupiditate, quidem labore! Possimus officiis odio voluptate deserunt adipisci pariatur cum hic
+                earum animi dicta? In dolor porro, voluptates quis voluptas ipsum libero, repudiandae asperiores enim
+                veniam, accusantium odit est placeat ipsa incidunt beatae iure? Quasi nobis perspiciatis fugit officiis
+                odio debitis libero natus, alias labore dolorum nostrum odit similique possimus quibusdam dolorem.
+                Asperiores enim veritatis ea ut?</small>
+            <button class=" terms-btn" mat-raised-button>TS & Cs</button>
+        </div>
+    </div>
+    <div class="long-term-loan full-height half-width flex center-center">
+        <div class="short-content flex column gap-1em center-center">
+            <p class="text-center">Long Term Loan</p>
+            <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, eius ea eligendi repellendus,
+                excepturi perferendis tempore aliquam minima voluptate tempora quae cupiditate reiciendis eum accusamus
+                pariatur cum. Amet hic, iure nostrum dignissimos totam eum dolorum quis sit eaque fuga itaque dolores
+                quaerat, cupiditate, quidem labore! Possimus officiis odio voluptate deserunt adipisci pariatur cum hic
+                earum animi dicta? In dolor porro, voluptates quis voluptas ipsum libero, repudiandae asperiores enim
+                veniam, accusantium odit est placeat ipsa incidunt beatae iure? Quasi nobis perspiciatis fugit officiis
+                odio debitis libero natus, alias labore dolorum nostrum odit similique possimus quibusdam dolorem.
+                Asperiores enim veritatis ea ut?</small>
+            <button class=" terms-btn" mat-raised-button>TS & Cs</button>
+        </div>
+    </div>
+</div>
+<!-- End Loan Types -->
+<!-- About us -->
+<div class="about-us" id="aboutUs">
+    <div class="main-about full-height full-width flex column center-center">
+        <h1 class="no-margin text-center">About Us</h1>
+        <p>At our bank, we prioritize your financial well-being by offering loans with competitive interest rates,
+            ensuring you can achieve your goals without breaking the bank. With our commitment to providing affordable
+            lending solutions, we empower you to borrow responsibly and build a brighter future. Experience the
+            difference with our flexible loan options tailored to meet your needs, making your financial journey
+            smoother and more rewarding.</p>
+        <h1 class="no-margin text-center">Why choose us</h1>
+        <p>Choose us because we go beyond just offering competitive loan rates; our experienced team is dedicated to
+            providing unparalleled customer service, guiding you through every step of the borrowing process with care
+            and expertise. Additionally, our bank offers flexible repayment options and understands the importance of
+            timely assistance, ensuring you have the support you need when you need it most. With a reputation built on
+            reliability and trustworthiness, choosing us means forging a lasting partnership focused on your financial
+            stability and success for years to come. </p>
+    </div>
+</div>
+<!-- End of About us -->
+
+<!-- Footer -->
+<div class="gap"></div>
+
+<div class="footer" id="footer">
+    <div class="main-footer full-height full-width flex spacebetween-center">
+        <div class="foot flex column gap-1em center-center">
+            <p class="text-center">Follow Us On</p>
+            <div class="icon-div flex center-center gap-1em " >
+                <mat-icon>X</mat-icon>
+                <mat-icon>facebook</mat-icon>
+                <mat-icon>linkedin</mat-icon>
+                <mat-icon>facebook</mat-icon>
+                <mat-icon>tiktok</mat-icon>
+            </div>
+        </div>
+
+        <div class="foot flex column gap-1em center-center">
+            <p class="text-center">Contact Us on</p>
+            <div class="icon-div flex center-center gap-1em" >
+                <div class="flex center-center gap-5">
+                    <mat-icon>phone</mat-icon>
+                    <small class="no-margin">015 4456 682</small>
+                </div>
+                <div class="flex center-center gap-5">
+                    <mat-icon>email</mat-icon>
+                    <small class="no-margin">lender@hotmail.co.za</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="foot flex column gap-1em">
+            <p class="text-center">Where we located</p>
+            <div class="icon-div flex center-center gap-1em" >
+                
+            </div>
+        </div>
+        
+    </div>
+</div>
+<!-- End Footer -->
