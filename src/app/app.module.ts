@@ -64,7 +64,8 @@ import { ContactComponent } from './components/contact/contact.component';
       animationDuration: 300,
     }),
     MatFormFieldModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [ApiService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
