@@ -4,13 +4,19 @@ import { HomeComponent } from './components/home/home.component';
 import { LoanOfficerComponent } from './dashboards/loan-officer/loan-officer.component';
 import { BorrowerComponent } from './dashboards/borrower/borrower.component';
 import { LogInComponent } from './popup/log-in/log-in.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { LandingComponent } from './landing/landing.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
+  { path : 'landing', component: LandingComponent},
     { path: 'home', component: HomeComponent, children : [
     { path : 'loan-officer', component: LoanOfficerComponent},
     { path : 'burrower', component: BorrowerComponent},
-]}];
+    
+]},
+{ path: '**', component: PageNotFoundComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
