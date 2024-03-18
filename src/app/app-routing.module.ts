@@ -8,6 +8,7 @@ import { LandingComponent } from './landing/landing.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { LoanPolicyComponent } from './loan-policy/loan-policy.component';
+import { MessageComponent } from './components/message/message.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
@@ -18,7 +19,8 @@ const routes: Routes = [
       { path: 'borrower', component: BorrowerComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'profile', component: ProfileComponent },
-      { path: 'policy', component: LoanPolicyComponent }
+      { path: 'policy', component: LoanPolicyComponent },
+      { path: 'message', component: MessageComponent }
     ]
   }];
 

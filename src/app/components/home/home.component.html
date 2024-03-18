@@ -24,8 +24,11 @@
                 <a mat-list-item routerLink="/home/burrower" routerLinkActive="active" *ngIf="isOfficer">
                     <p class="black">Borrower</p>
                 </a>
-                <a mat-list-item routerLink="/home/contact" routerLinkActive="active">
+                <a mat-list-item routerLink="/home/contact" routerLinkActive="active" *ngIf="!isOfficer">
                     <p class="black">Contact</p>
+                </a>
+                <a mat-list-item routerLink="/home/message" routerLinkActive="active">
+                    <p class="black">Messages</p>
                 </a>
                 <a mat-list-item routerLink="/home/profile" routerLinkActive="active">
                     <p class="black">Profile</p>

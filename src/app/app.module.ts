@@ -28,6 +28,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { CreateAccountComponent } from './popUps/create-account/create-account.component';
+import { MessageComponent } from './components/message/message.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { CreateAccountComponent } from './popUps/create-account/create-account.c
     ProgressBarComponent,
     RegisterComponent,
     ContactComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
