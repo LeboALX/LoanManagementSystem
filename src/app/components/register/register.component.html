@@ -1,31 +1,9 @@
 <div class="flex center-center main-div full-height">
     <form [formGroup]="signUpForm" class="main-form">
-        <h2 class="text-center">Sign-up Form</h2>
+        <h2 class="text-center">Apply For Loan</h2>
 
         <h3>Personal Details</h3>
         <div class="flex gap-1em m-b-1em">
-            <mat-form-field class="full-width">
-                <mat-label>First Name</mat-label>
-                <input type="text" matInput formControlName="firstName" placeholder="Enter your First Name">
-                <mat-error *ngIf="signUpForm.get('firstName')?.hasError('required')">
-                    First Name is <strong>required</strong>
-                </mat-error>
-                <mat-error *ngIf="signUpForm.get('firstName')?.hasError('minlength')">
-                    First Name should at least have 3 charectors
-                </mat-error>
-            </mat-form-field>
-
-            <mat-form-field class="full-width">
-                <mat-label>Last Name</mat-label>
-                <input type="text" matInput formControlName="lastName" placeholder="Enter your Last Name">
-                <mat-error *ngIf="signUpForm.get('lastName')?.hasError('required')">
-                    Last Name is <strong>required</strong>
-                </mat-error>
-                <mat-error *ngIf="signUpForm.get('lastName')?.hasError('minlength')">
-                    Last Name should at least have 3 charectors
-                </mat-error>
-            </mat-form-field>
-
             <mat-form-field class="full-width">
                 <mat-label>ID Number</mat-label>
                 <input type="text" matInput formControlName="IDnumber" placeholder="4505254545485">
@@ -38,40 +16,15 @@
             </mat-form-field>
 
             <mat-form-field class="full-width">
-                <mat-label>Cell Number</mat-label>
-                <input type="text" matInput formControlName="cellNumber" placeholder="Enter your Cell Number"
-                    maxlength="10">
-                <mat-error *ngIf="signUpForm.get('cellNumber')?.hasError('required')">
-                    Cell Number is <strong>required</strong>
-                </mat-error>
-                <mat-error *ngIf="signUpForm.get('cellNumber')?.hasError('minlength')">
-                    Cell Number should at least have 10 charactors
-                </mat-error>
-            </mat-form-field>
-
-            <mat-form-field class="full-width">
-                <mat-label>Email</mat-label>
-                <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
-                <mat-error *ngIf="signUpForm.get('email')?.hasError('required')">
-                    Email is <strong>required</strong>
-                </mat-error>
-                <mat-error *ngIf="signUpForm.get('email')?.hasError('pattern')">
-                    Please enter a valid email address
-                </mat-error>
-            </mat-form-field>
-        </div>
-
-        <div class="flex gap-1em m-b-1em">
-
-            <mat-form-field class="full-width">
                 <mat-label>Salary</mat-label>
                 <input type="number" matInput formControlName="monthlyIncome" placeholder="30000">
                 <mat-error *ngIf="signUpForm.get('monthlyIncome')?.hasError('required')">
                     Salary is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
+        </div>
 
-
+        <div class="flex gap-1em m-b-1em">
             <mat-form-field class="full-width">
                 <mat-label>Monthly Expenses</mat-label>
                 <input type="number" matInput formControlName="monthlyExpenses" placeholder="30000">
@@ -103,7 +56,7 @@
                 <mat-label>Loan Amount</mat-label>
                 <input type="number" matInput formControlName="loanAmount" placeholder="30000">
                 <mat-error *ngIf="signUpForm.get('loanAmount')?.hasError('required')">
-                    Salary is <strong>required</strong>
+                    Loan is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
 
@@ -162,49 +115,15 @@
                 </mat-form-field>
             </div>
         </div>
-
-        <div class="flex gap-1em m-b-1em">
-            <mat-form-field class="full-width">
-                <mat-label>Enter your password</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'" formArrayName="password">
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hide">
-                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-                <mat-error *ngIf="signUpForm.get('password')?.hasError('required')">
-                    Password is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
-
-            <mat-form-field class="full-width">
-                <mat-label>Confirm your password</mat-label>
-                <input matInput [type]="hide2 ? 'confirmPassword' : 'text'" formArrayName="confirmPassword">
-                <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hide2">
-                    <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-                <mat-error *ngIf="signUpForm.get('confirmPassword')?.hasError('required')">
-                    Confrim Password is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
-        </div>
         <div class="upload flex column gap-1em">
             <div class="flex gap-1em">
                 <small>Upload ID copy</small>
                 <input type="file" id="file" placeholder="file"(change)="fileUpload($event)">
             </div>
-            <div class="flex gap-1em">
-                <small>Upload Payslip</small>
-                <input type="file" id="file" placeholder="file"(change)="fileUpload($event)">
-            </div>
         </div>
-
-        <div class="flex spacebetween-center column">
-            <p class="full-width">Already have an Account? <strong>Login</strong></p>
             <div class="flex gap-1em m-b-1em full-width">
                 <button mat-raised-button class="flex-1 cancel">Cancel</button>
                 <button mat-raised-button class="flex-1 submit" (click)="submit()">Submit</button>
             </div>
-        </div>
     </form>
 </div>
