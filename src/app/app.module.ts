@@ -29,7 +29,6 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { ContactComponent } from './components/contact/contact.component';
 import { CreateAccountComponent } from './popUps/create-account/create-account.component';
 import { MessageComponent } from './components/message/message.component';
-import { BorrowersComponent } from './components/borrowers/borrowers.component';
 
 @NgModule({
   declarations: [
@@ -52,8 +51,6 @@ import { BorrowersComponent } from './components/borrowers/borrowers.component';
     ContactComponent,
     PageNotFoundComponent,
     ContactComponent,
-    CreateAccountComponent,
-    BorrowersComponent
     CreateAccountComponent,
     MessageComponent
   ],
