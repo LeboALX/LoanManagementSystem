@@ -19,8 +19,9 @@ const routes: Routes = [
       { path: 'borrower', component: BorrowerComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'profile', component: ProfileComponent },
-      { path: 'policy', component: LoanPolicyComponent },
-      { path: 'borrowers', component: BorrowersComponent}
+      { path: 'loan-policy', component: LoanPolicyComponent },
+      { path: 'borrowers', component: BorrowersComponent},
+
     ]
   }
   , { path: '**', component: PageNotFoundComponent }];

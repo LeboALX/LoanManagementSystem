@@ -33,7 +33,7 @@
                 <a mat-list-item routerLink="/home/profile" routerLinkActive="active">
                     <p class="black">Profile</p>
                 </a>
-                <a mat-list-item routerLink="/home/policy" routerLinkActive="active">
+                <a mat-list-item routerLink="/home/loan-policy" routerLinkActive="active">
                     <p class="black">Policy</p>
                 </a>
 
@@ -51,7 +51,7 @@
             </button>
             <div class="flex center-center gap-1em">
                 <p>Zaka lendings</p>
-                <mat-icon matBadge="{{enquiries}}" matTooltip="you have {{enquiries}} enquiries" matBadgeColor="warn">notifications</mat-icon>
+                <mat-icon matBadge="{{enquiries}}" matTooltip="you have {{enquiries}} enquiries" matBadgeColor="warn" *ngIf="isOfficer">notifications</mat-icon>
             </div>
 
 
