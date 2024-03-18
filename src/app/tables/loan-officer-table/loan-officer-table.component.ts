@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { MatButton } from '@angular/material/button';
 import { MatTableDataSource } from '@angular/material/table';
+import { LoanService } from 'src/app/loan.service';
 
 @Component({
   selector: 'app-loan-officer-table',
@@ -7,7 +9,14 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./loan-officer-table.component.scss']
 })
 export class LoanOfficerTableComponent {
-  displayedColumns: string[] = ['id', 'name', 'lastName', 'email', 'action', 'options', 'documents'];
+  constructor(private shared:LoanService){
+    const tableData = this.shared.get('borrowers','local')
+    if(tableData){
+      this.dataSource = tableData
+    }
+  } 
+  displayedColumns: string[] = ['fullName', 'idNo', 'gender', 'email', 'action', 'options', 'documents'];
+  // displayedHeaders: string[] = ['full Names', 'ID number', 'Gender', 'Email', 'Action', 'Options', 'Documents'];
   applicationAction: string[] = ['Approve', 'Decline'];
   pendingCount: number = 0;
   declinedCount: number = 0;
