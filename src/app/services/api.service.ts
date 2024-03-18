@@ -14,4 +14,8 @@ export class ApiService {
     return this.http.post(this.baseUrl+endpoint, payload)
   }
 
+  genericGet(endpoint: string){
+    return this.http.get(this.baseUrl+endpoint)
+  }
+
 }
