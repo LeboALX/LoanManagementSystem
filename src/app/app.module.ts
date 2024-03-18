@@ -48,6 +48,8 @@ import { CreateAccountComponent } from './popUps/create-account/create-account.c
     ProgressBarComponent,
     RegisterComponent,
     ContactComponent,
+    PageNotFoundComponent,
+    ContactComponent,
     CreateAccountComponent
   ],
   imports: [

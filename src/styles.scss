@@ -112,9 +112,19 @@ body {
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background-color:$white-bg;
 }
+
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 // .mat-mdc-form-field-subscript-wrapper{
 //     display: none;
 // }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-mdc-text-field-wrapper {
+    max-height:100px !important;
+    flex: auto;
+}
