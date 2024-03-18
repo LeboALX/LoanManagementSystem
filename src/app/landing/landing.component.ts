@@ -16,13 +16,14 @@ export interface LoanDetails {
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent {
-  loans:any[]=['Loan overview','About Us','Contacts']
+  loans: any[] = ['Loan overview', 'About Us', 'Contacts']
   calculatorFormData: any = {}
-  emi:Number = 0;
-  interestPayable:Number = 0;
-  totalAmount:Number = 0;
+  emi: Number = 0;
+  interestPayable: Number = 0;
+  totalAmount: Number = 0;
 
-  constructor(private dialog: MatDialog, private elementRef: ElementRef ){}
+  constructor(private dialog: MatDialog, private elementRef: ElementRef,
+    ) { }
 
   calculateLoanInterest(principal: number, annualInterestRate: number, loanTenureInMonths: number): LoanDetails {
     const monthlyInterestRate = annualInterestRate / 12 / 100;
@@ -31,39 +32,36 @@ export class LandingComponent {
     const monthlyPayment = (principal * monthlyInterestRate * compoundFactor) / (compoundFactor - 1);
     const totalInterest = (monthlyPayment * totalPayments) - principal;
     return { monthlyInstallment: monthlyPayment, totalInterest: totalInterest };
-}
-
-  submit():void{
-    const loanDetails = this.calculateLoanInterest(this.calculatorFormData.loanAmount, this.calculatorFormData.interest, this.calculatorFormData.loanTenure);
-    this.emi = Number(loanDetails.monthlyInstallment.toFixed(2))
-    this.interestPayable = Number(loanDetails.totalInterest.toFixed(2))
-    this.totalAmount = Number(this.calculatorFormData.loanAmount) + Number(loanDetails.totalInterest.toFixed(2))
   }
 
-  scrollToSection(indx:any) {
+  submit(): void {
+    const loanDetails = this.calculateLoanInterest(this.calculatorFormData.loanAmount, this.calculatorFormData.interest, this.calculatorFormData.loanTenure);
+    this.emi = Math.round(Number(loanDetails.monthlyInstallment.toFixed(2)))
+    this.interestPayable = Math.round(Number(loanDetails.totalInterest.toFixed(2)))
+    this.totalAmount = Math.round(Number(this.calculatorFormData.loanAmount.toFixed(2)) + Number(loanDetails.totalInterest.toFixed(2)))
+  }
+
+  scrollToSection(indx: any) {
     const targetSection = this.elementRef.nativeElement.querySelector('#targetSection');
     const aboutUs = this.elementRef.nativeElement.querySelector('#aboutUs');
     const footer = this.elementRef.nativeElement.querySelector('#footer');
-    if(indx == 0)
-    {
+    if (indx == 0) {
       targetSection.scrollIntoView({ behavior: 'smooth' });
     }
-    else if(indx == 1)
-    {
+    else if (indx == 1) {
       aboutUs.scrollIntoView({ behavior: 'smooth' });
     }
-    else if(indx == 2)
-    {
+    else if (indx == 2) {
       footer.scrollIntoView({ behavior: 'smooth' });
     }
-    else{
+    else {
       return
     }
   }
 
-  openDialog():void{
-    this.dialog.open(EnquireComponent,{
-      width:"50%"
+  openDialog(): void {
+    this.dialog.open(EnquireComponent, {
+      width: "50%"
     })
   }
 

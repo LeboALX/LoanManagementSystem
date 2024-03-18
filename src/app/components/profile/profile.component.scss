@@ -3,17 +3,40 @@
     margin-top: 10px;
 }
 
+.profile {
+    width: 48%;
+}
+
+.credit-score {
+    width: 48%;
+}
+
+.personal-info {
+    display: flex;
+    // flex-direction: row;
+    // gap: 1em;
+    flex: 1;
+
+    .info {
+        width: 49%;
+
+        p {
+            margin-top: 0;
+        }
+    }
+}
+
 .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
+    // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 350px;
     text-align: center;
     padding: 10px;
     box-sizing: border-box;
+    border: 2px solid #121a2e;
 }
 
-form {
-    padding: 10px;
-    box-sizing: border-box;
+.spacebetween {
+    justify-content: space-between;
 }
 
 .cards {
@@ -63,4 +86,14 @@ button {
 .colorRed {
     background-color: #cd2e37 !important;
     color: #fefefe !important;
+}
+
+.smallCard {
+    width: 50%;
+    height: 122px;
+    padding: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+    background-color: transparent;
+    border: 2px solid #121a2e;
 }

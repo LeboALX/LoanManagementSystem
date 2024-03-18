@@ -178,10 +178,10 @@
 
             <mat-form-field class="full-width">
                 <mat-label>Confirm your password</mat-label>
-                <input matInput [type]="hide ? 'confirmPassword' : 'text'" formArrayName="confirmPassword">
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hide">
-                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <input matInput [type]="hide2 ? 'confirmPassword' : 'text'" formArrayName="confirmPassword">
+                <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide2">
+                    <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
                 <mat-error *ngIf="signUpForm.get('confirmPassword')?.hasError('required')">
                     Confrim Password is <strong>required</strong>
@@ -191,6 +191,10 @@
         <div class="upload flex column gap-1em">
             <div class="flex gap-1em">
                 <small>Upload ID copy</small>
+                <input type="file" id="file" placeholder="file"(change)="fileUpload($event)">
+            </div>
+            <div class="flex gap-1em">
+                <small>Upload Payslip</small>
                 <input type="file" id="file" placeholder="file"(change)="fileUpload($event)">
             </div>
         </div>
