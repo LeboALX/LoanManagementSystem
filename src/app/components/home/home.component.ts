@@ -10,6 +10,7 @@ import { SharedService } from 'src/app/services/shared.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+  enquiries:any = 0;
   isGoogle:boolean = false
   currentUser:any ;
   isOfficer:boolean = false;
@@ -24,6 +25,12 @@ constructor(private breakpointObserver: BreakpointObserver ,private sharedServic
   if(this.currentUser.role==='loanOfficer'){
     this.isOfficer = true;
   }
+
+  const enquire = this.sharedService.get('enquiries','local')
+  if(enquire){
+    this.enquiries = enquire.length
+  }
+  
 }
 
 
