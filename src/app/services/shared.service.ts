@@ -7,4 +7,6 @@ import { Observable, Subject } from 'rxjs';
 export class SharedService {
   interrestPayable!: Number;
   totalAmount!:Number;
+
+  
 }

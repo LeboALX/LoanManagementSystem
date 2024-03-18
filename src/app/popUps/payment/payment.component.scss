@@ -4,13 +4,23 @@ $red: #cd2e37;
 $white: #efefef;
 
 .padding-12 {
-    padding: 12px;
+  padding: 12px;
 }
 
-.color-blue{
+.color-blue {
   color: #121a2e;
 }
 
 form {
-  width: 50%;
+  width: 85%;
+}
+
+.blu {
+  background-color: #121a2e !important;
+  color: #efefef !important;
+}
+
+.red {
+  background-color: #cd2e37 !important;
+  color: #efefef !important;
 }

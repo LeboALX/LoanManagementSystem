@@ -27,6 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { CreateAccountComponent } from './popUps/create-account/create-account.component';
+import { BorrowersComponent } from './components/borrowers/borrowers.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,11 @@ import { ContactComponent } from './components/contact/contact.component';
     ProfileComponent,
     ProgressBarComponent,
     RegisterComponent,
-    ContactComponent
+    ContactComponent,
+    PageNotFoundComponent,
+    ContactComponent,
+    CreateAccountComponent,
+    BorrowersComponent
   ],
   imports: [
     BrowserModule,

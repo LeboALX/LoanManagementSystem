@@ -2,7 +2,12 @@ import { Component, ElementRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EnquireComponent } from '../enquire/enquire.component';
 import { RegisterComponent } from '../components/register/register.component';
+<<<<<<< HEAD
 import { ApiService } from '../services/api.service';
+=======
+import { LogInComponent } from '../popup/log-in/log-in.component';
+import { CreateAccountComponent } from '../popUps/create-account/create-account.component';
+>>>>>>> 565e578d20a5e98c2132c224c423ceadb9b63682
 
 export interface LoanDetails {
   monthlyInstallment: number;
@@ -64,9 +69,17 @@ export class LandingComponent {
     })
   }
 
+<<<<<<< HEAD
   apply(): void {
     this.dialog.open(RegisterComponent, {
       height: "100%",
     })
+=======
+  apply():void{
+    this.dialog.open(CreateAccountComponent,{width : '50%'})
+  }
+  logIn():void{
+    this.dialog.open(LogInComponent,{width:'40%',height:'80%'})
+>>>>>>> 565e578d20a5e98c2132c224c423ceadb9b63682
   }
 }
