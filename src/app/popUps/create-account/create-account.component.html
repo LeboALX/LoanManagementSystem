@@ -38,7 +38,7 @@
 
         <mat-form-field class="full-width">
             <mat-label>Enter your password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" formArrayName="password">
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                 [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -53,7 +53,7 @@
             <input matInput [type]="hide ? 'confirmPassword' : 'text'" formArrayName="confirmPassword">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                 [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-icon>{{hide ? 'visibility' : ' visibility_off'}}</mat-icon>
             </button>
             <mat-error *ngIf="accountForm.get('confirmPassword')?.hasError('required')">
                 Confirm Password is <strong>required</strong>

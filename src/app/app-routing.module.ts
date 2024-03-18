@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoanOfficerComponent } from './dashboards/loan-officer/loan-officer.component';
 import { BorrowerComponent } from './dashboards/borrower/borrower.component';
-import { LogInComponent } from './popup/log-in/log-in.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LandingComponent } from './landing/landing.component';
 import { ContactComponent } from './components/contact/contact.component';
@@ -20,8 +19,9 @@ const routes: Routes = [
       { path: 'borrower', component: BorrowerComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'profile', component: ProfileComponent },
-      { path: 'policy', component: LoanPolicyComponent },
-      { path: 'borrowers', component: BorrowersComponent}
+      { path: 'loan-policy', component: LoanPolicyComponent },
+      { path: 'borrowers', component: BorrowersComponent},
+
     ]
   }
   , { path: '**', component: PageNotFoundComponent }];

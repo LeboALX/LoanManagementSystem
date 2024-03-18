@@ -7,24 +7,20 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent {
-  profileForm: FormGroup
-  genders: string [] = ['Female', 'Male']
-
-  constructor() {
-    this.profileForm = new FormGroup({
-      firstName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
-      dob: new FormControl(''),
-      email: new FormControl('', [Validators.required]),
-      gender: new FormControl('', [Validators.required]),
-      phoneNumber: new FormControl('', [Validators.required]),
-      streetName: new FormControl('', [Validators.required]),
-      number: new FormControl('', [Validators.required]),
-      city: new FormControl('', [Validators.required]),
-      code: new FormControl('', [Validators.required])
-
-    })
+  profileDetails: any = {
+    fullName: 'Lebogang Mathoto',
+    age: 35,
+    gender: 'Female',
+    idNo: 9605060762082,
+    nationality: 'South African',
+    surburb: 'Soweto',
+    phone: '+27765233256',
+    email: 'edward.juska@gmail.com',
+    occupation: 'Nurse',
+    monthlyGross: 8000,
+    currentLoan: 'short-term loan',
+    languages: ['english', 'sepedi']
   }
 
-
+  profileKeys: string[] = Object.keys(this.profileDetails)
 }
