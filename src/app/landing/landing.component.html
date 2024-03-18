@@ -8,8 +8,8 @@
         </div>
         <!-- Buttons -->
         <div class="flex gap-1em">
-            <button class="apply" mat-raised-button (click)="apply()">Apply</button>
-            <button class="login" mat-raised-button (click)="logIn()">Login</button>
+            <button class="apply" mat-raised-button (click)="apply()"  >Apply</button>
+            <button class="login" mat-raised-button (click)=" logIn()">Login</button>
         </div>
     </mat-toolbar>
     <!-- End Navbar -->
@@ -49,7 +49,7 @@
                                     #interest="ngModel" required>
                             </div>
                             <div>
-                                <p class="no-margin">Loan Tenure</p>
+                                <p class="no-margin">Duration (Months)</p>
                                 <input type="number" [(ngModel)]="calculatorFormData.loanTenure" name="loanTenure"
                                     #loanTenure="ngModel" required>
                             </div>
@@ -136,7 +136,9 @@
 <!-- End of About us -->
 
 <!-- Footer -->
-<div class="gap"></div>
+<div class="gap full-height flex center-center">
+    <marquee>To qualify for our loan, your credit score must be in good standing, ensuring favorable terms and rates tailored to your financial needs. Rest assured, we offer personalized assistance to help you achieve and maintain a healthy credit profile.</marquee>
+</div>
 
 <div class="footer" id="footer">
     <div class="main-footer full-height full-width flex spacebetween-center">
@@ -165,10 +167,13 @@
             </div>
         </div>
 
-        <div class="foot flex column gap-1em">
+        <div class="foot flex column gap-1em center-center">
             <p class="text-center">Where we located</p>
             <div class="icon-div flex center-center gap-1em" >
-                
+                <div class="flex center-center gap-5">
+                    <mat-icon class="location">location_on</mat-icon>
+                    <small class="no-margin"> 1 Bond Street, Kensington B, Randburg, 2194</small>
+                </div>
             </div>
         </div>
         

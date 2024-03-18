@@ -3,8 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
-import { EmailService } from 'src/app/services/email.service';
-// import { ApiService } from 'src/app/services/api.service';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-register',
@@ -16,12 +15,12 @@ export class RegisterComponent {
   signUpForm!: FormGroup;
   loanTypes: string[] = ['short term loan', 'long term loan', 'vehicle loan']
   hide = true;
+  hide2 = true
   fileElement: any;
   file: any;
   fileUploadResult: any = 0;
-  users: any[] =[]
 
-  constructor(private router: Router, private snackbar: MatSnackBar, private email: EmailService ,private api:ApiService) {
+  constructor(private api: ApiService, private router: Router, private snackbar: MatSnackBar) {
     this.signUpForm = new FormGroup({
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
@@ -42,7 +41,9 @@ export class RegisterComponent {
       monthlyExpenses: new FormControl('', Validators.required),
       loanType: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]),
-      confirmPassword: new FormControl('', [Validators.required])
+      confirmPassword: new FormControl('', [Validators.required]),
+      profileImage: new FormControl('', [Validators.required]),
+      profileImage2: new FormControl('', [Validators.required])
     })
   }
 
@@ -61,50 +62,37 @@ export class RegisterComponent {
     this.fileUploadResult = this.fileElement.files.length
   }
 
-  submit(): void {
-    this.users.push(this.signUpForm.value)
-    localStorage.setItem('users',JSON.stringify(this.users))
-    if (this.signUpForm.invalid) return;
+  async submit() {
+    // if (this.signUpForm.invalid) return;
 
-    if (this.signUpForm.get('password')?.value !== this.signUpForm.get('confirmPassword')?.value) {
-      this.signUpForm.get('confirmPassword')?.setErrors({ 'pattern': true });
-      this.snackbar.open('Passwords do not match!!','Ok',{duration:3000})
-      return;
-    }
+    // if (this.signUpForm.get('password')?.value !== this.signUpForm.get('confirmPassword')?.value) {
+    //   this.signUpForm.get('confirmPassword')?.setErrors({ 'pattern': true });
+    //   this.snackbar.open('Passwords do not match!!','Ok',{duration:3000})
+    //   return;
+    // }
 
     let formValue = this.signUpForm.value;
     delete formValue.confirmPassword;
 
-    this.email.genericPost('/send-email', formValue)
-      .subscribe({
-        next: (res) => { console.log(res) },
-        error: (err) => { console.log(err) },
-        complete: () => { console.log("email sent successfully"),this.snackbar.open('email successfully sent to a client','OK',{duration:1000}) }
+    try {
+      const imageURL = await this.uploadImage();
+      console.log('imageURL', imageURL);
+
+      this.signUpForm.patchValue({
+        profileImage: imageURL,
+
       })
 
-    this.api.genericPost('/add-user', this.signUpForm.value)
-    .subscribe({
-      next: (res: any) => {
-        console.log('User res._id', res._id)
-        if (res._id) {
-          this.snackbar.open('Applied Successfully', 'Ok', { duration: 3000 })
-        } else {
-          this.snackbar.open('Something went wrong ...', 'Ok', { duration: 3000 });
-        }
-      },
-      error: (err: any) => console.log('Error', err),
-      complete: () => { }
-    });
+    } catch (error) {
+      console.log(error)
+    }
 
-    // Upload file only
-    const formData = new FormData();
-    formData.append('file', this.file, this.file.name,);
-    this.api.genericPost('/upload', formData)
+
+    this.api.genericPost('/add-user', this.signUpForm.value)
       .subscribe({
         next: (res: any) => {
-          console.log('file upload res', res)
-          if (res.file._id) {
-            console.log('File uploaded successfully');
+          if (res._id) {
+            this.snackbar.open('Applied Successfully', 'Ok', { duration: 3000 })
           } else {
             this.snackbar.open('Something went wrong ...', 'Ok', { duration: 3000 });
           }
@@ -112,6 +100,32 @@ export class RegisterComponent {
         error: (err: any) => console.log('Error', err),
         complete: () => { }
       });
+  }
+
+  uploadImage() {
+    return new Promise((resolve, reject) => {
+      // Upload file only
+      const formData = new FormData();
+      formData.append('file', this.file, this.file.name,);
+      this.api.genericPost('/upload', formData)
+        .subscribe({
+          next: (res: any) => {
+            console.log('file upload res', res)
+            if (res.file._id) {
+              console.log('File uploaded successfully');
+              resolve(`${environment.nodeAppUrl}/download/${res.file.fileId}`)
+            } else {
+              this.snackbar.open('Something went wrong ...', 'Ok', { duration: 3000 });
+            }
+          },
+          error: (err: any) => {
+            console.log('Error', err)
+            reject(err)
+          },
+          complete: () => { }
+        });
+    })
+
   }
 
 }
