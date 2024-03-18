@@ -22,6 +22,8 @@ export class LoanOfficerTableComponent {
   declinedCount: number = 0;
   approvedCount: number = 0;
   dataSource = new MatTableDataSource<any>();
+  applicationOptions: string[] = ['Approve', 'Declined']
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
