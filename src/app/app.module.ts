@@ -28,6 +28,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { CreateAccountComponent } from './popUps/create-account/create-account.component';
+import { BorrowersComponent } from './components/borrowers/borrowers.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { CreateAccountComponent } from './popUps/create-account/create-account.c
     ContactComponent,
     PageNotFoundComponent,
     ContactComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    BorrowersComponent
   ],
   imports: [
     BrowserModule,

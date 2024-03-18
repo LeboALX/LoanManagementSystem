@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EnquireComponent } from '../enquire/enquire.component';
 import { RegisterComponent } from '../components/register/register.component';
 import { LogInComponent } from '../popup/log-in/log-in.component';
+import { CreateAccountComponent } from '../popUps/create-account/create-account.component';
 
 export interface LoanDetails {
   monthlyInstallment: number;
@@ -67,9 +68,7 @@ export class LandingComponent {
   }
 
   apply():void{
-    this.dialog.open(RegisterComponent,{
-      height:"100%",
-    })
+    this.dialog.open(CreateAccountComponent,{width : '50%'})
   }
   logIn():void{
     this.dialog.open(LogInComponent,{width:'40%',height:'80%'})

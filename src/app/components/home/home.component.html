@@ -8,7 +8,7 @@
             <div class="height-50 image-card flex center-center gap-1em">
                 <div class="full-height image-card"><img class="full-height" src="../../../assets/images/loan.jfif"
                         alt="Loan logo"></div>
-               
+
             </div>
         </div>
 
@@ -21,8 +21,8 @@
                 <a mat-list-item routerLink="/home/borrower" routerLinkActive="active" *ngIf="!isOfficer">
                     <p class="black">DashBoard</p>
                 </a>
-                <a mat-list-item routerLink="/home/burrower" routerLinkActive="active" *ngIf="isOfficer">
-                    <p class="black">Borrower</p>
+                <a mat-list-item routerLink="/home/borrowers" routerLinkActive="active" *ngIf="isOfficer">
+                    <p class="black">Borrowers</p>
                 </a>
                 <a mat-list-item routerLink="/home/contact" routerLinkActive="active">
                     <p class="black">Contact</p>
@@ -40,14 +40,18 @@
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-        
+
         <mat-toolbar class="flex spacebetween-center" color="primary">
             <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
                 *ngIf="isHandset$ | async">
                 <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
-           
-            <p>Zaka lendings</p>
+            <div class="flex center-center gap-1em">
+                <p>Zaka lendings</p>
+                <mat-icon matBadge="{{enquiries}}" matTooltip="you have {{enquiries}} enquiries" matBadgeColor="warn">notifications</mat-icon>
+            </div>
+
+
             <div class="flex center-center gap-1em">
                 <mat-icon class="icon-size flex center-center">person</mat-icon>
                 <h3>{{currentUser.role}}</h3>

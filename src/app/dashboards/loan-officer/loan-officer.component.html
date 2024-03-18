@@ -1,9 +1,9 @@
 <div class="main-container flex column">
     <div class="flex gap-1em center-center">
         <div class="cards-container flex gap-1em width-48">
-            <mat-card matBadgeSize="large" class="card flex center-center">Approved Loans</mat-card>
-            <mat-card matBadgeSize="large" class="card flex center-center">Pending Requests</mat-card>
-            <mat-card matBadgeSize="large" class="card flex center-center">Declined Requests</mat-card>
+            <mat-card matBadgeSize="large" matBadge="{{approvedLoans}}" matBadgeColor="warn" class="card flex center-center">Approved Loans</mat-card>
+            <mat-card matBadgeSize="large" matBadge="{{pendingLoans}}" matBadgeColor="warn" class="card flex center-center">Pending Requests</mat-card>
+            <mat-card matBadgeSize="large" matBadge="{{declinedLoans}}" matBadgeColor="warn" class="card flex center-center">Declined Requests</mat-card>
         </div>
         <div class="flex center-center">
             <app-donut></app-donut>
