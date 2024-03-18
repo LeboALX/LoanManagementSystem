@@ -22,10 +22,6 @@ export class RegisterComponent {
 
   constructor(private api: ApiService, private router: Router, private snackbar: MatSnackBar) {
     this.signUpForm = new FormGroup({
-      firstName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.pattern(/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/)]),
-      cellNumber: new FormControl('', [Validators.required]),
       duration: new FormControl('', [Validators.required]),
       loanAmount: new FormControl('', [Validators.required]),
       IDnumber: new FormControl('', [Validators.required]),
@@ -40,10 +36,8 @@ export class RegisterComponent {
       monthlyIncome: new FormControl('', Validators.required),
       monthlyExpenses: new FormControl('', Validators.required),
       loanType: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]),
-      confirmPassword: new FormControl('', [Validators.required]),
       profileImage: new FormControl('', [Validators.required]),
-      profileImage2: new FormControl('', [Validators.required])
+      loanStatutus: new FormControl('Pending')
     })
   }
 
@@ -88,7 +82,7 @@ export class RegisterComponent {
     }
 
 
-    this.api.genericPost('/add-user', this.signUpForm.value)
+    this.api.genericPost('/apply-loan', this.signUpForm.value)
       .subscribe({
         next: (res: any) => {
           if (res._id) {
