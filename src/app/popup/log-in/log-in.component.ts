@@ -79,10 +79,11 @@ export class LogInComponent implements OnInit {
   }
 
   Submit(): void {
-    // if (this.loginForm.invalid || this.fileUploadResult === 0) {
-    //   this.snackbar.open('All fields are required', 'Ok', { duration: 3000 });
-    //   return;
-    // }
+    if (this.loginForm.invalid || this.fileUploadResult === 0) {
+      this.snackbar.open('All fields are required', 'Ok', { duration: 3000 });
+      return;
+    }
+    console.log(this.users)
     const foundUser = this.users.find((user) => user.email === this.loginForm.value.email && user.password === this.loginForm.value.password)
     if (foundUser) {
       if (foundUser.role === 'loanOfficer') {

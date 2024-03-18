@@ -19,6 +19,7 @@ export class RegisterComponent {
   fileElement: any;
   file: any;
   fileUploadResult: any = 0;
+  users: any[] =[]
 
   constructor(private router: Router, private snackbar: MatSnackBar, private email: EmailService ,private api:ApiService) {
     this.signUpForm = new FormGroup({
@@ -61,6 +62,8 @@ export class RegisterComponent {
   }
 
   submit(): void {
+    this.users.push(this.signUpForm.value)
+    localStorage.setItem('users',JSON.stringify(this.users))
     if (this.signUpForm.invalid) return;
 
     if (this.signUpForm.get('password')?.value !== this.signUpForm.get('confirmPassword')?.value) {
