@@ -13,7 +13,7 @@ export class BorrowerComponent {
 
   makePayment(): void {
     this.dialog.open(PaymentComponent, {
-      width: '50%'
+      width: '30%'
     })
   }
 }

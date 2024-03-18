@@ -5,16 +5,34 @@
 
 
         <div class="flex center-center bg height-64">
+            <div class="height-50 image-card flex center-center gap-1em">
+                <div class="full-height image-card"><img class="full-height" src="../../../assets/images/loan.jfif"
+                        alt="Loan logo"></div>
+               
+            </div>
         </div>
 
 
         <mat-nav-list class="flex center-center column gap-16">
             <div class="full-width color text-center flex column gap-05em">
-                <a mat-list-item routerLink="/home/loan-officer" routerLinkActive="active"><p>DashBoard</p></a>
-                <a mat-list-item routerLink="/home/burrower" ><p class="black">Borrower</p></a>
-                <a mat-list-item routerLink="/home/contact"><p class="black">Contact</p></a>
-                <a mat-list-item routerLink="/home/profile"><p class="black">Profile</p></a>
-                <a mat-list-item routerLink="/home/policy"><p class="black">Policy</p></a>
+                <a mat-list-item routerLink="/home/loan-officer" routerLinkActive="active" *ngIf="isOfficer">
+                    <p class="black">DashBoard</p>
+                </a>
+                <a mat-list-item routerLink="/home/borrower" routerLinkActive="active" *ngIf="!isOfficer">
+                    <p class="black">DashBoard</p>
+                </a>
+                <a mat-list-item routerLink="/home/burrower" routerLinkActive="active" *ngIf="isOfficer">
+                    <p class="black">Borrower</p>
+                </a>
+                <a mat-list-item routerLink="/home/contact" routerLinkActive="active">
+                    <p class="black">Contact</p>
+                </a>
+                <a mat-list-item routerLink="/home/profile" routerLinkActive="active">
+                    <p class="black">Profile</p>
+                </a>
+                <a mat-list-item routerLink="/home/policy" routerLinkActive="active">
+                    <p class="black">Policy</p>
+                </a>
 
 
             </div>
@@ -22,17 +40,20 @@
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-        <mat-toolbar class="flex end-center" color="primary">
+        
+        <mat-toolbar class="flex spacebetween-center" color="primary">
             <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
                 *ngIf="isHandset$ | async">
                 <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
+           
+            <p>Zaka lendings</p>
             <div class="flex center-center gap-1em">
                 <mat-icon class="icon-size flex center-center">person</mat-icon>
-                <h3>burrower</h3>
-                <h1 class="color">|</h1>  
-                <h3>Kearabetswe Maja</h3>
-                <mat-icon matTooltip="Click to Log Out">logout</mat-icon>
+                <h3>{{currentUser.role}}</h3>
+                <h1 class="color">|</h1>
+                <h3>{{currentUser.fullName}}</h3>
+                <mat-icon matTooltip="Click to Log Out" routerLink="/landing">logout</mat-icon>
             </div>
 
         </mat-toolbar>
