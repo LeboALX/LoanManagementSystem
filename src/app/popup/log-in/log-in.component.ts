@@ -20,11 +20,14 @@ export class LogInComponent implements OnInit {
   fileUploadResult: any = 0;
   users: any[] = [];
   role: string = '';
+  borrowers:any = [];
 
   constructor(private snackbar: MatSnackBar, private sharedService: LoanService,
     private router: Router, private matdialogRef: MatDialogRef<LogInComponent>,
     private facebookService: FacebookService) {
     this.users = this.sharedService.get('users', 'local');
+    this.borrowers = this.sharedService.get('borrowers','local');
+
     console.log(this.users)
 
     this.loginForm = new FormGroup({
@@ -79,10 +82,10 @@ export class LogInComponent implements OnInit {
   }
 
   Submit(): void {
-    if (this.loginForm.invalid || this.fileUploadResult === 0) {
-      this.snackbar.open('All fields are required', 'Ok', { duration: 3000 });
-      return;
-    }
+      // if (this.loginForm.invalid || this.fileUploadResult === 0) {
+      //   this.snackbar.open('All fields are required', 'Ok', { duration: 3000 });
+      //   return;
+      // }
     console.log(this.users)
     const foundUser = this.users.find((user) => user.email === this.loginForm.value.email && user.password === this.loginForm.value.password)
     if (foundUser) {

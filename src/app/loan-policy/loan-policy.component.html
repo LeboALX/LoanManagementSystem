@@ -1,1 +1,59 @@
-<p>loan-policy works!</p>
+
+<div class="flex gap-1em center-center">
+    <mat-card class="card ">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Short Term Loan</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>
+                Short-term financing means taking out a loan to make a purchase,
+                usually with a loan term of less than one year.
+                There are many different types of short-term financing,
+                the most common of which are “Buy Now, Pay Later,” “Unsecured Personal Loans,”
+                and “Payday Loans.”
+            </p>
+        </mat-card-content>
+        <mat-card-actions class="flex center-center">
+            <mat-icon matTooltip="click to read More about this policy" (click)="Policy('shortLoan')">visibility</mat-icon>
+        </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="card">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Vihicle Loan Policy</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>
+                The loan amount is typically based on the car's purchase price minus any deposit payment or trade-in
+                value.
+                Usually, loan terms are 24 to 72 months, and you make monthly payments of the principal amount and
+                interest.
+                The interest rate charged depends on factors like credit score and the loan term.
+            </p>
+        </mat-card-content>
+        <mat-card-actions class="flex center-center">
+            <mat-icon matTooltip="click to read More about this policy" (click)="Policy('carLoan')">visibility</mat-icon>
+        </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="card">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Personal Loan Policy</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>
+                A personal loan allows you to borrow a lump sum of money to pay for a variety of 
+                expenses and then repay those funds in regular payments, or installments, over time.
+                 For example, you might use a personal loan to cover: Moving expenses. Debt consolidation.
+            </p>
+        </mat-card-content>
+        <mat-card-actions class="flex center-center">
+            <mat-icon matTooltip="click to read More about this policy" (click)="Policy('personalLoan')">visibility</mat-icon>
+        </mat-card-actions>
+    </mat-card>
+
+</div>
+
