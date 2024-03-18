@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { RegisterComponent } from 'src/app/components/register/register.component';
 import { PaymentComponent } from 'src/app/popUps/payment/payment.component';
 
 @Component({
@@ -14,6 +15,12 @@ export class BorrowerComponent {
   makePayment(): void {
     this.dialog.open(PaymentComponent, {
       width: '30%'
+    })
+  }
+
+  apply():void{
+    this.dialog.open(RegisterComponent,{
+      height:"100%"
     })
   }
 }
