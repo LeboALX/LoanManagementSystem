@@ -13,6 +13,7 @@ import { EmailService } from 'src/app/services/email.service';
   styleUrls: ['./create-account.component.scss']
 })
 export class CreateAccountComponent {
+  // admin: any[] = JSON.parse(localStorage.getItem('admin') || '[]');
   borrowers: any =[]
   accountForm!: FormGroup;
   hide = true;
@@ -26,7 +27,7 @@ export class CreateAccountComponent {
       confirmPassword: new FormControl('', [Validators.required])
     })
   }
-  
+
   submit(): void {
     this.api.genericPost('/register', this.accountForm.value)
       .subscribe({

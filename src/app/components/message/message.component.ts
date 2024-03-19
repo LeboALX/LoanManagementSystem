@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-message',
@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./message.component.scss']
 })
 export class MessageComponent {
+  storedData: any;
+
+  constructor(){}
+
 
 }

@@ -16,7 +16,7 @@
     <div class=" personal-info flex center-center">
         <div class="flex wrap spacebetween">
             <div class="info" *ngFor="let key of profileKeys">
-                <p>{{key}}: <strong>{{profileDetails[key]}}</strong></p>
+                <p>{{key | titlecase}}: <strong>{{profileDetails[key]}}</strong></p>
             </div>
             <div class="flex column center-center">
                 <h2>Your Credit Score Is Up</h2>
