@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoanService } from 'src/app/loan.service';
 
@@ -16,18 +16,35 @@ export class PaymentComponent {
   monthlyRepayments!: number
   remainingBalance!: number;
   paymentForm: FormGroup
-  loanService: any;
+  currentUser : any;
+  myLoanDetails:any;
 
-  constructor(private snackBar: MatSnackBar, private dialog: MatDialog, private loan: LoanService) {
+  constructor(private snackBar: MatSnackBar, private dialog: MatDialog, private loan: LoanService, private matdialogRef: MatDialogRef<PaymentComponent>) {
+    const loggedUser = this.loan.get('currentUser', 'session')
+    if (loggedUser) {
+      this.currentUser = loggedUser
+    }
+
+    
+
     this.calculateRemainingBalance();
     this.paymentForm = new FormGroup({
       amount: new FormControl(''),
       monthlyRepayment: new FormControl('', [Validators.required]),
       interest: new FormControl(''),
       balance: new FormControl('', [Validators.required])
+
+
     })
   }
 
+  submit(): void {
+
+  }
+
+  close(): void {
+    this.matdialogRef.close()
+  }
   calculateRemainingBalance() {
     // const initialAmount = 80000;
     // const monthlyRepayment = 3000;

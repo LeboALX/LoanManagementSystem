@@ -25,23 +25,20 @@ export class CreateAccountComponent {
       password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]),
       confirmPassword: new FormControl('', [Validators.required])
     })
-    const localBorrowers = this.shared.get('users','local');
-    if(localBorrowers){
-      this.borrowers = localBorrowers;
-    }
   }
   
   submit(): void {
-    const existingUser = this.borrowers.find((user:any)=> user.email ===this.accountForm.value.email)
-    if(existingUser){
-      this.snackbar.open(`user with email ${existingUser.email} exist`,"OK",{duration:1000})
-      this.matdialogRef.close()
-      return
-    }else{
-      this.borrowers.push(this.accountForm.value)
-      localStorage.setItem('users',JSON.stringify(this.borrowers))
-      this.snackbar.open("account created successfully")
-      this.matdialogRef.close()
-    }
+    this.api.genericPost('/register', this.accountForm.value)
+      .subscribe({
+        next: (res: any) => {
+          if (res._id) {
+            this.snackbar.open('Registered Successfully', 'Ok', { duration: 3000 })
+          } else {
+            this.snackbar.open('Something went wrong ...', 'Ok', { duration: 3000 });
+          }
+        },
+        error: (err: any) => console.log('Error', err),
+        complete: () => { }
+      });
   }
 }
