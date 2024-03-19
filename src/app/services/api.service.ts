@@ -18,4 +18,8 @@ export class ApiService {
     return this.http.get(this.baseUrl+endpoint)
   }
 
+  genericDelete(endpoint: string){
+    return this.http.delete(this.baseUrl+endpoint)
+  }
+
 }
