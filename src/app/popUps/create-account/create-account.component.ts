@@ -23,7 +23,7 @@ export class CreateAccountComponent {
       confirmPassword: new FormControl('', [Validators.required])
     })
   }
-  
+
   submit(): void {
     
   }

@@ -29,6 +29,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { ContactComponent } from './components/contact/contact.component';
 import { CreateAccountComponent } from './popUps/create-account/create-account.component';
 import { MessageComponent } from './components/message/message.component';
+import { ViewNotificationsComponent } from './popUps/view-notifications/view-notifications.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { MessageComponent } from './components/message/message.component';
     PageNotFoundComponent,
     ContactComponent,
     CreateAccountComponent,
-    MessageComponent
+    MessageComponent,
+    ViewNotificationsComponent
   ],
   imports: [
     BrowserModule,

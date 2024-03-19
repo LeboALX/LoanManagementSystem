@@ -10,7 +10,7 @@ $white: #fefefe;
 form{
     background-color: white;
     
-    width: 80% !important;
+    width: 90% !important;
     overflow-x: hidden;
     border-radius: 7px;
 }
@@ -31,6 +31,7 @@ form{
 
 .contact{
     font-size: 2em;
+    margin: 0;
 }
 
 .half-height{
@@ -53,10 +54,19 @@ form{
 }
 
 .main-form-div form{
-    height: 90%;
+    height: 100%;
 }
 
-.btn{
+.btn-1{
     flex: 1;
     width: 49% !important;
+    background-color: #121a2e !important;
+    color: #fefefe !important;
+}
+
+.btn-0{
+    flex: 1;
+    width: 49% !important;
+    background-color: #cd2e37 !important;
+    color: #fefefe !important;
 }
