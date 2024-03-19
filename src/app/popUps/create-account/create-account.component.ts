@@ -41,6 +41,13 @@ export class CreateAccountComponent {
       this.borrowers.push(this.accountForm.value)
       localStorage.setItem('users',JSON.stringify(this.borrowers))
       this.snackbar.open("account created successfully")
+      this.email.genericPost('/send-email', this.accountForm.value)
+      .subscribe({
+        next: (res) => { console.log(res) },
+        error: (err) => { console.log(err) },
+        complete: () => { console.log("email sent successfully"),this.snackbar.open('email successfully sent to a client','OK',{duration:1000}) }
+      })
+
       this.matdialogRef.close()
     }
   }

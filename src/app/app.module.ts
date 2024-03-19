@@ -30,6 +30,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { CreateAccountComponent } from './popUps/create-account/create-account.component';
 import { MessageComponent } from './components/message/message.component';
 import { DetailsComponent } from './components/details/details.component';
+import { BorrowersComponent } from './components/borrowers/borrowers.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { DetailsComponent } from './components/details/details.component';
     ContactComponent,
     CreateAccountComponent,
     MessageComponent,
-    DetailsComponent
+    DetailsComponent,
+    BorrowersComponent
   ],
   imports: [
     BrowserModule,

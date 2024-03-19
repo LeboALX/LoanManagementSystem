@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { LoanService } from 'src/app/loan.service';
 import { ApiService } from 'src/app/services/api.service';
 import { environment } from 'src/environments/environment.development';
 
@@ -19,8 +20,10 @@ export class RegisterComponent {
   fileElement: any;
   file: any;
   fileUploadResult: any = 0;
+  existingUsers :any =[];
+  currentUser : any ;  /*to be deleted*/
 
-  constructor(private api: ApiService, private router: Router, private snackbar: MatSnackBar) {
+  constructor(private api: ApiService, private router: Router, private snackbar: MatSnackBar,private shared:LoanService) {
     this.signUpForm = new FormGroup({
       duration: new FormControl('', [Validators.required]),
       loanAmount: new FormControl('', [Validators.required]),
@@ -39,6 +42,7 @@ export class RegisterComponent {
       profileImage: new FormControl('', [Validators.required]),
       loanStatutus: new FormControl('Pending')
     })
+    this.currentUser = this.shared.get('currentUser','session');
   }
 
   ngAfterViewInit(): void {
@@ -68,6 +72,9 @@ export class RegisterComponent {
     let formValue = this.signUpForm.value;
     delete formValue.confirmPassword;
 
+    this.existingUsers.push({...formValue, email : `${this.currentUser.email}`, fullName: `${this.currentUser.fullName}`});
+    localStorage.setItem('borrowers',JSON.stringify(this.existingUsers))
+
     try {
       const imageURL = await this.uploadImage();
       console.log('imageURL', imageURL);
@@ -82,18 +89,18 @@ export class RegisterComponent {
     }
 
 
-    this.api.genericPost('/apply-loan', this.signUpForm.value)
-      .subscribe({
-        next: (res: any) => {
-          if (res._id) {
-            this.snackbar.open('Applied Successfully', 'Ok', { duration: 3000 })
-          } else {
-            this.snackbar.open('Something went wrong ...', 'Ok', { duration: 3000 });
-          }
-        },
-        error: (err: any) => console.log('Error', err),
-        complete: () => { }
-      });
+    // this.api.genericPost('/apply-loan', this.signUpForm.value)
+    //   .subscribe({
+    //     next: (res: any) => {
+    //       if (res._id) {
+    //         this.snackbar.open('Applied Successfully', 'Ok', { duration: 3000 })
+    //       } else {
+    //         this.snackbar.open('Something went wrong ...', 'Ok', { duration: 3000 });
+    //       }
+    //     },
+    //     error: (err: any) => console.log('Error', err),
+    //     complete: () => { }
+    //   });
   }
 
   uploadImage() {
