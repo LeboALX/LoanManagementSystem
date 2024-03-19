@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DetailsComponent } from '../components/details/details.component';
 
 @Component({
   selector: 'app-loan-policy',
@@ -8,7 +9,16 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class LoanPolicyComponent {
   
-  constructor(@Inject(MAT_DIALOG_DATA) public data:any){
-    console.log("Injected",data)
-  }
+  isPersonal: boolean = false;
+  isCarLoan: boolean = false;
+  isShortTerm: boolean = false;
+  constructor(private matdialog:MatDialog) {
+
+
+   
+}
+Policy(received:string):void{
+  console.log(received)
+  this.matdialog.open(DetailsComponent,{data:received})
+}
 }

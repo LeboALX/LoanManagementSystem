@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { LoanService } from 'src/app/loan.service';
 import { ApiService } from 'src/app/services/api.service';
 import { environment } from 'src/environments/environment.development';
 
@@ -19,14 +20,15 @@ export class RegisterComponent {
   fileElement: any;
   file: any;
   fileUploadResult: any = 0;
+  kea:any;
 
-  constructor(private api: ApiService, private router: Router, private snackbar: MatSnackBar) {
+  constructor(private api: ApiService, private router: Router, private snackbar: MatSnackBar, private shared: LoanService) {
     this.signUpForm = new FormGroup({
-      firstName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
+      duration: new FormControl('', [Validators.required]),
+      fullName: new FormControl('', [Validators.required]),
+      gender: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.pattern(/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/)]),
       cellNumber: new FormControl('', [Validators.required]),
-      duration: new FormControl('', [Validators.required]),
       loanAmount: new FormControl('', [Validators.required]),
       IDnumber: new FormControl('', [Validators.required]),
       occupation: new FormControl('', [Validators.required]),
@@ -40,11 +42,12 @@ export class RegisterComponent {
       monthlyIncome: new FormControl('', Validators.required),
       monthlyExpenses: new FormControl('', Validators.required),
       loanType: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]),
-      confirmPassword: new FormControl('', [Validators.required]),
       profileImage: new FormControl('', [Validators.required]),
-      profileImage2: new FormControl('', [Validators.required])
+      loanStatutus: new FormControl('Pending')
     })
+
+    this.kea =  this.shared.get("currentUser", 'session');
+
   }
 
   ngAfterViewInit(): void {
@@ -87,8 +90,9 @@ export class RegisterComponent {
       console.log(error)
     }
 
-
-    this.api.genericPost('/add-user', this.signUpForm.value)
+    const loans = [{...this.signUpForm.value, fullName:`${this.kea.fullName}`, email:`${this.kea.email}`}]
+    localStorage.setItem('testing',JSON.stringify(loans))
+    this.api.genericPost('/apply-loan', this.signUpForm.value)
       .subscribe({
         next: (res: any) => {
           if (res._id) {

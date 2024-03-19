@@ -1,14 +1,17 @@
 <div class="main-container flex column gap-1em">
+    <div class="apply-btn flex">
+        <button class="apply" mat-raised-button (click)="apply()">Apply</button>
+    </div>
     <div class="cards-container full-width flex center-center">
         <mat-card matBadgeSize="large" class="card flex center-center">
-            <p class="color-blu"><b>Personal Loan</b></p>
-            <p class="color-blu"><b>R80 000</b></p>
+            <p class="color-blu"><b>{{myLoanDetails[0].loanType}}</b></p>
+            <p class="color-blu"><b>{{myLoanDetails[0].loanAmount}}</b></p>
         </mat-card>
         <mat-card matBadgeSize="large" class="card flex center-center" (click)="makePayment()"><b>Make A
                 Payment</b></mat-card>
         <mat-card matBadgeSize="large" class="card flex center-center">
             <p class="color-blu"><b>Remaining Balance</b></p>
-            <p class="color-blu"><b>R70 000</b></p>
+            <p class="color-blu"><b>{{myLoanDetails[0].loanAmount}}</b></p>
         </mat-card>
     </div>
     <div class="payment-container full-width">

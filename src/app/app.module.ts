@@ -30,6 +30,9 @@ import { ContactComponent } from './components/contact/contact.component';
 import { CreateAccountComponent } from './popUps/create-account/create-account.component';
 import { MessageComponent } from './components/message/message.component';
 import { ViewNotificationsComponent } from './popUps/view-notifications/view-notifications.component';
+import { DetailsComponent } from './components/details/details.component';
+import { MessagesTableComponent } from './tables/messages-table/messages-table.component';
+
 
 @NgModule({
   declarations: [
@@ -53,8 +56,11 @@ import { ViewNotificationsComponent } from './popUps/view-notifications/view-not
     PageNotFoundComponent,
     ContactComponent,
     CreateAccountComponent,
+   
+    MessagesTableComponent,
     MessageComponent,
-    ViewNotificationsComponent
+    ViewNotificationsComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +79,7 @@ import { ViewNotificationsComponent } from './popUps/view-notifications/view-not
     }),
     MatFormFieldModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [ApiService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
