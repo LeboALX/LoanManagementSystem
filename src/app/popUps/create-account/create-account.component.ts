@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { LoanService } from 'src/app/loan.service';
 import { ApiService } from 'src/app/services/api.service';
 import { EmailService } from 'src/app/services/email.service';
 
@@ -12,10 +14,11 @@ import { EmailService } from 'src/app/services/email.service';
 })
 export class CreateAccountComponent {
   // admin: any[] = JSON.parse(localStorage.getItem('admin') || '[]');
+  borrowers: any =[]
   accountForm!: FormGroup;
   hide = true;
 
-  constructor(private router: Router, private snackbar: MatSnackBar, private email: EmailService, private api: ApiService) {
+  constructor(private router: Router, private snackbar: MatSnackBar, private email: EmailService, private api: ApiService, private shared:LoanService,private matdialogRef:MatDialogRef<CreateAccountComponent>) {
     this.accountForm = new FormGroup({
       fullName: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.pattern(/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/)]),
@@ -25,23 +28,18 @@ export class CreateAccountComponent {
     })
   }
   
-  
-    submit():void{
-      // let formValue = this.accountForm.value;
-      // const foundUser = this.admin.find(user => user.email.toLowerCase() === this.accountForm.get('email')?.value.toLowerCase());
-      // if(foundUser) {
-      //   this.snackbar.open('User already exist, please login.', 'Ok', {
-      //     duration: 3000
-      //   })
-      // } else {
-      //   delete formValue.confirmPassword;
-      //   this.admin.push(formValue);
-      //   localStorage.setItem('users', JSON.stringify(this.admin));
-      //   this.accountForm.reset();
-       
-       
-      // }
-    }
-    
+  submit(): void {
+    this.api.genericPost('/register', this.accountForm.value)
+      .subscribe({
+        next: (res: any) => {
+          if (res._id) {
+            this.snackbar.open('Registered Successfully', 'Ok', { duration: 3000 })
+          } else {
+            this.snackbar.open('Something went wrong ...', 'Ok', { duration: 3000 });
+          }
+        },
+        error: (err: any) => console.log('Error', err),
+        complete: () => { }
+      });
   }
-
+}

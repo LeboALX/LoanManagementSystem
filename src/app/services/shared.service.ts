@@ -5,8 +5,17 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class SharedService {
-  interrestPayable!: Number;
-  totalAmount!:Number;
+  pieSubject = new Subject<any>();
+  pieRefresh: boolean = false;
 
-  
+  constructor() { }
+
+  refreshPie(): void {
+    this.pieRefresh = true;
+    this.pieSubject.next(this.pieRefresh)
+  }
+
+  watchPieUpdates(): Observable<any> {
+    return this.pieSubject.asObservable();
+  }
 }

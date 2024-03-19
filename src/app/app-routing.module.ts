@@ -21,10 +21,9 @@ const routes: Routes = [
       { path: 'borrower', component: BorrowerComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'profile', component: ProfileComponent },
-      { path: 'policy', component: LoanPolicyComponent },
-      { path: 'borrowers', component:BorrowersComponent },
-      { path: 'borrower-table', component: BorrowerTableComponent},
-      { path: 'message', component: MessageComponent}
+      { path: 'loan-policy', component: LoanPolicyComponent },
+      { path: 'borrowers', component: BorrowersComponent},
+
     ]
   }
   , { path: '**', component: PageNotFoundComponent }];
