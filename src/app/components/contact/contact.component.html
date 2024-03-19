@@ -1,10 +1,10 @@
 <div class="main-c flex colunm">
     
-    <div class="flex center-center   gap padding-1em" [style.width]="_data ? '100%' : '50%'">
+    <div class="flex center-center   gap padding-1em" >
         <form [formGroup]="contactForm" class="bg padding-1em">
             <p class="text-center text">Get in touch</p>
     
-            <mat-form-field class="full-width m-b-1em" *ngIf="!_data">
+            <mat-form-field class="full-width m-b-1em" >
                 <mat-label >Email</mat-label>
                 <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
                 <mat-error *ngIf="contactForm.get('email')?.hasError('required')">
@@ -16,7 +16,7 @@
                 </mat-error>
             </mat-form-field>
             
-            <mat-form-field class="full-width m-b-1em" *ngIf="!_data">
+            <mat-form-field class="full-width m-b-1em">
                 <mat-label>Name</mat-label>
                 <input type="text" matInput formControlName="name" placeholder="Enter your Name">
                 <mat-error *ngIf="contactForm.get('name')?.hasError('required')">
@@ -27,7 +27,7 @@
                 </mat-error>
             </mat-form-field>
     
-            <mat-form-field class="full-width m-b-1em" *ngIf="!_data">
+            <!-- <mat-form-field class="full-width m-b-1em" >
                 <mat-label>Cellphone</mat-label>
                 <input type="number" matInput formControlName="cellphone" placeholder="0000000000">
                 <mat-error *ngIf="contactForm.get('cellphone')?.hasError('required')">
@@ -36,17 +36,17 @@
                 <mat-error *ngIf="contactForm.get('cellphone')?.hasError('minlength')">
                   Cellphone should at least have 10 charectors
                 </mat-error>
-            </mat-form-field>
+            </mat-form-field> -->
     
             <mat-form-field class="example-full-width m-b-1em" >
                 <mat-label>Leave a comment</mat-label>
-                <textarea matInput [readonly]="_data"  formControlName="textplace" placeholder="Ex. It makes me feel..."></textarea>
+                <textarea matInput  formControlName="textplace" placeholder="Ex. It makes me feel..."></textarea>
                 <mat-error *ngIf="contactForm.get('textplace')?.hasError('required')">
                     Comment is <strong>required</strong>
                 </mat-error>
               </mat-form-field>
               <!-- Reply -->
-              <mat-form-field class="example-full-width m-b-1em" *ngIf="_data">
+              <mat-form-field class="example-full-width m-b-1em" *ngIf="isReply">
                 <mat-label>Send a reply</mat-label>
                 <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
                 <mat-error *ngIf="contactForm.get('textplace')?.hasError('required')">
@@ -55,16 +55,14 @@
               </mat-form-field>
         
                 <div class="flex gap-1em m-b-1em">
-                    <button mat-raised-button color="warn" class="flex-1" (click)="_data?close():contactForm.reset()">{{_data?'Close':'Cancel'}}</button>
-                    <button mat-raised-button color="primary" class="flex-1" (click)="submit()">{{_data?'Reply':'Submit'}}</button>
+                    <button mat-raised-button color="warn" class="flex-1" >Close</button>
+                    <button mat-raised-button color="primary" class="flex-1">Submit</button>
                 </div>
             
         </form>
     </div>
 
-    <div class="img padding-1em" *ngIf="!_data">
+    <div class="img padding-1em">
         <img class="full-width width-90" src="../../../assets/images/2367-loan.gif" alt="">
     </div>
 </div>
-
-
