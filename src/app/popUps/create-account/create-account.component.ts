@@ -11,6 +11,7 @@ import { EmailService } from 'src/app/services/email.service';
   styleUrls: ['./create-account.component.scss']
 })
 export class CreateAccountComponent {
+  // admin: any[] = JSON.parse(localStorage.getItem('admin') || '[]');
   accountForm!: FormGroup;
   hide = true;
 
@@ -24,7 +25,23 @@ export class CreateAccountComponent {
     })
   }
   
-  submit(): void {
+  
+    submit():void{
+      // let formValue = this.accountForm.value;
+      // const foundUser = this.admin.find(user => user.email.toLowerCase() === this.accountForm.get('email')?.value.toLowerCase());
+      // if(foundUser) {
+      //   this.snackbar.open('User already exist, please login.', 'Ok', {
+      //     duration: 3000
+      //   })
+      // } else {
+      //   delete formValue.confirmPassword;
+      //   this.admin.push(formValue);
+      //   localStorage.setItem('users', JSON.stringify(this.admin));
+      //   this.accountForm.reset();
+       
+       
+      // }
+    }
     
   }
-}
+
