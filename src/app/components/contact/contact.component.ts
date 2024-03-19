@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-contact',
@@ -8,9 +10,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent {
-  allUsers: any[] = JSON.parse(localStorage.getItem('allUsers') || '[]');
+  isReply:boolean = false;
+  contacts: any[] = JSON.parse(localStorage.getItem('contact') || '[]');
   contactForm: FormGroup;
-  constructor(private snackbar: MatSnackBar){
+  constructor(private snackbar:MatSnackBar ,private api:ApiService,private matdialog:MatDialog){
     this.contactForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.pattern(/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/)]),
       name: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -19,20 +22,8 @@ export class ContactComponent {
     })
   }
   
-  submit():void{
-    let formValue = this.contactForm.value;
-    const foundUser = this.allUsers.find(user => user.email.toLowerCase() === this.contactForm.get('email')?.value.toLowerCase());
-    if(foundUser) {
-      this.snackbar.open('User already exist, please login.', 'Ok', {
-        duration: 3000
-      })
-    } else {
-      delete formValue.confirmPassword;
-      this.allUsers.push(formValue);
-      localStorage.setItem('allUsers', JSON.stringify(this.allUsers));
-      this.contactForm.reset();
-     
-    }
-  }
+
+  
+  
   }
 

@@ -19,7 +19,7 @@ export class ProfileComponent {
     occupation: 'Nurse',
     salary: 8000,
     currentLoan: 'short-term loan',
-    languages: ['english', 'sepedi']
+    languages: ['english',  'sepedi']
   }
 
   profileKeys: string[] = Object.keys(this.profileDetails)

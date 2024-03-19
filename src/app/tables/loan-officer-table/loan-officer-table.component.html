@@ -6,38 +6,37 @@
 
   <!--ID Column -->
   <ng-container matColumnDef="fullName">
-    <th mat-header-cell *matHeaderCellDef> fullName</th>
+    <th mat-header-cell *matHeaderCellDef>Full Names</th>
     <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
   </ng-container>
 
-
     <!-- Last Name Column -->
     <ng-container matColumnDef="idNo">
-      <th mat-header-cell *matHeaderCellDef> Last Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.lastName | titlecase}} </td>
+      <th mat-header-cell *matHeaderCellDef>ID Number</th>
+      <td mat-cell *matCellDef="let element"> {{element.IDnumber | titlecase}} </td>
     </ng-container>
 
     <!-- Email Column -->
     <ng-container matColumnDef="gender">
-      <th mat-header-cell *matHeaderCellDef> Email </th>
-      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      <th mat-header-cell *matHeaderCellDef> Gender </th>
+      <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
     </ng-container>
 
-        <!-- Email Column -->
-        <ng-container matColumnDef="email">
-          <th mat-header-cell *matHeaderCellDef> Email </th>
-          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-        </ng-container>
+  <!-- Email Column -->
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef> Email </th>
+    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+  </ng-container>
 
     <!-- Action Column -->
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef> Action </th>
       <td mat-cell *matCellDef="let element">
         <button class="half-width" mat-raised-button [disabled]="element.status === 'declined'"
-          [color]="element.status === 'pending' ? 'warn':element.status === 'declined' ? 'accent': 'primary'"
-          [matMenuTriggerFor]="menu">{{element.status | titlecase}}</button>
+          [color]="element.loanStatutus === 'pending' ? 'warn':element.loanStatutus === 'declined' ? 'accent': 'primary'"
+          [matMenuTriggerFor]="menu">{{element.loanStatutus | titlecase}}</button>
         <mat-menu #menu="matMenu">
-          <button *ngFor="let option of applicationOptions"
+          <button *ngFor="let option of applicationAction" (click)="updateStatus(element,option)"
             mat-menu-item>{{option | titlecase}}</button>
         </mat-menu>
       </td>
@@ -47,16 +46,14 @@
     <ng-container matColumnDef="options">
       <th mat-header-cell *matHeaderCellDef> Options </th>
       <td mat-cell *matCellDef="let element">
-          <!-- <mat-icon>visibility</mat-icon>
-          <mat-icon>payments</mat-icon> -->
-        <mat-icon>delete</mat-icon>
+        <mat-icon (click)="deleteUser(element)">delete</mat-icon>
       </td>
     </ng-container>
 
     <!-- Documents Column -->
     <ng-container matColumnDef="documents">
       <th mat-header-cell *matHeaderCellDef> Documents </th>
-      <td mat-cell *matCellDef="let element"></td>
+      <td mat-cell *matCellDef="let element"><a [href]="element.profileImage">view document</a></td>
     </ng-container> 
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

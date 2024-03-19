@@ -61,7 +61,7 @@ export class LandingComponent {
 
   openDialog(): void {
     this.dialog.open(EnquireComponent, {
-      width: "50%"
+      width: "40%"
     })
   }
 

@@ -24,3 +24,20 @@ form {
   background-color: #cd2e37 !important;
   color: #efefef !important;
 }
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.close {
+  top: 3px;
+  right: 3px;
+  color: white;
+  border-radius: 5px;
+  border: 2px solid black;
+  background-color: #cd2e37;
+}
