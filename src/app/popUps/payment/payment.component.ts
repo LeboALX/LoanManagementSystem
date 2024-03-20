@@ -29,8 +29,6 @@ export class PaymentComponent {
   }
 
   submit(): void {
-    const inputValue = this.paymentForm.value.inputValue;
-    this.sharedService.setInputValue(inputValue);
     const loggedUser =  this.loan.get('currentUser','session')
     console.log("Logged User",loggedUser.email)
     this.api.genericGet('/get-loans')
