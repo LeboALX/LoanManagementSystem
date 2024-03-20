@@ -20,7 +20,7 @@ export class CreateAccountComponent {
   isEdit : Boolean = false;
 
   constructor(private router: Router, private snackbar: MatSnackBar, private email: EmailService, private api: ApiService,
-     private shared:LoanService,private matdialogRef:MatDialogRef<CreateAccountComponent>,@Inject(MAT_DIALOG_DATA) public data: any) {
+     private shared:LoanService,private matdialogRef:MatDialogRef<CreateAccountComponent>,@Inject(MAT_DIALOG_DATA) public data: any,private emailService:EmailService) {
       if(data){
         this.accountForm = new FormGroup({
           fullName: new FormControl(data.fullName, [Validators.required]),
@@ -44,18 +44,45 @@ export class CreateAccountComponent {
   }
 
   submit(): void {
-    this.api.genericPost('/register', this.accountForm.value)
+    this.api.genericGet('/getAllUsers')
       .subscribe({
-        next: (res: any) => {
-          if (res._id) {
-            this.snackbar.open('Registered Successfully', 'Ok', { duration: 3000 })
-          } else {
-            this.snackbar.open('Something went wrong ...', 'Ok', { duration: 3000 });
-          }
+        next : (res: any) => {
+            console.log( "all users",res);
+            const existing = res.find((user:any)=> user.email === this.accountForm.value.email)
+            if(existing){
+              this.snackbar.open("user already exist in the system please login","OK",{duration:1000})
+              return
+            }else{
+              this.api.genericPost('/register', this.accountForm.value)
+              .subscribe({
+                next: (res: any) => {
+                  if (res._id) {
+                    this.matdialogRef.close()
+                    this.snackbar.open('Registered Successfully', 'Ok', { duration: 3000 })
+                    console.log("hello world")
+                    this.emailService.genericPost('/send-email', this.accountForm.value)
+                    .subscribe({
+                      next: (res) => { console.log(res) },
+                      error: (err) => { console.log(err) },
+                      complete: () => { console.log("email sent successfully")}
+                    })
+                    
+        
+                  } else {
+                    this.snackbar.open('Something went wrong ...', 'Ok', { duration: 3000 });
+                  }
+                },
+                error: (err: any) => console.log('Error', err),
+                complete: () => { }
+              });
+            }
         },
-        error: (err: any) => console.log('Error', err),
-        complete: () => { }
-      });
+        error:(err:any) => {console.log(err)}
+        ,
+        complete:()=>{}
+      })
+ 
+
   }
   Update():void{
 

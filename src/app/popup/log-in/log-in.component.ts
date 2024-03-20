@@ -92,27 +92,11 @@ export class LogInComponent implements OnInit {
     if (this.loginForm.invalid) return;
 
     let formValue = this.loginForm.value;
-
-    //   this.api.genericPost('/logIn', formValue)
-    //     .subscribe({
-    //       next: (res: any) => {
-    //         sessionStorage.setItem('currentUser', JSON.stringify(res));
-    //         this.loginForm.reset();
-
-    //         if (this.router.url.includes('home')) {
-    //           this.router.navigate(['/home']);
-    //         } else {
-    //           this.submitted.emit('close');
-    //         }
-    //       },
-    //       error: (err: any) => this.snackbar.open(err.error, 'Ok', { duration: 3000 }),
-    //       complete: () => { }
-    //     })
-    // }
-
-    this.api.genericGet('/get-allUsers')
+    
+    this.api.genericGet('/getAllUsers')
       .subscribe({
         next: (res: any) => {
+          console.log("aowa wena",res)
           const foundUser = res.find((user:any)=> user.email === formValue.email)
           if(foundUser){
             sessionStorage.setItem('currentUser',JSON.stringify(foundUser))
