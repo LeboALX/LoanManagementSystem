@@ -32,19 +32,16 @@ export class EnquireComponent {
           fullName: new FormControl('', [Validators.required])
         })
       }
-    
-    const myEnquiries = this.shared.get('enquiries', 'local') || []
-    if (myEnquiries) {
-      this.enquiries = myEnquiries
-    }
   }
   submit(): void{
     let formValue = this.messageFormData.value;
-    this.api.genericPost('/add-enquiry', formValue)
+    this.api.genericPost('/send-enquiry', formValue)
       .subscribe({
         next: (res: any) => {
           this.messageFormData.reset();
+          this.snacbar.open('Enquiry sent successfully','Ok',{duration:3000})
           console.log(res)
+          this.close();
         },
         error: (err: any) => console.log('Error', err),
         complete: () => { }

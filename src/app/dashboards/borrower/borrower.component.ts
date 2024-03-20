@@ -1,50 +1,59 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { RegisterComponent } from 'src/app/components/register/register.component';
 import { LoanService } from 'src/app/loan.service';
 import { PaymentComponent } from 'src/app/popUps/payment/payment.component';
 import { ApiService } from 'src/app/services/api.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-borrower',
   templateUrl: './borrower.component.html',
   styleUrls: ['./borrower.component.scss'],
 })
-export class BorrowerComponent {
+export class BorrowerComponent  {
   allLoans: any = [];
   currentUser : any;
   myLoanDetails:any;
+  loanAmount:any;
+  balance: any;
 
-  constructor(private dialog: MatDialog, private api: ApiService,private shared:LoanService) {
+  constructor(private dialog: MatDialog, private api: ApiService,private shared:LoanService, private sharedService: SharedService) {
     const loggedUser =  this.shared.get('currentUser','session')
-    if(loggedUser){
-      this.currentUser = loggedUser
-    }
-
+    console.log("Logged User",loggedUser.email)
     this.api.genericGet('/get-loans')
-      .subscribe({
-        next: (res: any) => {
-          console.log("response", res)
-          this.allLoans = res;
-          if (this.allLoans) {
-            const myLoan = this.allLoans.filter((user:any)=> user.email === this.currentUser.email)
-            if(myLoan){
-              console.log("myLoans",myLoan)
-              this.myLoanDetails = myLoan
-            }else{
-              console.log("no pending Loans")
-            }
-            console.log("lol",this.allLoans)
-          }
-          console.log('what ', this.allLoans)
-        },
-        error: (err: any) => console.log('Error', err),
-        complete: () => { }
-      });
+    .subscribe({
+      next: (res: any) => {
+        const user = res.filter((user:any)=> user.email == loggedUser.email)
+        if(user){
+          this.loanAmount = user[0].loanAmount;
+          this.balance = user[0].balance;
+        } 
+      },
+      error: (err: any) => console.log('Error', err),
+      complete: () => { }
+    });
 
-      console.log("finally",this.myLoanDetails)
+    this.sharedService.watchBalanceUpdates().subscribe(()=>{
+      this.api.genericGet('/get-loans')
+    .subscribe({
+      next: (res: any) => {
+        const user = res.filter((user:any)=> user.email == loggedUser.email)
+        if(user){
+          this.loanAmount =user[0].loanAmount;
+          this.balance = this.loanAmount - 3000;
+          this.balance = this.balance;
 
+          console.log("balance ",this.balance)
+          } 
+      },
+      error: (err: any) => console.log('Error', err),
+      complete: () => { }
+    });
+    })
   }
+  
+ 
 
   makePayment(): void {
     this.dialog.open(PaymentComponent, {

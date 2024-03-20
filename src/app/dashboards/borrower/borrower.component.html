@@ -4,14 +4,14 @@
     </div>
     <div class="cards-container full-width flex center-center">
         <mat-card matBadgeSize="large" class="card flex center-center">
-            <p class="color-blu"><b></b></p>
-            <p class="color-blu"><b></b></p>
+            <p ><b>Iitial Amount</b></p>
+            <p ><b class="color-blu">{{'R'+loanAmount}}</b></p>
         </mat-card>
         <mat-card matBadgeSize="large" class="card flex center-center" (click)="makePayment()"><b>Make A
                 Payment</b></mat-card>
         <mat-card matBadgeSize="large" class="card flex center-center">
-            <p class="color-blu"><b>Remaining Balance</b></p>
-            <p class="color-blu"><b></b></p>
+            <p><b>Remaining Balance</b></p>
+            <p class="color-blu"><b>{{"R"+balance}}</b></p>
         </mat-card>
     </div>
     <div class="payment-container full-width">

@@ -33,6 +33,7 @@ import { ViewNotificationsComponent } from './popUps/view-notifications/view-not
 import { DetailsComponent } from './components/details/details.component';
 import { MessagesTableComponent } from './tables/messages-table/messages-table.component';
 import { BorrowersComponent } from './components/borrowers/borrowers.component';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -83,8 +84,8 @@ import { BorrowersComponent } from './components/borrowers/borrowers.component';
     MaterialModule,
     HttpClientModule,
   ],
-  providers: [ApiService],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [{ provide: MAT_DIALOG_DATA, useValue: {} }],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
 <div class="flex center-center main-div full-height">
-    <form [formGroup]="signUpForm" class="main-form">
+    <form [formGroup]="applyLoanForm" class="main-form">
         <h2 class="text-center">Apply For Loan</h2>
 
         <h3>Personal Details</h3>
@@ -8,7 +8,7 @@
             <mat-form-field class="full-width">
                 <mat-label>Full Names</mat-label>
                 <input type="text" matInput formControlName="fullName" placeholder="Edward Thupane">
-                <mat-error *ngIf="signUpForm.get('monthlyIncome')?.hasError('required')">
+                <mat-error *ngIf="applyLoanForm.get('monthlyIncome')?.hasError('required')">
                     Salary is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
@@ -16,10 +16,10 @@
             <mat-form-field class="full-width">
                 <mat-label>ID Number</mat-label>
                 <input type="text" matInput formControlName="IDnumber" placeholder="4505254545485" maxlength="13">
-                <mat-error *ngIf="signUpForm.get('IDnumber')?.hasError('required')">
+                <mat-error *ngIf="applyLoanForm.get('IDnumber')?.hasError('required')">
                     ID number is <strong>required</strong>
                 </mat-error>
-                <mat-error *ngIf="signUpForm.get('IDnumber')?.hasError('minlength')">
+                <mat-error *ngIf="applyLoanForm.get('IDnumber')?.hasError('minlength')">
                     ID Number must be 13 Digits
                 </mat-error>
             </mat-form-field>
@@ -39,10 +39,10 @@
             <mat-form-field class="full-width">
                 <mat-label>Email</mat-label>
                 <input type="email" matInput formControlName="email" placeholder="hello@email.pay">
-                <mat-error *ngIf="signUpForm.get('email')?.hasError('required')">
+                <mat-error *ngIf="applyLoanForm.get('email')?.hasError('required')">
                     Email is <strong>required</strong>
                 </mat-error>
-                <mat-error *ngIf="signUpForm.get('email')?.hasError('pattern')">
+                <mat-error *ngIf="applyLoanForm.get('email')?.hasError('pattern')">
                     Please enter a valid email address
                 </mat-error>
             </mat-form-field>
@@ -51,7 +51,7 @@
             <mat-form-field class="full-width">
                 <mat-label>Cell Number</mat-label>
                 <input type="number" matInput formControlName="cellNumber" placeholder="0793307148">
-                <mat-error *ngIf="signUpForm.get('cellNumber')?.hasError('required')">
+                <mat-error *ngIf="applyLoanForm.get('cellNumber')?.hasError('required')">
                     Cell Number is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
@@ -63,7 +63,7 @@
             <mat-form-field class="full-width">
                 <mat-label>Salary</mat-label>
                 <input type="number" matInput formControlName="monthlyIncome" placeholder="30000">
-                <mat-error *ngIf="signUpForm.get('monthlyIncome')?.hasError('required')">
+                <mat-error *ngIf="applyLoanForm.get('monthlyIncome')?.hasError('required')">
                     Salary is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
@@ -71,7 +71,7 @@
             <mat-form-field class="full-width">
                 <mat-label>Monthly Expenses</mat-label>
                 <input type="number" matInput formControlName="monthlyExpenses" placeholder="30000">
-                <mat-error *ngIf="signUpForm.get('monthlyExpenses')?.hasError('required')">
+                <mat-error *ngIf="applyLoanForm.get('monthlyExpenses')?.hasError('required')">
                     Monthly Expenses is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
@@ -79,7 +79,7 @@
             <mat-form-field class="full-width">
                 <mat-label>Occupation</mat-label>
                 <input type="text" matInput formControlName="occupation" placeholder="Doctor">
-                <mat-error *ngIf="signUpForm.get('occupation')?.hasError('required')">
+                <mat-error *ngIf="applyLoanForm.get('occupation')?.hasError('required')">
                     Occupation is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
@@ -100,7 +100,7 @@
             <mat-form-field class="full-width">
                 <mat-label>Loan Amount</mat-label>
                 <input type="number" matInput formControlName="loanAmount" placeholder="30000">
-                <mat-error *ngIf="signUpForm.get('loanAmount')?.hasError('required')">
+                <mat-error *ngIf="applyLoanForm.get('loanAmount')?.hasError('required')">
                     Loan is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
@@ -108,7 +108,7 @@
             <mat-form-field class="full-width">
                 <mat-label>Duration (Months)</mat-label>
                 <input type="number" matInput formControlName="duration" placeholder="12">
-                <mat-error *ngIf="signUpForm.get('duration')?.hasError('required')">
+                <mat-error *ngIf="applyLoanForm.get('duration')?.hasError('required')">
                     Monthly Expenses is <strong>required</strong>
                 </mat-error>
             </mat-form-field>
@@ -120,7 +120,7 @@
                 <mat-form-field class="full-width">
                     <mat-label>Street Name</mat-label>
                     <input type="text" matInput formControlName="streetName" placeholder="Enter your Street Name">
-                    <mat-error *ngIf="signUpForm.get('address.streetName')?.hasError('required')">
+                    <mat-error *ngIf="applyLoanForm.get('address.streetName')?.hasError('required')">
                         Street Name is <strong>required</strong>
                     </mat-error>
                 </mat-form-field>
@@ -128,7 +128,7 @@
                 <mat-form-field class="full-width">
                     <mat-label>Street Number</mat-label>
                     <input type="number" matInput formControlName="streetNumber" placeholder="Enter your Street Number">
-                    <mat-error *ngIf="signUpForm.get('address.streetNumber')?.hasError('required')">
+                    <mat-error *ngIf="applyLoanForm.get('address.streetNumber')?.hasError('required')">
                         Street Number is <strong>required</strong>
                     </mat-error>
                 </mat-form-field>
@@ -136,7 +136,7 @@
                 <mat-form-field class="full-width">
                     <mat-label>Suburb</mat-label>
                     <input type="text" matInput formControlName="suburb" placeholder="Enter your Suburb">
-                    <mat-error *ngIf="signUpForm.get('address.suburb')?.hasError('required')">
+                    <mat-error *ngIf="applyLoanForm.get('address.suburb')?.hasError('required')">
                         Suburb is <strong>required</strong>
                     </mat-error>
                 </mat-form-field>
@@ -146,7 +146,7 @@
                 <mat-form-field class="full-width">
                     <mat-label>City</mat-label>
                     <input type="text" matInput formControlName="city" placeholder="Enter your City">
-                    <mat-error *ngIf="signUpForm.get('address.city')?.hasError('required')">
+                    <mat-error *ngIf="applyLoanForm.get('address.city')?.hasError('required')">
                         City is <strong>required</strong>
                     </mat-error>
                 </mat-form-field>
@@ -154,7 +154,7 @@
                 <mat-form-field class="full-width">
                     <mat-label>Code</mat-label>
                     <input type="number" matInput formControlName="code" placeholder="Enter your Code">
-                    <mat-error *ngIf="signUpForm.get('address.code')?.hasError('required')">
+                    <mat-error *ngIf="applyLoanForm.get('address.code')?.hasError('required')">
                         Code is <strong>required</strong>
                     </mat-error>
                 </mat-form-field>
