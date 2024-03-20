@@ -10,6 +10,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { LoanPolicyComponent } from './loan-policy/loan-policy.component';
 import { MessageComponent } from './components/message/message.component';
 import { BorrowerTableComponent } from './tables/borrower-table/borrower-table.component';
+import { BorrowersComponent } from './components/borrowers/borrowers.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
@@ -22,7 +23,9 @@ const routes: Routes = [
       { path: 'profile', component: ProfileComponent },
       { path: 'loan-policy', component: LoanPolicyComponent },
       { path: 'message', component: MessageComponent},
-      { path: 'borrower-table', component:BorrowerTableComponent}
+      { path: 'borrower-table', component:BorrowerTableComponent},
+      { path: 'borrowers', component:BorrowersComponent}
+
 
 
 

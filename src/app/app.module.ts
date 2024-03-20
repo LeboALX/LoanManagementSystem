@@ -32,6 +32,7 @@ import { MessageComponent } from './components/message/message.component';
 import { ViewNotificationsComponent } from './popUps/view-notifications/view-notifications.component';
 import { DetailsComponent } from './components/details/details.component';
 import { MessagesTableComponent } from './tables/messages-table/messages-table.component';
+import { BorrowersComponent } from './components/borrowers/borrowers.component';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
@@ -61,7 +62,8 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
     MessagesTableComponent,
     MessageComponent,
     ViewNotificationsComponent,
-    DetailsComponent
+    DetailsComponent,
+    BorrowersComponent,
   ],
   imports: [
     BrowserModule,

@@ -19,6 +19,8 @@ export class LoanOfficerTableComponent {
   declinedCount: number = 0;
   approvedCount: number = 0;
   dataSource = new MatTableDataSource<any>();
+  applicationOptions: string[] = ['Approve', 'Declined']
+
 
   constructor(private api: ApiService, private snackbar:MatSnackBar, private sharedService:SharedService){
     this.refreshAdminPage()

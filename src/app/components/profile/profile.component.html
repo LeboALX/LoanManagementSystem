@@ -2,21 +2,25 @@
     <div class="profile flex center-center">
         <div class="card">
             <img src="../../../assets/images/picture.png" alt="John">
-            <h1>Edward Juska</h1>
-            <p class="title">Business Analyst</p>
-            <p>edward.juska@gmail.com</p>
-            <p>+27 76 523 3256</p>
-            <p>Johannesburg, RSA</p>
+            <h1>{{currentUser.fullName}}</h1>
+            <p class="title">{{currentUser.role  ? currentUser.role : 'borrower'}}</p>
+            <p>{{currentUser.email}}</p>
+            <p>{{currentUser.cellNumber}}</p>
+            <p>{{myProfile[0] ? myProfile[0].address.streetName : ''}} {{myProfile[0] ? myProfile[0].address.city : ''}}</p>
             <div class="flex gap-1em">
-                <button mat-raised-button type="button" class="color-blue">Edit Profile</button>
-                <button mat-raised-button type="button" class="colorRed">Message</button>
+                <button mat-raised-button type="button" class="color-blue" (click)="edit(currentUser)">Edit Profile</button>
             </div>
         </div>
     </div>
     <div class=" personal-info flex center-center">
         <div class="flex wrap spacebetween">
-            <div class="info" *ngFor="let key of profileKeys">
-                <p>{{key | titlecase}}: <strong>{{profileDetails[key]}}</strong></p>
+            <div class="info">
+                <p> current Loan : <strong> {{myProfile[0] ? myProfile[0].loanType  : 'N/A' }}</strong></p>
+                <p class="flex"> Gender : <strong>{{myProfile[0] ? myProfile[0].gender : 'N/A' }}</strong></p>
+                <p class="flex"> identity Number: <strong>{{myProfile[0] ? myProfile[0].IDnumber : 'N/A' }}</strong></p>
+                <p class="flex"> suburb : <strong>{{myProfile[0] ? myProfile[0].address.suburb : 'N/A' }}</strong></p>
+                <p class="flex"> Salary: <strong>{{myProfile[0] ? myProfile[0].monthlyIncome : 'N/A' }}</strong></p>
+                <p class="flex"> Monthly expensise: <strong>{{myProfile[0] ? myProfile[0].monthlyExpenses : 'N/A' }}</strong></p>
             </div>
             <div class="flex column center-center">
                 <h2>Your Credit Score Is Up</h2>
