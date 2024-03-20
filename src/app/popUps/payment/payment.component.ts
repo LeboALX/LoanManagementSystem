@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoanService } from 'src/app/loan.service';
 import { ApiService } from 'src/app/services/api.service';
@@ -18,8 +18,9 @@ export class PaymentComponent {
   loanAmount:any;
   balance:any;
 
-  constructor(private snackBar: MatSnackBar, private dialog: MatDialog, private loan: LoanService,
-               private matdialogRef: MatDialogRef<PaymentComponent>, private api:ApiService,private sharedService: SharedService) {
+  constructor(private snackBar: MatSnackBar, private loan: LoanService,
+               private matdialogRef: MatDialogRef<PaymentComponent>,
+                private api:ApiService,private sharedService: SharedService,@Inject(MAT_DIALOG_DATA) public _data: any) {
     
     this.paymentForm = new FormGroup({
       amount: new FormControl(''),
@@ -40,16 +41,18 @@ export class PaymentComponent {
           this.loanAmount =user[0].loanAmount;
           this.balance = this.loanAmount - this.paymentForm.get('monthlyRepayment')?.value;
           this.balance = this.balance;
-
-          console.log("balance ",this.balance)
+          this.close();
           } 
       },
       error: (err: any) => console.log('Error', err),
       complete: () => { }
     });
+    console.log("balance ",this.balance)
   }
 
   close(): void {
-    this.matdialogRef.close()
+    this.matdialogRef.close({
+      data: this.paymentForm.get('monthlyRepayment')?.value
+    })
   }
 }

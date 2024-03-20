@@ -34,7 +34,7 @@ export class LogInComponent implements OnInit {
 
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.pattern(/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(4)]),
 
     })
 
@@ -84,71 +84,26 @@ export class LogInComponent implements OnInit {
   }
 
   Submit(): void {
-    // if (this.loginForm.invalid || this.fileUploadResult === 0) {
+    // if (this.loginForm.invalid) {
     //   this.snackbar.open('All fields are required', 'Ok', { duration: 3000 });
-    //   return;
-    // }
-
-    if (this.loginForm.invalid) return;
-
-    let formValue = this.loginForm.value;
-
-    //   this.api.genericPost('/logIn', formValue)
-    //     .subscribe({
-    //       next: (res: any) => {
-    //         sessionStorage.setItem('currentUser', JSON.stringify(res));
-    //         this.loginForm.reset();
-
-    //         if (this.router.url.includes('home')) {
-    //           this.router.navigate(['/home']);
-    //         } else {
-    //           this.submitted.emit('close');
-    //         }
-    //       },
-    //       error: (err: any) => this.snackbar.open(err.error, 'Ok', { duration: 3000 }),
-    //       complete: () => { }
-    //     })
-    // }
-
-    this.api.genericGet('/get-allUsers')
-      .subscribe({
-        next: (res: any) => {
-          const foundUser = res.find((user:any)=> user.email === formValue.email)
-          if(foundUser){
-            sessionStorage.setItem('currentUser',JSON.stringify(foundUser))
-           
-            if(foundUser.role){
-              this.router.navigate(['home/loan-officer']);
-              this.matdialogRef.close();
-              this.snackbar.open('successfully logged In','OK',{duration : 1000})
-            }else{
-              this.router.navigate(['home/borrower']);
-              this.matdialogRef.close();
-              this.snackbar.open('successfully logged In','OK',{duration : 1000})
-            }
-          }else{
-            this.snackbar.open("log In unsuccesful ,please register",'OK' ,{duration:1000})
-            return
-          }
-        },
-        error: (err: any) => console.log('Error', err),
-        complete: () => { }
-      });
-    // console.log(this.users)
-    // const foundUser = this.users.find((user) => user.email === this.loginForm.value.email && user.password === this.loginForm.value.password)
-    // if (foundUser) {
-    //   if (foundUser.role === 'loanOfficer') {
-    //     this.router.navigate(['/home/loan-officer'])
-    //   } else {
-    //     this.router.navigate(['/home/borrower'])
-    //   }
-
-    //   sessionStorage.setItem('currentUser', JSON.stringify(foundUser))
-    //   this.snackbar.open('successfully logged in', 'OK', { duration: 1000 })
-    //   this.matdialogRef.close()
-    // } else {
-    //   console.log("sorryy")
-    // }
+    //    return;
+    //  }
+        let formValue = this.loginForm.value;
+        this.api.genericPost('/sign-in', formValue)
+        .subscribe({
+          next: (res: any) => {
+            sessionStorage.setItem('currentUser', JSON.stringify(res));
+  
+            if(this.router.url.includes('login-in')) {
+              this.router.navigate(['/home']);
+            } else {
+              this.submitted.emit('close');
+            }          
+          },
+          error: (err: any) => this.snackbar.open("Failed to login", 'Ok', { duration: 3000 }),
+          complete: () => { }
+        })
+ 
   }
   async signInWithFacebook(): Promise<void> {
     try {

@@ -11,56 +11,65 @@ import { SharedService } from 'src/app/services/shared.service';
   templateUrl: './borrower.component.html',
   styleUrls: ['./borrower.component.scss'],
 })
-export class BorrowerComponent  {
+export class BorrowerComponent {
   allLoans: any = [];
-  currentUser : any;
-  myLoanDetails:any;
-  loanAmount:any;
+  currentUser: any;
+  myLoanDetails: any;
+  loanAmount: any;
   balance: any;
 
-  constructor(private dialog: MatDialog, private api: ApiService,private shared:LoanService, private sharedService: SharedService) {
-    const loggedUser =  this.shared.get('currentUser','session')
-    console.log("Logged User",loggedUser.email)
+  constructor(private dialog: MatDialog, private api: ApiService, private shared: LoanService,
+    private sharedService: SharedService,) {
+    const loggedUser = this.shared.get('currentUser', 'session')
     this.api.genericGet('/get-loans')
-    .subscribe({
-      next: (res: any) => {
-        const user = res.filter((user:any)=> user.email == loggedUser.email)
-        if(user){
-          this.loanAmount = user[0].loanAmount;
-          this.balance = user[0].balance;
-        } 
-      },
-      error: (err: any) => console.log('Error', err),
-      complete: () => { }
-    });
-
-    this.sharedService.watchBalanceUpdates().subscribe(()=>{
-      this.api.genericGet('/get-loans')
-    .subscribe({
-      next: (res: any) => {
-        const user = res.filter((user:any)=> user.email == loggedUser.email)
-        if(user){
-          this.loanAmount =user[0].loanAmount;
-          this.balance = this.loanAmount - 3000;
-          this.balance = this.balance;
-
-          console.log("balance ",this.balance)
-          } 
-      },
-      error: (err: any) => console.log('Error', err),
-      complete: () => { }
-    });
-    })
-
-    
+      .subscribe({
+        next: (res: any) => {
+          const user = res.filter((user: any) => user.email == loggedUser.email)
+          if (user) {
+            this.loanAmount = user[0].loanAmount;
+          }
+        },
+        error: (err: any) => console.log('Error', err),
+        complete: () => { }
+      });
   }
-  
- 
+
+
 
   makePayment(): void {
-    this.dialog.open(PaymentComponent, {
+    let _data = this.dialog.open(PaymentComponent, {
       width: '40%'
     })
+    _data.afterClosed()
+      .subscribe({
+        next: (res: any) => {
+          let data = res.data;
+          const loggedUser = this.shared.get('currentUser', 'session')
+          this.sharedService.watchBalanceUpdates().subscribe(() => {
+            this.api.genericGet('/get-loans')
+              .subscribe({
+                next: (res: any) => {
+                  let minusAmount = data;
+                  const user = res.filter((user: any) => user.email == loggedUser.email)
+                  if (user) {
+                    this.loanAmount = user[0].loanAmount;
+                    this.balance = this.loanAmount - minusAmount;
+                    this.balance = this.balance;
+                  }
+                },
+                error: (err: any) => console.log('Error', err),
+                complete: () => { }
+              });
+          })
+        },
+        error: (err: any) => console.log('Error', err),
+        complete: () => { }
+      })
+
+  }
+
+  afterClose(): void {
+
   }
 
   apply(): void {
