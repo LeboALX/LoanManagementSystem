@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { LoanService } from 'src/app/loan.service';
@@ -13,17 +14,18 @@ import { environment } from 'src/environments/environment.development';
 })
 export class RegisterComponent {
   @Output() submitted = new EventEmitter<string>();
-  signUpForm!: FormGroup;
+  applyLoanForm!: FormGroup;
   loanTypes: string[] = ['short term loan', 'long term loan', 'vehicle loan']
   hide = true;
   hide2 = true
   fileElement: any;
   file: any;
   fileUploadResult: any = 0;
-  kea:any;
+  foundLoan: any;
 
-  constructor(private api: ApiService, private router: Router, private snackbar: MatSnackBar, private shared: LoanService) {
-    this.signUpForm = new FormGroup({
+  constructor(private api: ApiService, private router: Router, private snackbar: MatSnackBar, 
+              private dialogRef: MatDialogRef<RegisterComponent>, @Inject(MAT_DIALOG_DATA) public _data: any) {
+    this.applyLoanForm = new FormGroup({
       duration: new FormControl('', [Validators.required]),
       fullName: new FormControl('', [Validators.required]),
       gender: new FormControl('', [Validators.required]),
@@ -43,10 +45,9 @@ export class RegisterComponent {
       monthlyExpenses: new FormControl('', Validators.required),
       loanType: new FormControl('', [Validators.required]),
       profileImage: new FormControl('', [Validators.required]),
-      loanStatutus: new FormControl('Pending')
+      loanStatutus: new FormControl('Pending'),
+      balance: new FormControl('')
     })
-
-    this.kea =  this.shared.get("currentUser", 'session');
 
   }
 
@@ -66,22 +67,41 @@ export class RegisterComponent {
   }
 
   async submit() {
-    // if (this.signUpForm.invalid) return;
-
-    // if (this.signUpForm.get('password')?.value !== this.signUpForm.get('confirmPassword')?.value) {
-    //   this.signUpForm.get('confirmPassword')?.setErrors({ 'pattern': true });
-    //   this.snackbar.open('Passwords do not match!!','Ok',{duration:3000})
-    //   return;
-    // }
-
-    let formValue = this.signUpForm.value;
+    let formValue = this.applyLoanForm.value;
     delete formValue.confirmPassword;
+
+    this.api.genericGet('/get-loans')
+      .subscribe({
+        next: (res: any) => {
+          const foundUser = res.find((_data: any) => this.applyLoanForm.get("IDnumber")?.value == _data.IDnumber)
+          if (foundUser) {
+            this.snackbar.open("You have outstanding Loan","Ok",{duration:3000});
+            return;
+          }
+          else{
+            this.api.genericPost('/apply-loan', this.applyLoanForm.value)
+            .subscribe({
+              next: (res: any) => {
+                this.close()
+                this.snackbar.open('Applied Successfully', 'Ok', { duration: 3000 })
+              },
+              error: (err: any) => console.log('Error', err),
+              complete: () => { }
+            });
+          }
+        },
+        error: (err: any) => console.log('Error', err),
+        complete: () => { }
+      })
+
+
+
 
     try {
       const imageURL = await this.uploadImage();
       console.log('imageURL', imageURL);
 
-      this.signUpForm.patchValue({
+      this.applyLoanForm.patchValue({
         profileImage: imageURL,
 
       })
@@ -90,20 +110,6 @@ export class RegisterComponent {
       console.log(error)
     }
 
-    const loans = [{...this.signUpForm.value, fullName:`${this.kea.fullName}`, email:`${this.kea.email}`}]
-    localStorage.setItem('testing',JSON.stringify(loans))
-    this.api.genericPost('/apply-loan', this.signUpForm.value)
-      .subscribe({
-        next: (res: any) => {
-          if (res._id) {
-            this.snackbar.open('Applied Successfully', 'Ok', { duration: 3000 })
-          } else {
-            this.snackbar.open('Something went wrong ...', 'Ok', { duration: 3000 });
-          }
-        },
-        error: (err: any) => console.log('Error', err),
-        complete: () => { }
-      });
   }
 
   uploadImage() {
@@ -132,4 +138,5 @@ export class RegisterComponent {
 
   }
 
+  close(): void { this.dialogRef.close() }
 }

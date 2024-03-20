@@ -32,6 +32,7 @@ import { MessageComponent } from './components/message/message.component';
 import { ViewNotificationsComponent } from './popUps/view-notifications/view-notifications.component';
 import { DetailsComponent } from './components/details/details.component';
 import { MessagesTableComponent } from './tables/messages-table/messages-table.component';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -81,8 +82,8 @@ import { MessagesTableComponent } from './tables/messages-table/messages-table.c
     MaterialModule,
     HttpClientModule,
   ],
-  providers: [ApiService],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [{ provide: MAT_DIALOG_DATA, useValue: {} }],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

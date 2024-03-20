@@ -66,7 +66,7 @@ export class LandingComponent {
   }
 
   apply():void{
-    this.dialog.open(CreateAccountComponent,{width : '50%'})
+    this.dialog.open(CreateAccountComponent,{width : '35%', height:"90%"})
   }
   logIn():void{
     this.dialog.open(LogInComponent,{width:'40%',height:'80%'})

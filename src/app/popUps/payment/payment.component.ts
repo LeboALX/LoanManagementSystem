@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoanService } from 'src/app/loan.service';
+import { ApiService } from 'src/app/services/api.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-payment',
@@ -11,45 +13,45 @@ import { LoanService } from 'src/app/loan.service';
 })
 export class PaymentComponent {
   allUsers: any[] = JSON.parse(localStorage.getItem('allUsers') || '[]');
-  initialAmount!: number
-  interestRate!: number
-  monthlyRepayments!: number
-  remainingBalance!: number;
   paymentForm: FormGroup
   currentUser : any;
-  myLoanDetails:any;
+  loanAmount:any;
+  balance:any;
 
-  constructor(private snackBar: MatSnackBar, private dialog: MatDialog, private loan: LoanService, private matdialogRef: MatDialogRef<PaymentComponent>) {
-    const loggedUser = this.loan.get('currentUser', 'session')
-    if (loggedUser) {
-      this.currentUser = loggedUser
-    }
-
+  constructor(private snackBar: MatSnackBar, private dialog: MatDialog, private loan: LoanService,
+               private matdialogRef: MatDialogRef<PaymentComponent>, private api:ApiService,private sharedService: SharedService) {
     
-
-    this.calculateRemainingBalance();
     this.paymentForm = new FormGroup({
       amount: new FormControl(''),
       monthlyRepayment: new FormControl('', [Validators.required]),
-      interest: new FormControl(''),
-      balance: new FormControl('', [Validators.required])
-
-
+      // balance: new FormControl('', [Validators.required]),
     })
   }
 
   submit(): void {
+    const inputValue = this.paymentForm.value.inputValue;
+    this.sharedService.setInputValue(inputValue);
+    const loggedUser =  this.loan.get('currentUser','session')
+    console.log("Logged User",loggedUser.email)
+    this.api.genericGet('/get-loans')
+    .subscribe({
+      next: (res: any) => {
+        this.sharedService.refreshBalance()
+        const user = res.filter((user:any)=> user.email == loggedUser.email)
+        if(user){
+          this.loanAmount =user[0].loanAmount;
+          this.balance = this.loanAmount - this.paymentForm.get('monthlyRepayment')?.value;
+          this.balance = this.balance;
 
+          console.log("balance ",this.balance)
+          } 
+      },
+      error: (err: any) => console.log('Error', err),
+      complete: () => { }
+    });
   }
 
   close(): void {
     this.matdialogRef.close()
-  }
-  calculateRemainingBalance() {
-    // const initialAmount = 80000;
-    // const monthlyRepayment = 3000;
-    // const interestRate = 10.5;
-    // const months = 12; 
-    // this.remainingBalance = this.loanService.calculateLoanBalance(initialAmount, monthlyRepayment, interestRate, months);
   }
 }

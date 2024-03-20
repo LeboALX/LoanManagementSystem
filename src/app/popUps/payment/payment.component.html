@@ -5,7 +5,7 @@
         <!-- Initial Amount -->
         <h4 class="no-margin">Initial Amount</h4>
         <mat-form-field>
-            <input readonly type="number" matInput formControlName="amount">R80 000
+            <input readonly type="number" [value]="loanAmount" matInput formControlName="amount">
         </mat-form-field>
 
         <!-- Monthly Repayment -->
@@ -14,22 +14,10 @@
             <input type="number" matInput formControlName="monthlyRepayment" placeholder="R">
         </mat-form-field>
 
-        <!-- Interest -->
-        <h4 class="no-margin">Interest Rate</h4>
-        <mat-form-field>
-            <input readonly type="number" matInput formControlName="interest">10.5%
-        </mat-form-field>
-
-        <!-- Balance -->
-        <h4 class="no-margin">Balance</h4>
-        <mat-form-field>
-            <input type="number" matInput formControlName="balance" placeholder="R">
-        </mat-form-field>
-
         <div class="flex gap-1em end-center m-b-1em">
             <button mat-raised-button type="button" class="btn flex-1 red" (click)="paymentForm.reset()">Cancel</button>
             <button mat-raised-button type="button" class="btn flex-1 blu"
-                (click)="calculateRemainingBalance()">Pay</button>
+               (click)="submit()" >Pay</button>
         </div>
     </form>
 </div>
