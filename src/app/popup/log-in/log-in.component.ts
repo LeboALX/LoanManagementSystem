@@ -86,24 +86,53 @@ export class LogInComponent implements OnInit {
   Submit(): void {
     // if (this.loginForm.invalid) {
     //   this.snackbar.open('All fields are required', 'Ok', { duration: 3000 });
-    //    return;
-    //  }
-        let formValue = this.loginForm.value;
-        this.api.genericPost('/sign-in', formValue)
-        .subscribe({
-          next: (res: any) => {
-            sessionStorage.setItem('currentUser', JSON.stringify(res));
-  
-            if(this.router.url.includes('login-in')) {
-              this.router.navigate(['/home']);
-            } else {
-              this.submitted.emit('close');
-            }          
-          },
-          error: (err: any) => this.snackbar.open("Failed to login", 'Ok', { duration: 3000 }),
-          complete: () => { }
-        })
- 
+    //   return;
+    // }
+
+    if (this.loginForm.invalid) return;
+
+    let formValue = this.loginForm.value;
+    
+    this.api.genericGet('/getAllUsers')
+      .subscribe({
+        next: (res: any) => {
+          console.log("aowa wena",res)
+          const foundUser = res.find((user:any)=> user.email === formValue.email)
+          if(foundUser){
+            sessionStorage.setItem('currentUser',JSON.stringify(foundUser))
+           
+            if(foundUser.role){
+              this.router.navigate(['home/loan-officer']);
+              this.matdialogRef.close();
+              this.snackbar.open('successfully logged In','OK',{duration : 1000})
+            }else{
+              this.router.navigate(['home/borrower']);
+              this.matdialogRef.close();
+              this.snackbar.open('successfully logged In','OK',{duration : 1000})
+            }
+          }else{
+            this.snackbar.open("log In unsuccesful ,please register",'OK' ,{duration:1000})
+            return
+          }
+        },
+        error: (err: any) => console.log('Error', err),
+        complete: () => { }
+      });
+    // console.log(this.users)
+    // const foundUser = this.users.find((user) => user.email === this.loginForm.value.email && user.password === this.loginForm.value.password)
+    // if (foundUser) {
+    //   if (foundUser.role === 'loanOfficer') {
+    //     this.router.navigate(['/home/loan-officer'])
+    //   } else {
+    //     this.router.navigate(['/home/borrower'])
+    //   }
+
+    //   sessionStorage.setItem('currentUser', JSON.stringify(foundUser))
+    //   this.snackbar.open('successfully logged in', 'OK', { duration: 1000 })
+    //   this.matdialogRef.close()
+    // } else {
+    //   console.log("sorryy")
+    // }
   }
   async signInWithFacebook(): Promise<void> {
     try {

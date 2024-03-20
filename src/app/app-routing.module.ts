@@ -11,24 +11,22 @@ import { LoanPolicyComponent } from './loan-policy/loan-policy.component';
 import { MessageComponent } from './components/message/message.component';
 import { BorrowerTableComponent } from './tables/borrower-table/borrower-table.component';
 import { BorrowersComponent } from './components/borrowers/borrowers.component';
+import { BorrowerGuard } from './borrower.guard';
+import { BorrowersGuard } from './guards/borrowers.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
   { path: 'landing', component: LandingComponent },
   {
-    path: 'home', component: HomeComponent, children: [
+    path: 'home', component: HomeComponent,children: [
       { path: 'loan-officer', component: LoanOfficerComponent },
-      { path: 'borrower', component: BorrowerComponent },
+      { path: 'borrower', component: BorrowerComponent, },
       { path: 'contact', component: ContactComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'loan-policy', component: LoanPolicyComponent },
       { path: 'message', component: MessageComponent},
       { path: 'borrower-table', component:BorrowerTableComponent},
-      { path: 'borrowers', component:BorrowersComponent}
-
-
-
-
+      { path: 'borrowers', component:BorrowersComponent}, 
     ]
   }
   , { path: '**', component: PageNotFoundComponent }];

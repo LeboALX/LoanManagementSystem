@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { LoanService } from 'src/app/loan.service';
 import { ApiService } from 'src/app/services/api.service';
+import { EmailService } from 'src/app/services/email.service';
 import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
@@ -22,7 +23,7 @@ export class LoanOfficerTableComponent {
   applicationOptions: string[] = ['Approve', 'Declined']
 
 
-  constructor(private api: ApiService, private snackbar:MatSnackBar, private sharedService:SharedService){
+  constructor(private api: ApiService, private snackbar:MatSnackBar, private sharedService:SharedService ,private emailServices:EmailService){
     this.refreshAdminPage()
   }
 
@@ -55,9 +56,21 @@ export class LoanOfficerTableComponent {
     switch (status.toLowerCase()) {
       case 'approve':
         updateStatusTo = 'approved';
+        this.emailServices.genericPost('/send-email', loan)
+        .subscribe({
+          next: (res) => { console.log(res) },
+          error: (err) => { console.log(err) },
+          complete: () => { console.log("email sent successfully")}
+        })  
         break;
       default:
         updateStatusTo = 'declined';
+        this.emailServices.genericPost('/send-email', loan)
+        .subscribe({
+          next: (res) => { console.log(res) },
+          error: (err) => { console.log(err) },
+          complete: () => { console.log("email sent successfully")}
+        })
         break;
     }
     this.api.genericPost(`/update-user/${loan._id}`, { loanStatutus: updateStatusTo })
