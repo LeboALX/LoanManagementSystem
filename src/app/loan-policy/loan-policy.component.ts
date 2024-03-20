@@ -19,6 +19,6 @@ export class LoanPolicyComponent {
 }
 Policy(received:string):void{
   console.log(received)
-  this.matdialog.open(DetailsComponent,{data:received})
+  this.matdialog.open(DetailsComponent,{data:received ,width:'40%'})
 }
 }

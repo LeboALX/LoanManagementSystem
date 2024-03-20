@@ -1,1 +1,115 @@
-<p>details works!</p>
+<div class="main-div">
+    <div *ngIf="isShort">
+        <mat-icon class="inner" (click)="close()">close</mat-icon>
+        <p>Loan Amount: This is the amount of money you are borrowing from the lender. It could range from a few hundred
+            to
+            several thousand dollars/pounds/euros, depending on the lender's policies and your financial situation.
+
+            Interest Rate: This is the percentage of the loan amount that you'll pay as interest over the loan term.
+            Short-term loans often have higher interest rates compared to long-term loans due to the shorter repayment
+            period.
+
+            Repayment Period: This is the timeframe within which you are required to repay the loan. Short-term loans
+            typically have shorter repayment periods, ranging from a few weeks to a few months.
+
+            Repayment Schedule: This outlines how often you need to make payments (e.g., weekly, bi-weekly, or monthly)
+            and
+            the amount of each payment.
+
+            Fees: Lenders may charge various fees, such as origination fees, late payment fees, or prepayment penalties.
+            Make sure to understand all the fees associated with the loan.
+
+            Collateral (if applicable): Some short-term loans may require you to provide collateral, such as a car title
+            or
+            valuable asset, to secure the loan.
+
+            Credit Check: Depending on the lender, they may perform a credit check to assess your creditworthiness
+            before
+            approving the loan.
+
+            Default Consequences: The terms and conditions should outline what happens if you fail to repay the loan on
+            time, including potential late fees, increased interest rates, or legal actions.
+
+            Prepayment Options: Some lenders may allow you to repay the loan early without incurring penalties, while
+            others
+            may charge a fee for early repayment.
+
+            Legal Rights and Responsibilities: The terms and conditions should clearly outline both your rights and
+            responsibilities as a borrower and those of the lender.</p>
+    </div>
+    <div *ngIf="isLong">
+        <mat-icon class="inner" (click)="close()">close</mat-icon>
+        <p>Loan Amount: This is the total amount of money borrowed from the lender. Long-term loans typically involve
+            larger sums of money compared to short-term loans and may be used for significant purchases like a home or a
+            car.
+
+            Interest Rate: The interest rate is the percentage of the loan amount that you will pay as interest over the
+            loan term. Long-term loans usually have lower interest rates compared to short-term loans because the risk
+            to the lender is spread out over a longer period.
+
+            Loan Term: This is the length of time over which you will repay the loan. Long-term loans can have repayment
+            periods ranging from several years to several decades, depending on the type of loan and the agreement with
+            the lender.
+
+            Monthly Payments: The terms and conditions will outline the amount of your monthly payments, including how
+            much of each payment goes towards the principal amount of the loan and how much goes towards interest.
+
+            Fees: Similar to short-term loans, long-term loans may come with various fees, such as origination fees,
+            late payment fees, or prepayment penalties. Make sure to understand all the fees associated with the loan.
+
+            Collateral (if applicable): Some long-term loans, like mortgages or auto loans, may require you to provide
+            collateral to secure the loan. This collateral could be the property you're purchasing or another valuable
+            asset.
+
+            Credit Check: Lenders typically conduct a thorough credit check as part of the application process for
+            long-term loans to assess your creditworthiness.
+
+            Default Consequences: The terms and conditions should outline what happens if you fail to make your loan
+            payments on time, including potential late fees, increased interest rates, or repossession of collateral.
+
+            Prepayment Options: Some long-term loans may allow you to pay off the loan early without penalties, while
+            others may charge fees for early repayment.
+
+            Legal Rights and Responsibilities: The terms and conditions should clearly outline both your rights and
+            responsibilities as a borrower and those of the lender, including any applicable laws and regulations.</p>
+    </div>
+
+    <div *ngIf="isCar">
+        <mat-icon class="inner" (click)="close()">close</mat-icon>
+        <p>Loan Amount: This is the total amount of money borrowed from the lender to purchase the vehicle. The loan
+            amount may cover the entire purchase price or a portion of it, depending on factors such as your down
+            payment and trade-in value.
+
+            Interest Rate: The interest rate is the percentage of the loan amount that you will pay as interest over the
+            loan term. It's important to understand whether the interest rate is fixed or variable, as this can affect
+            your monthly payments.
+
+            Loan Term: This is the length of time over which you will repay the loan. Car loan terms typically range
+            from 36 to 72 months, although longer terms may be available for certain borrowers or types of vehicles.
+
+            Monthly Payments: The terms and conditions will outline the amount of your monthly payments, including how
+            much of each payment goes towards the principal amount of the loan and how much goes towards interest.
+
+            Down Payment: Some lenders require a down payment towards the purchase price of the vehicle. The terms and
+            conditions should specify the amount of the down payment required, if any.
+
+            Collateral: The car itself serves as collateral for the loan. If you default on the loan, the lender has the
+            right to repossess the vehicle to recoup their losses.
+
+            Credit Check: Lenders typically conduct a credit check as part of the application process to assess your
+            creditworthiness and determine the terms of the loan.
+
+            Fees: Car loans may come with various fees, such as origination fees, documentation fees, and late payment
+            fees. Make sure to understand all the fees associated with the loan.
+
+            Insurance Requirements: Most lenders require borrowers to maintain comprehensive and collision insurance
+            coverage on the vehicle for the duration of the loan term.
+
+            Prepayment Penalties: Some car loans may include penalties for paying off the loan early. Review the terms
+            and conditions to understand any prepayment penalties that may apply.
+
+            Default Consequences: The terms and conditions should outline what happens if you fail to make your loan
+            payments on time, including potential late fees, increased interest rates, or repossession of the vehicle.
+        </p>
+    </div>
+</div>

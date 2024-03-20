@@ -32,6 +32,7 @@ import { MessageComponent } from './components/message/message.component';
 import { ViewNotificationsComponent } from './popUps/view-notifications/view-notifications.component';
 import { DetailsComponent } from './components/details/details.component';
 import { MessagesTableComponent } from './tables/messages-table/messages-table.component';
+import { BorrowersComponent } from './components/borrowers/borrowers.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { MessagesTableComponent } from './tables/messages-table/messages-table.c
     MessageComponent,
     ViewNotificationsComponent,
     DetailsComponent,
+    BorrowersComponent,
   ],
   imports: [
     BrowserModule,

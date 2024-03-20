@@ -1,10 +1,10 @@
 <div class="flex center-center full-height full-width ">
     <mat-card class="bg flex center-center full-height full-width">
         <div mat-dialog-content class="no-overflow padding-1em width-80">
-            <form [formGroup]="loginForm" class="flex column gap-1em">
+            <form [formGroup]="loginForm" class="flex center-center column gap-1em">
                 <h1 class="text-center color-blue no-margin">Log In</h1>
                 <!-- Email -->
-                <mat-form-field class="height-50">
+                <mat-form-field class="height-50 width-400">
                     <mat-label>Email</mat-label>
                     <input type="email" matInput formControlName="email" placeholder="fix@gmail.com">
                     <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
@@ -15,7 +15,7 @@
                     </mat-error>
                 </mat-form-field>
                 <!-- Password -->
-                <mat-form-field class="height-50">
+                <mat-form-field class="height-50 width-400">
                     <mat-label>Password</mat-label>
                     <input type="text" matInput formControlName="password" placeholder="****">
                     <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
@@ -26,14 +26,15 @@
                     </mat-error>
                 </mat-form-field>
                 <h4 class="no-margin text-center">Or</h4>
-                <div class="flex center-center">
-                    <hr class="width-80 no-margin text-center">
+                <div class="width-350">
+                    <hr class="no-margin width-350 text-center">
                 </div>
                 <div class="flex width-80 gap-2em center-center">
                     <div class="sign flex center-center gap-1em pading-6" id="google-btn"></div>
-                    <div class="sign flex center-center gap-1em pading-6" (click)="signInWithFacebook()"><img
-                        class="height-30" src="../../../assets/icons/facebook_174848.png" alt="facebook">
-                        <p class="no-margin">signin with facebook</p>
+                    <div class="sign flex center-center gap-1em pading-6" (click)="signInWithFacebook()">
+                        <div class="flex center-center pading-6 gap-1em"><img
+                            class="height-30" src="../../../assets/icons/facebook_174848.png" alt="facebook">
+                            <p class="no-margin inline">signin with facebook</p></div>
                     </div>
                 </div>
 

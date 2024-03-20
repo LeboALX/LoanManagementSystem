@@ -79,8 +79,8 @@ export class RegisterComponent {
     let formValue = this.signUpForm.value;
     delete formValue.confirmPassword;
 
-    this.existingUsers.push({...formValue, email : `${this.currentUser.email}`, fullName: `${this.currentUser.fullName}`});
-    localStorage.setItem('borrowers',JSON.stringify(this.existingUsers))
+    // this.existingUsers.push({...formValue, email : `${this.currentUser.email}`, fullName: `${this.currentUser.fullName}`});
+    // localStorage.setItem('borrowers',JSON.stringify(this.existingUsers))
 
     try {
       const imageURL = await this.uploadImage();

@@ -1,10 +1,11 @@
 declare var google: any;
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { LoanService } from 'src/app/loan.service';
+import { ApiService } from 'src/app/services/api.service';
 import { FacebookService } from 'src/app/services/facebook.service';
 
 @Component({
@@ -13,20 +14,21 @@ import { FacebookService } from 'src/app/services/facebook.service';
   styleUrls: ['./log-in.component.scss']
 })
 export class LogInComponent implements OnInit {
-  isLoading:boolean = false;
+  @Output() submitted = new EventEmitter<string>();
+  isLoading: boolean = false;
   loginForm: FormGroup
   fileElement: any;
   file: any;
   fileUploadResult: any = 0;
   users: any[] = [];
   role: string = '';
-  borrowers:any = [];
+  borrowers: any = [];
 
   constructor(private snackbar: MatSnackBar, private sharedService: LoanService,
     private router: Router, private matdialogRef: MatDialogRef<LogInComponent>,
-    private facebookService: FacebookService) {
+    private facebookService: FacebookService, private api: ApiService) {
     this.users = this.sharedService.get('users', 'local');
-    this.borrowers = this.sharedService.get('borrowers','local');
+    this.borrowers = this.sharedService.get('borrowers', 'local');
 
     console.log(this.users)
 
@@ -55,7 +57,7 @@ export class LogInComponent implements OnInit {
       theme: 'filled_white',
       size: 'xxx-large',
       shape: 'rectangle',
-      width: 100, 
+      width: 100,
     })
   }
   private decodeToken(token: string) {
@@ -82,25 +84,71 @@ export class LogInComponent implements OnInit {
   }
 
   Submit(): void {
-      // if (this.loginForm.invalid || this.fileUploadResult === 0) {
-      //   this.snackbar.open('All fields are required', 'Ok', { duration: 3000 });
-      //   return;
-      // }
-    console.log(this.users)
-    const foundUser = this.users.find((user) => user.email === this.loginForm.value.email && user.password === this.loginForm.value.password)
-    if (foundUser) {
-      if (foundUser.role === 'loanOfficer') {
-        this.router.navigate(['/home/loan-officer'])
-      } else {
-        this.router.navigate(['/home/borrower'])
-      }
+    // if (this.loginForm.invalid || this.fileUploadResult === 0) {
+    //   this.snackbar.open('All fields are required', 'Ok', { duration: 3000 });
+    //   return;
+    // }
 
-      sessionStorage.setItem('currentUser', JSON.stringify(foundUser))
-      this.snackbar.open('successfully logged in', 'OK', { duration: 1000 })
-      this.matdialogRef.close()
-    } else {
-      console.log("sorryy")
-    }
+    if (this.loginForm.invalid) return;
+
+    let formValue = this.loginForm.value;
+
+    //   this.api.genericPost('/logIn', formValue)
+    //     .subscribe({
+    //       next: (res: any) => {
+    //         sessionStorage.setItem('currentUser', JSON.stringify(res));
+    //         this.loginForm.reset();
+
+    //         if (this.router.url.includes('home')) {
+    //           this.router.navigate(['/home']);
+    //         } else {
+    //           this.submitted.emit('close');
+    //         }
+    //       },
+    //       error: (err: any) => this.snackbar.open(err.error, 'Ok', { duration: 3000 }),
+    //       complete: () => { }
+    //     })
+    // }
+
+    this.api.genericGet('/get-allUsers')
+      .subscribe({
+        next: (res: any) => {
+          const foundUser = res.find((user:any)=> user.email === formValue.email)
+          if(foundUser){
+            sessionStorage.setItem('currentUser',JSON.stringify(foundUser))
+           
+            if(foundUser.role){
+              this.router.navigate(['home/loan-officer']);
+              this.matdialogRef.close();
+              this.snackbar.open('successfully logged In','OK',{duration : 1000})
+            }else{
+              this.router.navigate(['home/borrower']);
+              this.matdialogRef.close();
+              this.snackbar.open('successfully logged In','OK',{duration : 1000})
+            }
+          }else{
+            this.snackbar.open("log In unsuccesful ,please register",'OK' ,{duration:1000})
+            return
+          }
+        },
+        error: (err: any) => console.log('Error', err),
+        complete: () => { }
+      });
+    // console.log(this.users)
+    // const foundUser = this.users.find((user) => user.email === this.loginForm.value.email && user.password === this.loginForm.value.password)
+    // if (foundUser) {
+    //   if (foundUser.role === 'loanOfficer') {
+    //     this.router.navigate(['/home/loan-officer'])
+    //   } else {
+    //     this.router.navigate(['/home/borrower'])
+    //   }
+
+    //   sessionStorage.setItem('currentUser', JSON.stringify(foundUser))
+    //   this.snackbar.open('successfully logged in', 'OK', { duration: 1000 })
+    //   this.matdialogRef.close()
+    // } else {
+    //   console.log("sorryy")
+    // }
   }
   async signInWithFacebook(): Promise<void> {
     try {

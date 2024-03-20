@@ -57,7 +57,7 @@
 
             <div class="flex center-center gap-1em">
                 <mat-icon class="icon-size flex center-center">person</mat-icon>
-                <h3>{{currentUser.role}}</h3>
+                <h3>{{!isOfficer ? 'borrower' : 'loanOfficer'}}</h3>
                 <h1 class="color">|</h1>
                 <h3>{{currentUser.fullName}}</h3>
                 <mat-icon matTooltip="Click to Log Out" routerLink="/landing">logout</mat-icon>
