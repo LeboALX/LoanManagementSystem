@@ -1,6 +1,6 @@
-<div class="flex center-center column">
+<div class="flex center-center column full-width form-div">
     <h1 class="text-center colorBlu">{{isEdit? 'Update profile':'Create an Account'}}</h1>
-    <form [formGroup]="accountForm" class="flex full-width column padding-12">
+    <form [formGroup]="accountForm" class="flex full-width column ">
 
         <mat-form-field class="full-width">
             <mat-label>Full Name</mat-label>
@@ -41,7 +41,7 @@
             <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                 [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
             </button>
             <mat-error *ngIf="accountForm.get('password')?.hasError('required')">
                 Password is <strong>required</strong>
@@ -50,18 +50,17 @@
 
         <mat-form-field class="full-width" *ngIf="!isEdit">
             <mat-label>Confirm your password</mat-label>
-            <input matInput [type]="hide ? 'confirmPassword' : 'text'" formArrayName="confirmPassword">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility' : ' visibility_off'}}</mat-icon>
-            </button>
+            <input matInput [type]="hide2 ? 'password' : 'text'" formArrayName="confirmPassword">
+            
+                <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility' : ' visibility_off'}}</mat-icon>
+           
             <mat-error *ngIf="accountForm.get('confirmPassword')?.hasError('required')">
                 Confirm Password is <strong>required</strong>
             </mat-error>
         </mat-form-field>
 
         <div class="flex gap-1em m-b-1em full-width">
-            <button mat-raised-button class="colorRed half-width" (click)="close()">Cancel</button>
+            <button mat-raised-button class="colorRed half-width" (click)="close()" >Cancel</button>
             <button mat-raised-button class="colorBlue half-width" (click)="isEdit? Update() : submit()">{{isEdit? 'Update':'Submit'}}</button>
         </div>
     </form>

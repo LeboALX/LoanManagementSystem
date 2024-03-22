@@ -17,9 +17,10 @@ export class CreateAccountComponent {
   borrowers: any =[]
   accountForm!: FormGroup;
   hide = true;
+  hide2 = true;
   isEdit : Boolean = false;
 
-  constructor(private router: Router, private snackbar: MatSnackBar, private email: EmailService, private api: ApiService,
+  constructor(private router: Router, private snackbar: MatSnackBar,private api: ApiService,
      private shared:LoanService,private matdialogRef:MatDialogRef<CreateAccountComponent>,@Inject(MAT_DIALOG_DATA) public data: any,private emailService:EmailService) {
       if(data){
         this.accountForm = new FormGroup({
@@ -44,7 +45,7 @@ export class CreateAccountComponent {
   }
 
   submit(): void {
-    this.api.genericGet('/getAllUsers')
+    this.api.genericGet('/get-registered-user')
       .subscribe({
         next : (res: any) => {
             console.log( "all users",res);
@@ -57,9 +58,17 @@ export class CreateAccountComponent {
               .subscribe({
                 next: (res: any) => {
                   if (res._id) {
-                    this.matdialogRef.close()
+                    close()
                     this.snackbar.open('Registered Successfully', 'Ok', { duration: 3000 })
-                    console.log("hello world")
+                    this.api.sendOtp(this.accountForm.get('cellNumber')?.value).subscribe(
+                      response => {
+                        console.log("response OTP",response)
+                        this.snackbar.open("OTP sent","Ok",{duration:3000})
+                      },
+                      error => {
+                        console.error('Error sending OTP:', error);
+                      }
+                    );
                     this.emailService.genericPost('/send-email', this.accountForm.value)
                     .subscribe({
                       next: (res) => { console.log(res) },
@@ -81,8 +90,7 @@ export class CreateAccountComponent {
         ,
         complete:()=>{}
       })
- 
-
+     
   }
   Update():void{
 

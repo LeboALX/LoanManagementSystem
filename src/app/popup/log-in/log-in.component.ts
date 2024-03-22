@@ -27,10 +27,6 @@ export class LogInComponent implements OnInit {
   constructor(private snackbar: MatSnackBar, private sharedService: LoanService,
     private router: Router, private matdialogRef: MatDialogRef<LogInComponent>,
     private facebookService: FacebookService, private api: ApiService) {
-    this.users = this.sharedService.get('users', 'local');
-    this.borrowers = this.sharedService.get('borrowers', 'local');
-
-    console.log(this.users)
 
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.pattern(/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/)]),
@@ -42,7 +38,6 @@ export class LogInComponent implements OnInit {
   ngOnInit(): void {
     // Get file input element
     this.fileElement = document.getElementById('file') as HTMLInputElement;
-
     // intialize google client id
     google.accounts.id.initialize({
       client_id: '797939695613-nlq355cd61l5ud03bd45a6r3rubufal0.apps.googleusercontent.com',
@@ -93,25 +88,25 @@ export class LogInComponent implements OnInit {
 
     let formValue = this.loginForm.value;
     
-    this.api.genericGet('/getAllUsers')
+    this.api.genericGet('/get-registered-user')
       .subscribe({
         next: (res: any) => {
           console.log("aowa wena",res)
-          const foundUser = res.find((user:any)=> user.email === formValue.email)
+          const foundUser = res.find((user:any)=> user.email == formValue.email)
           if(foundUser){
             sessionStorage.setItem('currentUser',JSON.stringify(foundUser))
            
             if(foundUser.role){
               this.router.navigate(['home/loan-officer']);
               this.matdialogRef.close();
-              this.snackbar.open('successfully logged In','OK',{duration : 1000})
+              this.snackbar.open('successfully logged In','OK',{duration : 3000})
             }else{
               this.router.navigate(['home/borrower']);
               this.matdialogRef.close();
-              this.snackbar.open('successfully logged In','OK',{duration : 1000})
+              this.snackbar.open('successfully logged In','OK',{duration : 3000})
             }
           }else{
-            this.snackbar.open("log In unsuccesful ,please register",'OK' ,{duration:1000})
+            this.snackbar.open("login Failed ,please register",'OK' ,{duration:3000})
             return
           }
         },

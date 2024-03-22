@@ -88,29 +88,37 @@
     <div class="short-term full-height half-width flex center-center">
         <div class="short-content flex column gap-1em center-center">
             <p class="text-center">Short Term Loan</p>
-            <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, eius ea eligendi repellendus,
-                excepturi perferendis tempore aliquam minima voluptate tempora quae cupiditate reiciendis eum accusamus
-                pariatur cum. Amet hic, iure nostrum dignissimos totam eum dolorum quis sit eaque fuga itaque dolores
-                quaerat, cupiditate, quidem labore! Possimus officiis odio voluptate deserunt adipisci pariatur cum hic
-                earum animi dicta? In dolor porro, voluptates quis voluptas ipsum libero, repudiandae asperiores enim
-                veniam, accusantium odit est placeat ipsa incidunt beatae iure? Quasi nobis perspiciatis fugit officiis
-                odio debitis libero natus, alias labore dolorum nostrum odit similique possimus quibusdam dolorem.
-                Asperiores enim veritatis ea ut?</small>
-            <button class=" terms-btn" mat-raised-button>TS & Cs</button>
+            <small>Short-term loans are financial instruments typically borrowed for 
+                a brief duration, often ranging from a few weeks to a few months. They
+                 provide quick access to funds for individuals or businesses facing 
+                 immediate cash flow needs or unexpected expenses. These loans usually 
+                 have a faster application process and approval time compared to
+                  traditional loans. However, they often come with higher interest 
+                  rates and fees due to the shorter repayment period and increased 
+                  risk for lenders. Short-term loans can be secured or unsecured, d
+                  epending on the borrower's creditworthiness and collateral. While 
+                  they can offer temporary relief in times of financial urgency, 
+                  borrowers should carefully consider the terms and costs associated 
+                  with short-term loans and ensure they can meet the repayment 
+                  obligations to avoid potential financial strain.
+            </small>
+            <button class=" terms-btn" (click)="shortTermLoan()" mat-raised-button>TS & Cs</button>
         </div>
     </div>
     <div class="long-term-loan full-height half-width flex center-center">
         <div class="short-content flex column gap-1em center-center">
             <p class="text-center">Long Term Loan</p>
-            <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, eius ea eligendi repellendus,
-                excepturi perferendis tempore aliquam minima voluptate tempora quae cupiditate reiciendis eum accusamus
-                pariatur cum. Amet hic, iure nostrum dignissimos totam eum dolorum quis sit eaque fuga itaque dolores
-                quaerat, cupiditate, quidem labore! Possimus officiis odio voluptate deserunt adipisci pariatur cum hic
-                earum animi dicta? In dolor porro, voluptates quis voluptas ipsum libero, repudiandae asperiores enim
-                veniam, accusantium odit est placeat ipsa incidunt beatae iure? Quasi nobis perspiciatis fugit officiis
-                odio debitis libero natus, alias labore dolorum nostrum odit similique possimus quibusdam dolorem.
-                Asperiores enim veritatis ea ut?</small>
-            <button class=" terms-btn" mat-raised-button>TS & Cs</button>
+            <small>Long-term loans are financial arrangements where borrowed funds are repaid
+                 over an extended period, typically exceeding one year. These loans are commonly
+                  used for large-scale investments such as purchasing real estate, financing
+                   business expansion, or funding major projects. Long-term loans offer lower
+                    monthly payments compared to short-term loans due to the extended repayment 
+                    period, making them suitable for financing expensive endeavors. They usually 
+                    come with fixed or variable interest rates, depending on the terms negotiated
+                     with the lender. Collateral may be required to secure the loan, especially for
+                      large amounts. While long-term loans provide flexibility and stability,
+                       borrowers should carefully assess their financial situation and long-term goals before committing to repayment over an extended period, as defaulting on payments can have serious consequences, including asset seizure and damage to creditworthiness.</small>
+            <button class=" terms-btn" (click)="longTermLoan()" mat-raised-button>TS & Cs</button>
         </div>
     </div>
 </div>
@@ -146,10 +154,9 @@
             <p class="text-center">Follow Us On</p>
             <div class="icon-div flex center-center gap-1em " >
                 <mat-icon>X</mat-icon>
-                <mat-icon>facebook</mat-icon>
+                <mat-icon class="blue">facebook</mat-icon>
                 <mat-icon>linkedin</mat-icon>
-                <mat-icon>facebook</mat-icon>
-                <mat-icon>tiktok</mat-icon>
+                <mat-icon class="redish">tiktok</mat-icon>
             </div>
         </div>
 
@@ -157,11 +164,11 @@
             <p class="text-center">Contact Us on</p>
             <div class="icon-div flex center-center gap-1em" >
                 <div class="flex center-center gap-5">
-                    <mat-icon>phone</mat-icon>
+                    <mat-icon class="green">phone</mat-icon>
                     <small class="no-margin">015 4456 682</small>
                 </div>
                 <div class="flex center-center gap-5">
-                    <mat-icon>email</mat-icon>
+                    <mat-icon class="meroon">email</mat-icon>
                     <small class="no-margin">lender@hotmail.co.za</small>
                 </div>
             </div>

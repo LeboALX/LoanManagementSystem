@@ -34,6 +34,8 @@ import { DetailsComponent } from './components/details/details.component';
 import { MessagesTableComponent } from './tables/messages-table/messages-table.component';
 import { BorrowersComponent } from './components/borrowers/borrowers.component';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ShortTermLoanConsditionsComponent } from './components/short-term-loan-consditions/short-term-loan-consditions.component';
+import { LongTermLoanConsditionsComponent } from './components/long-term-loan-consditions/long-term-loan-consditions.component';
 
 
 @NgModule({
@@ -64,6 +66,8 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
     ViewNotificationsComponent,
     DetailsComponent,
     BorrowersComponent,
+    ShortTermLoanConsditionsComponent,
+    LongTermLoanConsditionsComponent,
   ],
   imports: [
     BrowserModule,
