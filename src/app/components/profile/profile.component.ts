@@ -11,11 +11,16 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent {
+  isOfficer:boolean = false;
   currentUser:any ;
   myProfile:any;
   constructor(private shared:LoanService ,private api:ApiService ,private matdialog:MatDialog){
     const loggedUser = this.shared.get('currentUser','session')
     this.currentUser = loggedUser;
+
+    if(this.currentUser.role){
+      this.isOfficer = true
+    }
 
     this.api.genericGet('/get-loans')
     .subscribe({

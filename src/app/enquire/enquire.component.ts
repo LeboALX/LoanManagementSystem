@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoanService } from '../loan.service';
 import { ApiService } from '../services/api.service';
@@ -46,6 +46,7 @@ export class EnquireComponent {
         error: (err: any) => console.log('Error', err),
         complete: () => { }
       });
+      this.dialogRef.close()
   }
     close(): void {
       this.dialogRef.close()

@@ -1,4 +1,5 @@
-<div class="flex center-center column">
+<div class="flex center-center column relative">
+    <mat-icon (click)="close()" class="close absolute">close</mat-icon>
     <h1 class="text-center colorBlu">{{isEdit? 'Update profile':'Create an Account'}}</h1>
     <form [formGroup]="accountForm" class="flex full-width column padding-12">
 
