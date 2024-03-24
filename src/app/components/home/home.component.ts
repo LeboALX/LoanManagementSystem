@@ -27,8 +27,10 @@ export class HomeComponent implements OnInit {
   constructor(private breakpointObserver: BreakpointObserver,
      private sharedService: LoanService, private dialog: MatDialog, private router: Router) {
     this.currentUser = this.sharedService.get('currentUser', 'session');
-    if (this.currentUser.role === 'loanOfficer') {
+    if (this.currentUser.role) {
       this.isOfficer = true;
+    }else{
+      this.isOfficer = false;
     }
 
     const enquire = this.sharedService.get('enquiries', 'local')
@@ -39,10 +41,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     // this.openNotifications();
-  }
-
-
-  DashBoard(): void {
   }
 
   openNotifications(): void {

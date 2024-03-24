@@ -32,9 +32,11 @@ export class PaymentComponent {
           if (user) {
             this.loanAmount = user[0].loanAmount;
           }
-          if(user[0].loanStatutus !== 'approved')
+          if(user[0].loanStatutus === 'approved')
           {
             this.status = true;
+          }else{
+            this.status = false
           }
         },
         error: (err: any) => console.log('Error', err),
@@ -43,7 +45,7 @@ export class PaymentComponent {
     this.paymentForm = new FormGroup({
       amount: new FormControl(''),
       monthlyRepayment: new FormControl('', [Validators.required]),
-      // balance: new FormControl('', [Validators.required]),
+      balance: new FormControl('', [Validators.required]),
     })
 
     console.log("Form ya Pay", this.paymentForm.value)

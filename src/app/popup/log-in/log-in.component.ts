@@ -73,29 +73,32 @@ export class LogInComponent implements OnInit {
     if (response) {
       // decode the encoded credentials
       const payLoad = this.decodeToken(response.credential);
-      console.log(payLoad)
       // store it in session storage
       const matchingUser = this.users.find((user) => user.email === payLoad.email)
       console.log(matchingUser)
       if (matchingUser) {
         sessionStorage.setItem('currentUser', JSON.stringify(matchingUser))
-        this.router.navigate(['home/loan-officer']);
+        this.router.navigate(['home/borrower']);
         this.snackbar.open('successfully logged in', 'OK', { duration: 1000 })
         this.matdialogRef.close();
       }else{
         this.snackbar.open("User not found , please register and log it again..")
-        
       }
 
       // navigate to home page
 
+    }else{
+      this.snackbar.open("Only borrowers can login using their google account",'OK',{duration:2000})
     }
 
   }
 
   Submit(): void {
  
-    if (this.loginForm.invalid) return;
+    if (this.loginForm.invalid){
+      this.snackbar.open("username or password incorrect, please provide the correct credantials","OK",{duration:2000})
+      return;
+    }
 
     let formValue = this.loginForm.value;
 
@@ -108,7 +111,6 @@ export class LogInComponent implements OnInit {
       this.api.genericGet('/getAllUsers')
       .subscribe({
         next: (res: any) => {
-          console.log("aowa wena",res)
           const foundUser = res.find((user:any)=> user.email === formValue.email
           )
           if(foundUser){
@@ -125,7 +127,7 @@ export class LogInComponent implements OnInit {
             }
           }else{
             this.matdialogRef.close()
-            this.matdialog.open(CreateAccountComponent,{width : '35%', height:"90%"})
+            this.matdialog.open(CreateAccountComponent,{width : '40%', height:"100%"})
             this.snackbar.open("log In unsuccesful ,please register",'OK' ,{duration:2000})
             return
           }
@@ -142,7 +144,33 @@ export class LogInComponent implements OnInit {
     try {
       const authResponse = await this.facebookService.login();
       this.snackbar.open('successfully logged in', 'OK')
-      this.isLoading = true;
+
+      this.api.genericGet('/getAllUsers')
+      .subscribe({
+        next: (res: any) => {
+          const foundUser = res.find((user:any)=> user.email === 'keabetswe36110@gmail.com')
+          if(foundUser){
+            sessionStorage.setItem('currentUser',JSON.stringify(foundUser))
+            if(foundUser.role){
+              this.router.navigate(['home/loan-officer']);
+              this.matdialogRef.close();
+              this.snackbar.open('successfully logged In','OK',{duration : 3000})
+            }else{
+              this.router.navigate(['home/borrower']);
+              this.matdialogRef.close();
+              this.snackbar.open('successfully logged In','OK',{duration : 3000})
+            }
+          }else{
+            this.matdialogRef.close()
+            this.matdialog.open(CreateAccountComponent,{width : '40%', height:"100%"})
+            this.snackbar.open("log In unsuccesful ,please register",'OK' ,{duration:2000})
+            return
+          }
+        },
+        error: (err: any) => console.log('Error', err),
+        complete: () => { }
+      });
+
       this.router.navigate(['/home/loan-officer'])
       this.matdialogRef.close()
       // Handle successful login (e.g., send token to backend)

@@ -73,7 +73,7 @@ export class LoanOfficerTableComponent {
         })
         break;
     }
-    this.api.genericPost(`/update-loan/${loan._id}`, { loanStatutus: updateStatusTo })
+    this.api.updateBalance(`/update-loan/${loan._id}`, { loanStatutus: updateStatusTo })
       .subscribe({
         next: (res: any) => {
           if(res.modifiedCount === 1){
