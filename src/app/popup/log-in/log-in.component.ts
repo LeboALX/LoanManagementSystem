@@ -1,10 +1,11 @@
 declare var google: any;
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, createComponent } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { LoanService } from 'src/app/loan.service';
+import { CreateAccountComponent } from 'src/app/popUps/create-account/create-account.component';
 import { ApiService } from 'src/app/services/api.service';
 import { FacebookService } from 'src/app/services/facebook.service';
 
@@ -23,10 +24,20 @@ export class LogInComponent implements OnInit {
   users: any[] = [];
   role: string = '';
   borrowers: any = [];
+  admin = {
+    fullName : "Administrator",
+    role : "loanOfficer",
+    email : "admin@zaka.com",
+    password : "Admin@123"
+  }
 
   constructor(private snackbar: MatSnackBar, private sharedService: LoanService,
     private router: Router, private matdialogRef: MatDialogRef<LogInComponent>,
-    private facebookService: FacebookService, private api: ApiService) {
+    private facebookService: FacebookService, private api: ApiService , private matdialog:MatDialog) {
+    this.users = this.sharedService.get('users', 'local');
+    this.borrowers = this.sharedService.get('borrowers', 'local');
+
+    console.log(this.users)
 
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.pattern(/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/)]),
@@ -70,6 +81,9 @@ export class LogInComponent implements OnInit {
         this.router.navigate(['home/loan-officer']);
         this.snackbar.open('successfully logged in', 'OK', { duration: 1000 })
         this.matdialogRef.close();
+      }else{
+        this.snackbar.open("User not found , please register and log it again..")
+        
       }
 
       // navigate to home page
@@ -79,20 +93,23 @@ export class LogInComponent implements OnInit {
   }
 
   Submit(): void {
-    // if (this.loginForm.invalid) {
-    //   this.snackbar.open('All fields are required', 'Ok', { duration: 3000 });
-    //   return;
-    // }
-
+ 
     if (this.loginForm.invalid) return;
 
     let formValue = this.loginForm.value;
-    
-    this.api.genericGet('/get-registered-user')
+
+    if(formValue.email === this.admin.email && formValue.password === this.admin.password){
+      sessionStorage.setItem('currentUser',JSON.stringify(this.admin))
+      this.router.navigate(['home/loan-officer']);
+      this.matdialogRef.close();
+      this.snackbar.open('successfully logged In','OK',{duration : 1000})
+    }else{
+      this.api.genericGet('/getAllUsers')
       .subscribe({
         next: (res: any) => {
           console.log("aowa wena",res)
-          const foundUser = res.find((user:any)=> user.email == formValue.email)
+          const foundUser = res.find((user:any)=> user.email === formValue.email
+          )
           if(foundUser){
             sessionStorage.setItem('currentUser',JSON.stringify(foundUser))
            
@@ -106,28 +123,19 @@ export class LogInComponent implements OnInit {
               this.snackbar.open('successfully logged In','OK',{duration : 3000})
             }
           }else{
-            this.snackbar.open("login Failed ,please register",'OK' ,{duration:3000})
+            this.matdialogRef.close()
+            this.matdialog.open(CreateAccountComponent,{width : '35%', height:"90%"})
+            this.snackbar.open("log In unsuccesful ,please register",'OK' ,{duration:2000})
             return
           }
         },
         error: (err: any) => console.log('Error', err),
         complete: () => { }
       });
-    // console.log(this.users)
-    // const foundUser = this.users.find((user) => user.email === this.loginForm.value.email && user.password === this.loginForm.value.password)
-    // if (foundUser) {
-    //   if (foundUser.role === 'loanOfficer') {
-    //     this.router.navigate(['/home/loan-officer'])
-    //   } else {
-    //     this.router.navigate(['/home/borrower'])
-    //   }
+    }
 
-    //   sessionStorage.setItem('currentUser', JSON.stringify(foundUser))
-    //   this.snackbar.open('successfully logged in', 'OK', { duration: 1000 })
-    //   this.matdialogRef.close()
-    // } else {
-    //   console.log("sorryy")
-    // }
+
+
   }
   async signInWithFacebook(): Promise<void> {
     try {

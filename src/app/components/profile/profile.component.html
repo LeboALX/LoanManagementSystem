@@ -12,7 +12,7 @@
             </div>
         </div>
     </div>
-    <div class=" personal-info flex center-center">
+    <div class=" personal-info flex center-center" *ngIf="!isOfficer">
         <div class="flex wrap spacebetween">
             <div class="info">
                 <p> current Loan : <strong> {{myProfile[0] ? myProfile[0].loanType  : 'N/A' }}</strong></p>

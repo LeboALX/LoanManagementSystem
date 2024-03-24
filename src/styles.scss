@@ -128,3 +128,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     max-height:100px !important;
     flex: auto;
 }
+.relative{
+    position: relative;
+}
+.absolute{
+    position: absolute;
+}
+.close {
+    top: 3px;
+    right: 3px;
+    color: white;
+    border-radius: 5px;
+    border: 2px solid black;
+    background-color: #cd2e37;
+  }

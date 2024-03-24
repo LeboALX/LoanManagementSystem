@@ -29,13 +29,13 @@ export class DonutComponent {
     this.api.genericGet('/get-loans')
       .subscribe({
         next: (res: any) => {
-          const pendingCount = res.filter((loan: any) => loan.loanStatutus.toLowerCase() === 'pending').length
-          const declinedCount = res.filter((loan: any) => loan.loanStatutus.toLowerCase() === 'declined').length
-          const approvedCount = res.filter((loan: any) => loan.loanStatutus.toLowerCase() === 'approved').length
+          const pendingCount = res.filter((loan: any) => loan.loanStatutus.toLowerCase() ===  'approved').length
+          const declinedCount = res.filter((loan: any) => loan.loanStatutus.toLowerCase() === 'pending').length
+          const approvedCount = res.filter((loan: any) => loan.loanStatutus.toLowerCase() === 'declined' ).length
 
           this.pieChartDatasets = [{
             data: [pendingCount, declinedCount, approvedCount],
-            backgroundColor: ['#cd2e37', '#FFA500', '#cd2e37;']
+            backgroundColor: ['#121a2e', '#ffa500', '#cd2e37']
           }];
         },
         error: (err: any) => console.log('Error', err),

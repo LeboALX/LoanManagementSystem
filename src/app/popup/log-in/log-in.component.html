@@ -1,4 +1,5 @@
-<div class="flex center-center full-height full-width ">
+<div class="flex center-center full-height full-width relative">
+    <mat-icon (click)="close()" class="close absolute">close</mat-icon>
     <mat-card class="bg flex center-center full-height full-width">
         <div mat-dialog-content class="no-overflow padding-1em width-80">
             <form [formGroup]="loginForm" class="flex center-center column gap-1em">
@@ -32,9 +33,10 @@
                 <div class="flex width-80 gap-2em center-center">
                     <div class="sign flex center-center gap-1em pading-6" id="google-btn"></div>
                     <div class="sign flex center-center gap-1em pading-6" (click)="signInWithFacebook()">
-                        <div class="flex center-center pading-6 gap-1em"><img
-                            class="height-30" src="../../../assets/icons/facebook_174848.png" alt="facebook">
-                            <p class="no-margin inline">signin with facebook</p></div>
+                        <div class="flex center-center pading-6 gap-1em"><img class="height-30"
+                                src="../../../assets/icons/facebook_174848.png" alt="facebook">
+                            <p class="no-margin inline">signin with facebook</p>
+                        </div>
                     </div>
                 </div>
 
