@@ -61,9 +61,9 @@
 
         <mat-form-field class="full-width" *ngIf="!isEdit">
             <mat-label>Confirm your password</mat-label>
-            <input matInput [type]="hide2 ? 'password' : 'text'" formArrayName="confirmPassword">
+            <!-- <input matInput [type]="hide2 ? 'password' : 'text'" formArrayName="confirmPassword"> -->
             
-                <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility' : ' visibility_off'}}</mat-icon>
+                <!-- <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility' : ' visibility_off'}}</mat-icon> -->
            
             <mat-error *ngIf="accountForm.get('confirmPassword')?.hasError('required')">
                 Confirm Password is <strong>required</strong>
