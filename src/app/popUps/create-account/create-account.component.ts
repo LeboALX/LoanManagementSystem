@@ -18,35 +18,37 @@ export class CreateAccountComponent {
   borrowers: any = []
   accountForm!: FormGroup;
   hide = true;
-  isEdit: Boolean = false;
+  hide2 = true;
+  isEdit : Boolean = false;
 
-  constructor(private router: Router, private snackbar: MatSnackBar, private email: EmailService, private api: ApiService,
-    private shared: LoanService, private matdialogRef: MatDialogRef<CreateAccountComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
-    private emailService: EmailService, private matdialog: MatDialog) {
-    if (data) {
-      this.accountForm = new FormGroup({
-        fullName: new FormControl(data.fullName, [Validators.required]),
-        email: new FormControl(data.email, [Validators.required, Validators.pattern(/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/)]),
-        cellNumber: new FormControl(data.cellNumber, [Validators.required])
-
-      })
-      this.isEdit = true
-
-    } else {
-      this.accountForm = new FormGroup({
-        fullName: new FormControl('', [Validators.required]),
-        email: new FormControl('', [Validators.required, Validators.pattern(/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/)]),
-        cellNumber: new FormControl('', [Validators.required]),
-        password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]),
-        confirmPassword: new FormControl('', [Validators.required])
-      })
-    }
-
-
+  constructor(private router: Router, private snackbar: MatSnackBar,private api: ApiService,
+     private shared:LoanService,private matdialogRef:MatDialogRef<CreateAccountComponent>,@Inject(MAT_DIALOG_DATA) public data: any,private emailService:EmailService,
+     private matdialog:MatDialog) {
+      if(data){
+        this.accountForm = new FormGroup({
+          fullName: new FormControl(data.fullName, [Validators.required]),
+          email: new FormControl(data.email, [Validators.required, Validators.pattern(/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/)]),
+          cellNumber: new FormControl(data.cellNumber, [Validators.required])
+          
+        })
+        this.isEdit = true
+      
+      }else{
+        this.accountForm = new FormGroup({
+          fullName: new FormControl('', [Validators.required]),
+          email: new FormControl('', [Validators.required, Validators.pattern(/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/)]),
+          cellNumber: new FormControl('', [Validators.required]),
+          creditScore: new FormControl('', [Validators.required]),
+          password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]),
+          confirmPassword: new FormControl('', [Validators.required])
+        })
+      }
+ 
+   
   }
 
   submit(): void {
-    this.api.genericGet('/getAllUsers')
+    this.api.genericGet('/get-registered-user')
       .subscribe({
         next: (res: any) => {
           console.log("all users", res);

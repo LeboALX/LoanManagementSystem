@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
@@ -21,5 +22,13 @@ export class ApiService {
   genericDelete(endpoint: string){
     return this.http.delete(this.baseUrl+endpoint)
   }
+  updateBalance(userId: string, updatedUserData: any): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}${userId}`, updatedUserData);
+  }
+
+  sendOtp(phoneNumber: string) {
+    return this.http.post<any>(this.baseUrl, { phoneNumber });
+  }
+  
 
 }

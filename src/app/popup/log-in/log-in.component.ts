@@ -49,7 +49,6 @@ export class LogInComponent implements OnInit {
   ngOnInit(): void {
     // Get file input element
     this.fileElement = document.getElementById('file') as HTMLInputElement;
-
     // intialize google client id
     google.accounts.id.initialize({
       client_id: '797939695613-nlq355cd61l5ud03bd45a6r3rubufal0.apps.googleusercontent.com',
@@ -74,6 +73,7 @@ export class LogInComponent implements OnInit {
     if (response) {
       // decode the encoded credentials
       const payLoad = this.decodeToken(response.credential);
+      console.log(payLoad)
       // store it in session storage
       const matchingUser = this.users.find((user) => user.email === payLoad.email)
       console.log(matchingUser)
@@ -117,11 +117,11 @@ export class LogInComponent implements OnInit {
             if(foundUser.role){
               this.router.navigate(['home/loan-officer']);
               this.matdialogRef.close();
-              this.snackbar.open('successfully logged In','OK',{duration : 1000})
+              this.snackbar.open('successfully logged In','OK',{duration : 3000})
             }else{
               this.router.navigate(['home/borrower']);
               this.matdialogRef.close();
-              this.snackbar.open('successfully logged In','OK',{duration : 1000})
+              this.snackbar.open('successfully logged In','OK',{duration : 3000})
             }
           }else{
             this.matdialogRef.close()

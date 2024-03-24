@@ -14,6 +14,7 @@ export class ProfileComponent {
   isOfficer:boolean = false;
   currentUser:any ;
   myProfile:any;
+  creditScoreRating!: string;
   constructor(private shared:LoanService ,private api:ApiService ,private matdialog:MatDialog){
     const loggedUser = this.shared.get('currentUser','session')
     this.currentUser = loggedUser;
@@ -27,6 +28,11 @@ export class ProfileComponent {
       next: (res: any) => {
         const myDetails = res.filter((user:any)=>this.currentUser.email === user.email)
         this.myProfile = myDetails;
+        if(myDetails[0].creditScore <= 50)
+        {
+          this.creditScoreRating = 'Your credit score is POOR'
+        }
+        else{this.creditScoreRating = 'Your Credit score is Looking GOOD'}
 
       },
       error: (err: any) => console.log('Error', err),

@@ -257,3 +257,22 @@ $white: #fefefe;
 .location{
     color: #cd2e37;
 }
+
+.green{
+    color: green;
+}
+
+.redish{
+    background: linear-gradient( $red,$blue);
+}
+
+.blue{
+    color: blue;
+    background-color: #fefefe;
+    border-radius: 50%;
+    padding: 0;
+}
+
+.meroon{
+    color: maroon;
+}

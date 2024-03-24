@@ -14,40 +14,60 @@ import { SharedService } from 'src/app/services/shared.service';
 export class PaymentComponent {
   allUsers: any[] = JSON.parse(localStorage.getItem('allUsers') || '[]');
   paymentForm: FormGroup
-  currentUser : any;
-  loanAmount:any;
-  balance:any;
+  currentUser: any;
+  loanAmount: any;
+  balance: any;
+  status: boolean = false;
 
   constructor(private snackBar: MatSnackBar, private loan: LoanService,
-               private matdialogRef: MatDialogRef<PaymentComponent>,
-                private api:ApiService,private sharedService: SharedService,@Inject(MAT_DIALOG_DATA) public _data: any) {
-    
+    private matdialogRef: MatDialogRef<PaymentComponent>,
+    private api: ApiService, private sharedService: SharedService, @Inject(MAT_DIALOG_DATA) public _data: any) {
+ 
+      this.api.genericGet('/get-loans')
+      .subscribe({
+        next: (res: any) => {
+          this.sharedService.refreshBalance()
+          const loggedUser =  this.loan.get('currentUser','session')
+          const user = res.filter((user: any) => user.email == loggedUser.email)
+          if (user) {
+            this.loanAmount = user[0].loanAmount;
+          }
+          if(user[0].loanStatutus !== 'approved')
+          {
+            this.status = true;
+          }
+        },
+        error: (err: any) => console.log('Error', err),
+        complete: () => { }
+      });
     this.paymentForm = new FormGroup({
       amount: new FormControl(''),
       monthlyRepayment: new FormControl('', [Validators.required]),
       // balance: new FormControl('', [Validators.required]),
     })
+
+    console.log("Form ya Pay", this.paymentForm.value)
   }
 
   submit(): void {
-    const loggedUser =  this.loan.get('currentUser','session')
-    console.log("Logged User",loggedUser.email)
+    const loggedUser = this.loan.get('currentUser', 'session')
+    console.log("Logged User", loggedUser.email)
     this.api.genericGet('/get-loans')
-    .subscribe({
-      next: (res: any) => {
-        this.sharedService.refreshBalance()
-        const user = res.filter((user:any)=> user.email == loggedUser.email)
-        if(user){
-          this.loanAmount =user[0].loanAmount;
-          this.balance = this.loanAmount - this.paymentForm.get('monthlyRepayment')?.value;
-          this.balance = this.balance;
-          this.close();
-          } 
-      },
-      error: (err: any) => console.log('Error', err),
-      complete: () => { }
-    });
-    console.log("balance ",this.balance)
+      .subscribe({
+        next: (res: any) => {
+          this.sharedService.refreshBalance()
+          const user = res.filter((user: any) => user.email == loggedUser.email)
+          if(user)
+          {
+            const _id = res[0]._id;
+            const subMoney = this.paymentForm.get('monthlyRepayment')?.value
+            
+          }
+        },
+        error: (err: any) => console.log('Error', err),
+        complete: () => { }
+      });
+    this.close();
   }
 
   close(): void {

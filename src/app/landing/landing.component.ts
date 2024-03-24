@@ -4,6 +4,8 @@ import { EnquireComponent } from '../enquire/enquire.component';
 import { RegisterComponent } from '../components/register/register.component';
 import { LogInComponent } from '../popup/log-in/log-in.component';
 import { CreateAccountComponent } from '../popUps/create-account/create-account.component';
+import { ShortTermLoanConsditionsComponent } from '../components/short-term-loan-consditions/short-term-loan-consditions.component';
+import { LongTermLoanConsditionsComponent } from '../components/long-term-loan-consditions/long-term-loan-consditions.component';
 
 export interface LoanDetails {
   monthlyInstallment: number;
@@ -66,9 +68,21 @@ export class LandingComponent {
   }
 
   apply():void{
-    this.dialog.open(CreateAccountComponent,{width : '35%', height:"90%"})
+    this.dialog.open(CreateAccountComponent,{width : '40%', height:"100%"})
   }
   logIn():void{
-    this.dialog.open(LogInComponent,{width:'40%',height:'80%'})
+    this.dialog.open(LogInComponent,{width:'50%',height:'90%'})
+  }
+
+  shortTermLoan():void{
+    this.dialog.open(ShortTermLoanConsditionsComponent,{
+      height:"78%",
+    })
+  }
+
+  longTermLoan():void{
+    this.dialog.open(LongTermLoanConsditionsComponent,{
+      height:"80%",
+    })
   }
 }
