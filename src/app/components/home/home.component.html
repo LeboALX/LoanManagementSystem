@@ -27,7 +27,7 @@
                 <a mat-list-item routerLink="/home/contact" routerLinkActive="active" *ngIf="!isOfficer">
                     <p class="black">Contact</p>
                 </a>
-                <a mat-list-item routerLink="/home/message" routerLinkActive="active">
+                <a mat-list-item routerLink="/home/message" routerLinkActive="active" *ngIf="isOfficer">
                     <p class="black">Messages</p>
                 </a>
                 <a mat-list-item routerLink="/home/profile" routerLinkActive="active">
@@ -60,7 +60,7 @@
                 <h3>{{!isOfficer ? 'Borrower' : 'LoanOfficer'}}</h3>
                 <h1 class="color">|</h1>
                 <h3 class="green">{{currentUser.fullName | titlecase}}</h3>
-                <mat-icon matTooltip="Log Out" routerLink="/landing">logout</mat-icon>
+                <mat-icon matTooltip="Log Out" routerLink="/landing" (click)="logout()">logout</mat-icon>
             </div>
 
         </mat-toolbar>

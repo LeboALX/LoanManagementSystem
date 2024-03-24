@@ -73,18 +73,47 @@ export class LogInComponent implements OnInit {
     if (response) {
       // decode the encoded credentials
       const payLoad = this.decodeToken(response.credential);
+      console.log(payLoad)
       // store it in session storage
-      const matchingUser = this.users.find((user) => user.email === payLoad.email)
-      console.log(matchingUser)
-      if (matchingUser) {
-        sessionStorage.setItem('currentUser', JSON.stringify(matchingUser))
-        this.router.navigate(['home/loan-officer']);
-        this.snackbar.open('successfully logged in', 'OK', { duration: 1000 })
-        this.matdialogRef.close();
+      this.api.genericGet('/get-registered-user')
+      .subscribe({
+        next: (res: any) => {
+          console.log("aowa wena",res)
+          const foundUser = res.find((user:any)=> user.email === payLoad.email)
+          // console.log("found user",foundUser)
+          if(foundUser){
+            sessionStorage.setItem('currentUser',JSON.stringify(foundUser))
+            this.router.navigate(['home/borrower']);
+              this.matdialogRef.close();
       }else{
         this.snackbar.open("User not found , please register and log it again..")
         
-      }
+              this.snackbar.open('successfully logged In','OK',{duration : 1000})
+              return
+          }
+          //   if(foundUser.role){
+          //     
+          //   }else{
+          //     this.router.navigate(['home/borrower']);
+          //     this.matdialogRef.close();
+          //     this.snackbar.open('successfully logged In','OK',{duration : 3000})
+          //   }
+          // }else{
+          //   this.snackbar.open("login Failed ,please register",'OK' ,{duration:3000})
+          //   return
+          // }
+        },
+        error: (err: any) => console.log('Error', err),
+        complete: () => { }
+      });
+      // const matchingUser = this.users.find((user) => user.email === payLoad.email)
+      // console.log(matchingUser)
+      // if (!matchingUser) {
+      //   sessionStorage.setItem('currentUser', JSON.stringify(matchingUser))
+      //   this.router.navigate(['home/loan-officer']);
+      //   this.snackbar.open('successfully logged in', 'OK', { duration: 1000 })
+      //   this.matdialogRef.close();
+      // }
 
       // navigate to home page
 

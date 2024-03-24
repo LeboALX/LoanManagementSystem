@@ -57,5 +57,9 @@ export class HomeComponent implements OnInit {
       })
     }
   }
+
+  logout():void{
+    sessionStorage.clear()
+  }
   }
 

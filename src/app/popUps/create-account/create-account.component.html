@@ -37,6 +37,16 @@
             </mat-error>
         </mat-form-field>
 
+        <!-- Credit score -->
+        <mat-form-field class="full-width">
+            <mat-label>Credit Score</mat-label>
+            <input type="text" matInput formControlName="creditScore" placeholder="Enter your Credit score"
+                maxlength="3">
+            <mat-error *ngIf="accountForm.get('creditScore')?.hasError('required')">
+                Credit score is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
         <mat-form-field class="full-width" *ngIf="!isEdit">
             <mat-label>Enter your password</mat-label>
             <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">

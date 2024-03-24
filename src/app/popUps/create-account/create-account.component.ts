@@ -37,6 +37,7 @@ export class CreateAccountComponent {
         fullName: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required, Validators.pattern(/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/)]),
         cellNumber: new FormControl('', [Validators.required]),
+          creditScore: new FormControl('', [Validators.required]),
         password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]),
         confirmPassword: new FormControl('', [Validators.required])
       })
