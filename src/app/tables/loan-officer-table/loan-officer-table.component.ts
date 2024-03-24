@@ -15,12 +15,11 @@ import { SharedService } from 'src/app/services/shared.service';
 export class LoanOfficerTableComponent { 
   displayedColumns: string[] = ['fullName', 'idNo', 'gender', 'email', 'action', 'options', 'documents'];
   // displayedHeaders: string[] = ['full Names', 'ID number', 'Gender', 'Email', 'Action', 'Options', 'Documents'];
-  applicationAction: string[] = ['Approve', 'Decline'];
+  applicationAction: string[] = ['approve', 'declined'];
   pendingCount: number = 0;
   declinedCount: number = 0;
   approvedCount: number = 0;
   dataSource = new MatTableDataSource<any>();
-  applicationOptions: string[] = ['Approve', 'Declined']
 
 
   constructor(private api: ApiService, private snackbar:MatSnackBar, private sharedService:SharedService ,private emailServices:EmailService){
@@ -73,7 +72,7 @@ export class LoanOfficerTableComponent {
         })
         break;
     }
-    this.api.genericPost(`/update-loan/${loan._id}`, { loanStatutus: updateStatusTo })
+    this.api.updateBalance(`/update-loan/${loan._id}`, { loanStatutus: updateStatusTo })
       .subscribe({
         next: (res: any) => {
           if(res.modifiedCount === 1){

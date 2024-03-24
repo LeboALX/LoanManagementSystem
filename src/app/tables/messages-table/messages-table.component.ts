@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ContactComponent } from 'src/app/components/contact/contact.component';
+import { EnquireComponent } from 'src/app/enquire/enquire.component';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class MessagesTableComponent {
   dataSource = new MatTableDataSource<any>();
 
   constructor(private api: ApiService, private dialog:MatDialog){
-    this.api.genericGet('/contact')
+    this.api.genericGet('/get-enquiry')
       .subscribe({
         next: (res: any) => {
           this.dataSource = res;
@@ -26,18 +27,9 @@ export class MessagesTableComponent {
       });
   }
  
-//adding filter
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
 
   viewMessage(_data:any) {
-    this.dialog.open(ContactComponent,{
+    this.dialog.open(EnquireComponent,{
       data: _data,
       width:"50%"
     })

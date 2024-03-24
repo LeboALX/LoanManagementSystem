@@ -105,7 +105,7 @@ export class LogInComponent implements OnInit {
       this.matdialogRef.close();
       this.snackbar.open('successfully logged In','OK',{duration : 1000})
     }else{
-      this.api.genericGet('/getAllUsers')
+      this.api.genericGet('/get-registered-user')
       .subscribe({
         next: (res: any) => {
           console.log("aowa wena",res)

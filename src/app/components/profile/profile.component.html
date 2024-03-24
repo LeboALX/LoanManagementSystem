@@ -3,7 +3,7 @@
         <div class="card">
             <img src="../../../assets/images/picture.png" alt="John">
             <h1>{{currentUser.fullName | titlecase}}</h1>
-            <p class="title">{{currentUser.role  ? currentUser.role : 'borrower'}}</p>
+            <p class="title">{{(currentUser.role  ? currentUser.role : 'borrower') | titlecase}}</p>
             <p>{{currentUser.email}}</p>
             <p>{{currentUser.cellNumber}}</p>
             <p>{{myProfile[0] ? myProfile[0].address.streetName : ''}} {{myProfile[0] ? myProfile[0].address.city : ''}}</p>
