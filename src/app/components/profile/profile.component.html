@@ -2,7 +2,7 @@
     <div class="profile flex center-center">
         <div class="card">
             <img src="../../../assets/images/picture.png" alt="John">
-            <h1>{{currentUser.fullName}}</h1>
+            <h1>{{currentUser.fullName | titlecase}}</h1>
             <p class="title">{{currentUser.role  ? currentUser.role : 'borrower'}}</p>
             <p>{{currentUser.email}}</p>
             <p>{{currentUser.cellNumber}}</p>
@@ -15,7 +15,7 @@
     <div class=" personal-info flex center-center">
         <div class="flex wrap spacebetween">
             <div class="info">
-                <p> current Loan : <strong> {{myProfile[0] ? myProfile[0].loanType  : 'N/A' }}</strong></p>
+                <p> current Loan : <strong> {{(myProfile[0] ? myProfile[0].loanType  : 'N/A') | titlecase}}</strong></p>
                 <p class="flex"> Gender : <strong>{{myProfile[0] ? myProfile[0].gender : 'N/A' }}</strong></p>
                 <p class="flex"> identity Number: <strong>{{myProfile[0] ? myProfile[0].IDnumber : 'N/A' }}</strong></p>
                 <p class="flex"> suburb : <strong>{{myProfile[0] ? myProfile[0].address.suburb : 'N/A' }}</strong></p>
@@ -23,7 +23,7 @@
                 <p class="flex"> Monthly expensise: <strong>{{myProfile[0] ? myProfile[0].monthlyExpenses : 'N/A' }}</strong></p>
             </div>
             <div class="flex column center-center">
-                <h2>Your Credit Score Is Up</h2>
+                <h2>{{creditScoreRating}}</h2>
                 <app-progress-bar></app-progress-bar>
             </div>
         </div>
